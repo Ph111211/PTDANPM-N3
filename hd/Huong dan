@@ -1,0 +1,101 @@
+
+
+• Tạo dự án: laravel new ten-du-an
+
+4. Routing và Controller
+
+Routes được định nghĩa trong routes/web.php cho web hoặc routes/api.php cho API.
+- Ví dụ route đơn giản:
+<!-- Route::get('/example', function () {
+    return 'Hello World';
+}); -->
+- Tạo Controller
+<!-- php artisan make:controller ExampleController -->
+-Kết nối Route với Controller:
+<!-- Route::get('/example', [ExampleController::class, 'show']); -->
+
+
+
+<!-- Hướng dẫn chi tiết quy trình tạo ứng dụng Laravel đơn giản: -->
+1. Tạo dự án Laravel
+Chạy lệnh tạo dự án:
+<!-- BASH
+laravel new lr-project
+ -->
+2. Tạo CSDL
+Tạo một cơ sở dữ liệu, ví dụ: lr-project.
+
+3. Cấu hình tệp .env
+Cập nhật thông tin kết nối cơ sở dữ liệu trong tệp .env:
+
+<!-- DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=lr-project
+DB_USERNAME=your_username
+DB_PASSWORD=your_password -->
+
+4. Tạo bảng dữ liệu
+Nếu lỗi php artisan migrate:reset
+        php artisan migrate
+
+
+Chạy lệnh tạo migration:
+
+
+<!-- php artisan make:migration create_posts_table -->
+Định nghĩa cấu trúc bảng posts:
+
+<!-- Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('content');
+    $table->timestamps();
+}); -->
+5. Thực thi migration
+Tạo bảng trong CSDL:
+
+<!-- bash
+php artisan migrate -->
+6. Tạo Seeder để sinh dữ liệu mẫu
+Chạy lệnh tạo Seeder:
+
+<!-- bash
+php artisan make:seeder PostsTableSeeder -->
+Thực thi Seeder:
+<!-- bash
+php artisan db:seed --class=PostsTableSeeder -->
+
+7.  Tạo Model
+Tạo model Post:
+<!-- bash
+php artisan make:model Post -->
+
+8. Tạo Controller
+Tạo controller PostController với 7 phương thức chuẩn:
+
+<!-- bash
+php artisan make:controller Controller --resource -->
+
+9. Tạo Blade Template
+Tạo view home:
+<!-- bash
+php artisan make:view home -->
+
+Định nghĩa nội dung trong home.blade.php:
+<!-- bash
+@foreach($posts as $post)
+    <p>{{ $post->content }}</p>
+@endforeach -->
+
+
+10.Sửa đổi route
+Mở tệp routes/web.php và thêm route:
+
+<!-- php
+Route::get('/', [HomeController::class, 'index']);
+Route::get('posts', [PostController::class, 'index']); -->
+11. Chạy ứng dụng
+Chạy server:
+<!-- bash
+php artisan serve -->
