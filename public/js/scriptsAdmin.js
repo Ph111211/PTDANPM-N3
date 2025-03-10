@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Hiển thị modal chỉnh sửa user khi nhấn nút edit
     $(".edit-btn").click(function () {
-        var userId = $(this).data("ma_gv");
+        var userId = $(this).data("id");
         console.log("Mở modal của user:", userId);
         $("#editUserModal" + userId).modal("show");
     });

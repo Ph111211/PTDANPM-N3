@@ -1,0 +1,65 @@
+body {
+    color: #566787;
+    background-color: #f8f9fa !important;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 13px;
+}
+
+.table-responsive {
+    margin: 30px 0;
+}
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 3px;
+    min-width: 1000px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.table-title {
+    background: #f5f6fa;
+    color: #000000;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+}
+.table-title h2 {
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.style-button {
+    background-color: #003C75;
+    color: white;
+}
+.small-text-input {
+    font-size: 12px;
+}
+.modal-content {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.modal-body {
+    padding-bottom: 10px; /* Hoặc giảm xuống 0 nếu cần */
+}
+
+.modal-footer {
+    display: none; /* Nếu không cần nút ở footer */
+}
+.btn-create {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.modal-top {
+    margin-top: 50px;
+}
+.th-text {
+    background-color: #E7E9EE;
+    color: black;
+}
+.small-icon {
+    font-size: 8px; /* Điều chỉnh kích thước icon */
+}
+table.table td a.edit { color: #FFC107; }
+table.table td a.delete { color: #F44336;}
