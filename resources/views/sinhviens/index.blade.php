@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    
+
 </body>
 <style>
-    
+
     .table{
     box-sizing: border-box;
     table-layout: fixed;

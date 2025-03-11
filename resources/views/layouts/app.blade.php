@@ -4,14 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css">
     </head>
     <style>
         body{
             display: flex;
         }
         .menu {
-            width: 14%; 
+            width: 14%;
             margin-top: 0%;
             margin-bottom: 0%;
         }
@@ -65,7 +66,7 @@
         .top_bar{
             justify-content: space-between;
         }
-        .container{ 
+        .container{
             margin-left: 12%;
             width: 86%;
             height: 83%;
@@ -113,11 +114,11 @@
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white">Logout
-        
+
                 <svg class="logout" width="25" height="25" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317 
-                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883 
-                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031 
+                    <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317
+                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883
+                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031
                 33.0417H7.625V27.9583H28.4031L21.9219 21.4771L25.4167 17.7917L38.125 30.5L25.4167 43.2083Z" fill="#181819"/>
                 </svg>
             </button>

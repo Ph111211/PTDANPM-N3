@@ -183,7 +183,7 @@
     .content .card_1 img{
         width: 665px;
         height: 400px;
-        
+
     }
     .content .card_1 p{
         position: absolute;
@@ -260,9 +260,9 @@
         <p> Trường đại học Thủy Lợi TLU</p>
         <a href="#" class="login-link">Đăng nhập</a>
         <a href="#"><svg class="logout" width="45" height="45" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317 
-                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883 
-                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031 
+            <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317
+                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883
+                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031
                 33.0417H7.625V27.9583H28.4031L21.9219 21.4771L25.4167 17.7917L38.125 30.5L25.4167 43.2083Z" fill="#181819"/>
         </svg></a>
         <ul class="menu">
@@ -304,7 +304,7 @@
             </svg>
         </button>
         <img src="storage/images/main_content.png" alt="No image." class="home-image">
-        <button type="button" class="v-right">    
+        <button type="button" class="v-right">
             <svg width="68" height="111" viewBox="0 0 69 111" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 110.5L67.5 48L1 1" stroke="#EEEEEE"/>
             </svg>
@@ -330,7 +330,7 @@
     <div class="content">
         <div class="card_1">
             <img src="storage/images/cthcm.png" alt="No image.">
-                <p><strong>* Giới thiệu :</strong> 
+                <p><strong>* Giới thiệu :</strong>
                 <br>Trường Đại học Thủy lợi (tiếng Anh: Thuyloi University) là trường đại học số 1 trong việc đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học, phát triển và chuyển giao công nghệ tiên tiến trong các ngành khoa học, kỹ thuật, kinh tế và quản lý, đặc biệt trong lĩnh vực thủy lợi, môi trường, phòng chống và giảm nhẹ thiên tai, ...</p>
         </div>
         <div class="card_2">
