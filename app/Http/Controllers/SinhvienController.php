@@ -1,13 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SinhVien;
 
-class SinhvienController extends Controller
+class SinhVienController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return view('sinhviens.index');
+        $sinhviens = SinhVien::all();
+        return view('sinhvien.index', compact('sinhviens'));
     }
 }
