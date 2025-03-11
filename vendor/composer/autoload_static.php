@@ -16,18 +16,16 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
+        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
-        'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
-        'aadac1114cab8dc19489a7f6dc24c003' => __DIR__ . '/..' . '/pestphp/pest-plugin-arch/src/Autoload.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '476ca15b8d69b04665cd879be9cb4c68' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
@@ -37,6 +35,8 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         '7f7ac2ddea9cc3fb4b2cc201d63dbc10' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Log/functions.php',
         '493c6aea52f6009bab023b26c21a386a' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/functions.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
+        'aadac1114cab8dc19489a7f6dc24c003' => __DIR__ . '/..' . '/pestphp/pest-plugin-arch/src/Autoload.php',
         'f83ed111c2f97a0449abf067f157f418' => __DIR__ . '/..' . '/pestphp/pest/src/Functions.php',
         '7d2876738dc0328edeb8a103c76cd8e7' => __DIR__ . '/..' . '/pestphp/pest/src/Pest.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -95,6 +95,7 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
+            'SadiqSalau\\LaravelOtp\\' => 22,
         ),
         'R' =>
         array (
@@ -154,6 +155,10 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
             'Illuminate\\Support\\' => 19,
             'Illuminate\\' => 11,
         ),
+        'H' =>
+        array (
+            'HiFolks\\RandoPhp\\' => 17,
+        ),
         'G' =>
         array (
             'GuzzleHttp\\UriTemplate\\' => 23,
@@ -206,9 +211,9 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         ),
         'phpDocumentor\\Reflection\\' =>
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' =>
         array (
@@ -341,6 +346,10 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Symfony\\Component\\Clock\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
+        ),
+        'SadiqSalau\\LaravelOtp\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src',
         ),
         'Ramsey\\Uuid\\' =>
         array (
@@ -493,6 +502,10 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Illuminate\\' =>
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'HiFolks\\RandoPhp\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/hi-folks/rando-php/src',
         ),
         'GuzzleHttp\\UriTemplate\\' =>
         array (
@@ -1636,6 +1649,19 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'HiFolks\\RandoPhp\\Draw' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Draw.php',
+        'HiFolks\\RandoPhp\\Exceptions\\ModelNotFoundException' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Exceptions/ModelNotFoundException.php',
+        'HiFolks\\RandoPhp\\Models\\Boolean' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Boolean.php',
+        'HiFolks\\RandoPhp\\Models\\Byte' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Byte.php',
+        'HiFolks\\RandoPhp\\Models\\Char' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Char.php',
+        'HiFolks\\RandoPhp\\Models\\Chars' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Chars.php',
+        'HiFolks\\RandoPhp\\Models\\DateTime' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/DateTime.php',
+        'HiFolks\\RandoPhp\\Models\\FloatModel' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/FloatModel.php',
+        'HiFolks\\RandoPhp\\Models\\Integer' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Integer.php',
+        'HiFolks\\RandoPhp\\Models\\LatLong' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/LatLong.php',
+        'HiFolks\\RandoPhp\\Models\\Sample' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Sample.php',
+        'HiFolks\\RandoPhp\\Models\\Sequence' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Models/Sequence.php',
+        'HiFolks\\RandoPhp\\Randomize' => __DIR__ . '/..' . '/hi-folks/rando-php/src/Randomize.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
@@ -6080,6 +6106,15 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
         'SQLite3Exception' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
+        'SadiqSalau\\LaravelOtp\\Contracts\\OtpBrokerInterface' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/Contracts/OtpBrokerInterface.php',
+        'SadiqSalau\\LaravelOtp\\Contracts\\OtpInterface' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/Contracts/OtpInterface.php',
+        'SadiqSalau\\LaravelOtp\\Contracts\\OtpStoreInterface' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/Contracts/OtpStoreInterface.php',
+        'SadiqSalau\\LaravelOtp\\Facades\\Otp' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/Facades/Otp.php',
+        'SadiqSalau\\LaravelOtp\\OtpBroker' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/OtpBroker.php',
+        'SadiqSalau\\LaravelOtp\\OtpMakeCommand' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/OtpMakeCommand.php',
+        'SadiqSalau\\LaravelOtp\\OtpNotification' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/OtpNotification.php',
+        'SadiqSalau\\LaravelOtp\\OtpServiceProvider' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/OtpServiceProvider.php',
+        'SadiqSalau\\LaravelOtp\\OtpStore' => __DIR__ . '/..' . '/sadiqsalau/laravel-otp/src/OtpStore.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',
