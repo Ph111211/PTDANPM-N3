@@ -1,0 +1,29 @@
+{
+  "name": "sadiqsalau/laravel-otp",
+  "description": "OTP Package for Laravel",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SadiqSalau\\LaravelOtp\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Sadiq Salau",
+      "email": "sadiqsalau888@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "laravel/framework": "^9|^10|^11",
+    "hi-folks/rando-php": "^0.2.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SadiqSalau\\LaravelOtp\\OtpServiceProvider"
+      ]
+    }
+  }
+}
