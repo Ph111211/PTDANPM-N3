@@ -3,10 +3,9 @@
 @section('title', 'Quản Lý Sinh Viên')
 
 @section('content')
-
 <h2 class="text-center mb-4">Danh Sách Sinh Viên</h2>
 
-<table class="table table-bordered text-center align-middle">
+<table class="table table-bordered text-center align-center">
     <thead class="table-light">
         <tr>
             <th>Mã</th>
@@ -24,10 +23,10 @@
                 <td>{{ $sinhvien->ma_sv }}</td>
                 <td>{{ $sinhvien->ho_ten }}</td>
                 <td>{{ $sinhvien->lop }}</td>
-                <td>{{ $sinhvien->de_tai }}</td>
-                <td>{{ $sinhvien->giang_vien ?? 'Chưa có' }}</td>
-                <td class="{{ $sinhvien->tien_do == 'Hoàn thành' ? 'status-complete' : 'status-incomplete' }}">
-                    {{ $sinhvien->tien_do }}
+                <td>{{ optional($sinhvien->doAn)->de_tai ?? 'Chưa có' }}</td>
+                <td>{{ optional($sinhvien->doAn->giangVien)->ho_ten ?? 'Chưa có' }}</td>
+                <td class="{{ optional($sinhvien->doAn)->tien_do == 'Hoàn thành' ? 'text-success' : 'text-danger' }}">
+                    {{ optional($sinhvien->doAn)->tien_do ?? 'Chưa cập nhật' }}
                 </td>
                 <td>
                     <a href="{{ route('sinhvien.edit', $sinhvien->id) }}" class="btn btn-sm btn-primary">
@@ -45,5 +44,4 @@
         @endforeach
     </tbody>
 </table>
-
 @endsection

@@ -85,7 +85,7 @@
                     <a href="#">Quản lý giảng viên</a>
                 </li>
                 <li>
-                    <a href="#">Quản lý sinh viên</a>
+                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
                     <a href="#">Thống kê</a>
