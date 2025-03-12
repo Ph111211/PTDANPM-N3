@@ -23,7 +23,8 @@
             margin-top: 16.71px;
         }
 
-        .menu #sub-menu li,a {
+        .menu ul li,a {
+            width: 100%;
             list-style: none;
             text-decoration: none;
         }
