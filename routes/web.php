@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BaoCaoCuoiKYController;
 use App\Http\Controllers\DangKyDeTaiNghiepController;
 use App\Http\Controllers\DanhGiaTuDoanhNghiepController;
@@ -71,3 +72,15 @@ Route::post('/do-an/store', [DangKyDeTaiNghiepController::class, 'store'])->name
 
 Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');
 Route::put('/tiendothuctap/{ma_do_an}', [TienDoThucTapController::class, 'update'])->name('tiendothuctap');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
