@@ -12,10 +12,13 @@ class SinhVien extends Model
     protected $table = 'sinh_vien';
     protected $fillable = ['ma_sv', 'ho_ten','lop','ma_gv'];
 
-    public function giangVien()
-{
+    public function giangVien(){
     return $this->belongsTo(Giangvien::class, 'ma_gv', 'ma_gv');
 }
+public function doAn() {
+    return $this->hasOne(Doan::class, 'ma_sv', 'ma_sv');
+}
+
 }
 
 

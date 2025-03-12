@@ -7,10 +7,11 @@
         <link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css">
     </head>
     <style>
+        body{
+            display: flex;
+        }
         .menu {
-            position: absolute;
-            width: 24%;
-            margin-right: 76%;
+            width: 14%; 
             margin-top: 0%;
             margin-bottom: 0%;
         }
@@ -22,7 +23,7 @@
         }
 
         .menu ul li,a {
-            width: 100%;
+            
             list-style: none;
             text-decoration: none;
             margin-top: 10px;
@@ -30,18 +31,16 @@
             color: black;
             font-style: 'Segeo UI';
             font-weight: 600;
+            word-wrap: break-word;
         }
-
+       .menu ul li a,h2{
+            width: 10rem;
+       }
         .top_bar {
-            margin-left: 23.71%;
+            margin-left: 12%;
             margin-top: 0%;
         }
 
-        main {
-            margin-left: 24%;
-            margin-top: 0;
-            background-color: #F5F6FA;
-        }
 
         .search {
             height: 40px;
@@ -67,6 +66,12 @@
         }
         .top_bar{
             justify-content: space-between;
+        }
+        .container{ 
+            margin-left: 12%;
+            width: 86%;
+            height: 83%;
+            background-color: #F5F6FA;
         }
     </style>
     <body>
@@ -116,6 +121,7 @@
                 </svg>
             </button>
         </div>
+        <div>
         <div class="top_bar d-flex">
             <div class="d-flex">
                 <a href="#">
@@ -200,6 +206,9 @@
                 </div>
             </div>
         </div>
-        <main></main>
+        <div class="container px-4">
+            @yield('content')
+        </div>
+    </div>
     </body>
 </html>

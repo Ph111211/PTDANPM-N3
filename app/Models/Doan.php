@@ -10,7 +10,7 @@ class Doan extends Model
     use HasFactory;
 
     protected $table = 'do_an';
-    protected $fillable = ['ma_do_an', 'de_tai','ma_sv', 'ma_gv', 'trang_thai'];
+    protected $fillable = ['ma_do_an', 'tieu_de','ma_sv', 'ma_gv', 'trang_thai'];
 
     public function giangVien()
     {
