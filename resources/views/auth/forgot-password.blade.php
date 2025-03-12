@@ -10,16 +10,19 @@
         @csrf
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        
+            <div>
+                <label for="email" class="block text-gray-700">Email Address</label>
+                <input id="email" type="email" placeholder = "Email/Ten dang nhap" class="w-full p-2 border rounded focus:outline-none focus:border-blue-500" name="email" required autofocus>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+            
+                
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+        
+
+        <div class=" mt-4 flex items-center justify-center ">
+        <button type=submit class="bg-[#003C75] w-3/4 py-3 px-6 text-white font-semibold rounded-lg ">Tiếp tục</button>
         </div>
     </form>
 </x-guest-layout>
