@@ -27,6 +27,7 @@ class UserVerification extends Mailable
     public function build()
     {
         $otp = rand(100000,999999);
+        session(['otp' => $otp]);
         return $this->markdown('email.name')->with('OTP',$otp);
     }
 
