@@ -10,7 +10,9 @@ class SinhVien extends Model
     use HasFactory;
 
     protected $table = 'sinh_vien';
-    protected $fillable = ['ma_sv', 'ho_ten','lop','ma_gv'];
+    protected $primaryKey = 'ma_sv';
+    public $incrementing = false;
+    protected $fillable = ['ma_sv', 'ho_ten','ngay_sinh','gioi_tinh','lop','sdt','email','dia_chi','ma_gv'];
 
     public function giangVien(){
     return $this->belongsTo(Giangvien::class, 'ma_gv', 'ma_gv');

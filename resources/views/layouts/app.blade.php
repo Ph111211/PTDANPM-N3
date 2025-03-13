@@ -22,19 +22,17 @@
             margin-top: 16.71px;
         }
 
-        .menu ul li,a {
-            
+        .menu #sub-menu li,a {
             list-style: none;
             text-decoration: none;
-            margin-top: 10px;
-            display: grid;
-            color: black;
-            font-style: 'Segeo UI';
-            font-weight: 600;
-            word-wrap: break-word;
         }
        .menu ul li a,h2{
             width: 10rem;
+            text-decoration: none;
+            margin-top: 15px;
+            display: block;
+            color: black;
+            font-weight: 600;
        }
         .top_bar {
             margin-left: 12%;
@@ -82,7 +80,7 @@
                     <h2>Trang chủ</h2>
                 </a>
             </div>
-            <ul>
+            <ul id="sub-menu">
                 <li>
                     <a href="#">Quản lý tài khoản</a>
                 </li>

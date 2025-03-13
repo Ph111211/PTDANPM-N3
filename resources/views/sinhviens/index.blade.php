@@ -33,7 +33,7 @@
 
 @section('content')
 <h3 class="text-center m-4">Quản lý sinh viên</h3>
-<a href="#" class="btn btn-sm my-4" id="plus">
+<a href="{{ route('sinhviens.create') }}" class="btn btn-sm my-4" id="plus">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
     </svg> &nbsp;Thêm sinh viên
@@ -57,18 +57,18 @@
                 <td>{{ $sinhvien->ho_ten }}</td>
                 <td>{{ $sinhvien->lop }}</td>
                 <td>{{ optional($sinhvien->doAn)->tieu_de ?? 'Chưa có' }}</td>
-                <td>{{ optional($sinhvien->doAn->giangVien)->ho_ten ?? 'Chưa có' }}</td>
+                <td>{{ optional($sinhvien->giangVien)->ho_ten ?? 'Chưa có giảng viên' }}</td>
                 <td class="{{ optional($sinhvien->doAn)->trang_thai == 'Hoàn thành' ? 'text-success' : 'text-danger' }}">
                     {{ optional($sinhvien->doAn)->trang_thai ?? 'Chưa cập nhật' }}
                 </td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-info my-3">
+                    <a href="{{ route('sinhviens.edit', $sinhvien->ma_sv) }}" class="btn btn-sm btn-info my-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg>
                     </a>
-                    <form action="#" method="POST" style="display:inline;">
+                    <form action="{{ route('sinhviens.destroy', $sinhvien->ma_sv) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-info my-3" onclick="return confirm('Xóa sinh viên này ?')">
@@ -82,4 +82,7 @@
         @endforeach
     </tbody>
 </table>
+<div>{{ $sinhviens->links('pagination::bootstrap-5') }}</div>
+
+
 @endsection
