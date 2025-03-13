@@ -20,7 +20,13 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    // Display the change password form after login
+    public function showChangePasswordForm():View
+    {
+        return view('auth.change-password'); // Trả về view đổi mật khẩu
+    }
 
+    
     /**
      * Update the user's profile information.
      */
