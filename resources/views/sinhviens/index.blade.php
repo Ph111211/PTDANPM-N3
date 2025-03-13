@@ -59,7 +59,7 @@
                 <td>{{ optional($sinhvien->doAn)->tieu_de ?? 'Chưa có' }}</td>
                 <td>{{ optional($sinhvien->giangVien)->ho_ten ?? 'Chưa có giảng viên' }}</td>
                 <td class="{{ optional($sinhvien->doAn)->trang_thai == 'Hoàn thành' ? 'text-success' : 'text-danger' }}">
-                    {{ optional($sinhvien->doAn)->trang_thai ?? 'Chưa cập nhật' }}
+                    {{ optional($sinhvien->doAn)->trang_thai ?? 'Chưa hoàn thành' }}
                 </td>
                 <td>
                     <a href="{{ route('sinhviens.edit', $sinhvien->ma_sv) }}" class="btn btn-sm btn-info my-3">
