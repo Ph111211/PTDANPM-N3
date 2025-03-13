@@ -71,6 +71,9 @@
             height: 83%;
             background-color: #F5F6FA;
         }
+        .top_bar svg{
+            margin-top: 10px;
+        }
     </style>
     <body>
         <div class="menu">

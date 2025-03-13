@@ -322,7 +322,7 @@
                     <p>Thể thao Thủy lợi</p>
                 </div>
                 <div class="card1">
-                    <img src="storage/images/tstn.png" alt="No image.">
+                    <img src="storage/images/letn.png" alt="No image.">
                     <p>Thông số tốt nghiệp</p>
                 </div>
             </div>
@@ -422,3 +422,33 @@
     </footer>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let images = [
+            "storage/images/main_content.png",
+            "storage/images/tlu.png",
+            "storage/images/tthao.png",
+            "storage/images/image.png"
+        ];
+
+        let currentIndex = 0;
+        let imgElement = document.querySelector(".home-image");
+
+        function changeImage(next = true) {
+            currentIndex = next ? (currentIndex + 1) % images.length : (currentIndex - 1 + images.length) % images.length;
+            imgElement.src = images[currentIndex];
+        }
+
+        document.querySelector(".v-right").addEventListener("click", function () {
+            changeImage(true);
+        });
+
+        document.querySelector(".v-left").addEventListener("click", function () {
+            changeImage(false);
+        });
+
+        // Tự động chuyển ảnh sau mỗi giây
+        setInterval(() => changeImage(true), 8000);
+    });
+</script>
