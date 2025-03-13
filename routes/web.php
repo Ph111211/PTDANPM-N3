@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SinhvienController;
+use App\Http\Controllers\ThongKeController;
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
 
@@ -12,3 +13,4 @@ Route::get('/sinhvien/{ma_sv}/edit', [SinhVienController::class, 'edit'])->name(
 Route::put('/sinhvien/{ma_sv}', [SinhVienController::class, 'update'])->name('sinhviens.update');
 Route::match(['get', 'delete'], '/sinhvien/{ma_sv}/xoa', [SinhVienController::class, 'destroy'])->name('sinhviens.destroy');
 
+Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index');
