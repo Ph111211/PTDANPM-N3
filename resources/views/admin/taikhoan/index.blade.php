@@ -14,8 +14,14 @@
 
 </head>
 <body>
+@extends('layouts.app')
+
+@section('title', 'Quản lý tài khoản')
+
+@section('content')
 <div class="container-xl">
-    <div class="table-responsive">
+
+        <div class="table-responsive">
         <div class="table-wrapper">
             <div>
                 <div class="row mb-3">
@@ -119,14 +125,14 @@
                 </div>
             </div>
             <table class="table table-hover">
-                <thead>
+                <thead class="table-secondary">
                 <tr>
-                    <th  style="background: #E7E9EE;color: #000000">Mã</th>
-                    <th  style="background: #E7E9EE;color: #000000">Họ tên</th>
-                    <th  style="background: #E7E9EE;color: #000000">Email</th>
-                    <th  style="background: #E7E9EE;color: #000000">Vai trò</th>
-                    <th  style="background: #E7E9EE;color: #000000">Số điện thoại</th>
-                    <th  style="background: #E7E9EE;color: #000000">Hành động</th>
+                    <th>Mã</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Số điện thoại</th>
+                    <th>Hành động</th>
 
                 </tr>
                 </thead>
@@ -156,22 +162,22 @@
                                                 @method('PUT')
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3" for="ma">Mã</label>
+                                                    <label class="fw-bold mt-3 text-start d-block" for="ma">Mã</label>
                                                     <input type="text" class="form-control small-text-input" id="ma" name="ma" value="{{ $tk->ma }}" readonly>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3" for="name">Họ và tên</label>
+                                                    <label class="fw-bold mt-3 text-start  d-block" for="name">Họ và tên</label>
                                                     <input type="text" class="form-control" id="name" name="ho_ten" value="{{ $tk->ho_ten }}" required>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3" for="email">Email</label>
+                                                    <label class="fw-bold mt-3 text-start  d-block" for="email">Email</label>
                                                     <input type="email" class="form-control small-text-input" id="email" name="email" value="{{ $tk->email }}" required>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3" for="role">Vai trò</label>
+                                                    <label class="fw-bold mt-3 text-start  d-block" for="role">Vai trò</label>
                                                     <select name="vai_tro" class="form-control">
                                                         <option value="Giảng viên" {{ $tk->vai_tro == 'Giảng viên' ? 'selected' : '' }}>Giảng viên</option>
                                                         <option value="Sinh viên" {{ $tk->vai_tro == 'Sinh viên' ? 'selected' : '' }}>Sinh viên</option>
@@ -179,14 +185,15 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3" for="phone">Số điện thoại</label>
+                                                    <label class="fw-bold mt-3 text-start  d-block" for="phone">Số điện thoại</label>
                                                     <input type="tel" class="form-control small-text-input" id="phone" name="sdt" value="{{ $tk->sdt }}" required>
                                                 </div>
 
                                                 <div class="modal-footer d-flex justify-content-between mb-5">
                                                     <button type="button" class="btn btn-outline-danger px-5 small-text-input" data-bs-dismiss="modal">Hủy</button>
                                                     <!-- Button mở modal xác nhận -->
-                                                    <button type="button" class="btn style-button px-5 small-text-input " data-bs-toggle="modal" data-bs-target="#confirmUpdateModal{{ $tk->id }} ">Cập nhật</button>
+                                                    <button type="button" class="btn px-5 small-text-input style-button" data-bs-toggle="modal" data-bs-target="#confirmUpdateModal{{ $tk->id }}"
+                                                    >Cập nhật</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -255,6 +262,7 @@
     </div>
 
 </div>
+@endsection
 </body>
 <script>
     var successMessage = "{{ session('success') }}";

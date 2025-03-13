@@ -1,6 +1,6 @@
-body {
+.body {
     color: #566787;
-    background-color: #f8f9fa !important;
+    background-color: #f8f9fa;
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
 }
@@ -9,7 +9,7 @@ body {
     margin: 30px 0;
 }
 .table-wrapper {
-    background: #fff;
+    background: #f5f6fa;
     padding: 20px 25px;
     border-radius: 3px;
     min-width: 1000px;
@@ -22,13 +22,18 @@ body {
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
 }
+.table{
+    box-sizing: border-box;
+    table-layout: fixed;
+    text-align: center;
+}
 .table-title h2 {
     margin: 5px 0 0;
     font-size: 24px;
 }
 .style-button {
-    background-color: #003C75;
-    color: white;
+    background-color: #003C75 !important;
+    color: white !important;
 }
 .small-text-input {
     font-size: 12px;
