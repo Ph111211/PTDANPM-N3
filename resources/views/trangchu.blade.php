@@ -322,7 +322,7 @@
                     <p>Thể thao Thủy lợi</p>
                 </div>
                 <div class="card1">
-                    <img src="storage/images/tttn.png" alt="No image.">
+                    <img src="storage/images/tstn.png" alt="No image.">
                     <p>Thông số tốt nghiệp</p>
                 </div>
             </div>
