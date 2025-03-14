@@ -94,7 +94,7 @@
                     <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="#">Thống kê</a>
+                    <a href="{{ route('thongke.index') }}">Thống kê</a>
                 </li>
                 <li>
                     <a href="#">Lên lịch bảo vệ đồ án</a>
@@ -103,7 +103,7 @@
                     <a href="#">Cập nhật kết quả đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Bảng điểm</a>
+                    <a href="#">Kết quả thực tập</a>
                 </li>
                 <li>
                     <a href="#">Lưu trữ</a>
