@@ -10,10 +10,11 @@ class Giangvien extends Model
     use HasFactory;
 
     protected $table = 'giang_vien';
-
-    // Giả sử mối quan hệ là hasMany với bảng SinhVien
-    public function giangVien()
-    {
-        return $this->hasMany(SinhVien::class, 'ma_gv', 'ma_gv');
-    }
+    protected $fillable = [
+        'ma_gv',
+        'ho_ten',
+        'email',
+        'khoa',
+        'sdt',
+    ];
 }

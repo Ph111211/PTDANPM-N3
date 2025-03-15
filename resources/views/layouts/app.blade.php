@@ -78,19 +78,19 @@
         <div class="menu">
             <div class="mx-4">
                 <img src="storage/images/logo.png" alt="No image." class="logo">
-                <a href="http://127.0.0.1:8000">
+                <a href="#">
                     <h2>Trang chủ</h2>
                 </a>
             </div>
             <ul>
                 <li>
-                    <a href="#">Quản lý tài khoản</a>
+                    <a href="#">Quản lí tài khoản</a>
                 </li>
                 <li>
-                    <a href="{{ route('giangvien.index') }}">Quản lý giảng viên</a>
+                    <a href="{{ route('giangviens.index') }}">Quản lí giảng viên</a>
                 </li>
                 <li>
-                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
+                    <a href="#">Quản lí sinh viên</a>
                 </li>
                 <li>
                     <a href="#">Thống kê</a>

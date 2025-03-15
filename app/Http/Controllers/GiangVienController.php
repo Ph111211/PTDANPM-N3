@@ -9,42 +9,22 @@ class GiangVienController extends Controller
 {
     public function index()
     {
-        $giangviens = Giangvien::with('giangVien')->get();
-        return view('giangviens.index', compact('giangviens'));
+        $giangviens = GiangVien::all();
+        return view('giangviens.index', ['giangviens' => $giangviens]);
     }
 
-
-    public function edit($ma_gv)
-    {
-        $giangvien = giangvien::findOrFail($ma_gv);
-        return view('admin/giangvien.edit', compact('giangvien'));
-    }
-
-    public function update(Request $request, $ma_gv)
+    public function store(Request $request)
     {
         $request->validate([
-            'ma_gv' => 'required|string|max:20',
-            'ho_ten' => 'required|string|max:255',
-            'email' => 'required|email|max:100|unique:tai_khoan,email,' . $ma_gv,
-            'vai_tro' => 'required|in:Sinh viên,Giảng viên',
-            'sdt' => 'required|string|max:15',
+            'ma_gv' => 'required',
+            'ho_ten' => 'required',
+            'email' => 'required|email',
+            'khoa' => 'required',
+            'sdt' => 'required',
         ]);
 
-        $giangvien = giangvien::findOrFail($ma_gv);
-        $giangvien->update([
-            'ma_gv' => $request->ma_gv,
-            'ho_ten' => $request->ho_ten,
-            'email' => $request->email,
-            'vai_tro' => $request->vai_tro,
-            'sdt' => $request->sdt
-        ]);
-        return redirect()->route('admin/giangvien.index')->with('success', 'Sửa thành công!');
-    }
+        GiangVien::create($request->all());
 
-    public function destroy($ma_gv)
-    {
-        $giangvien = giangvien::findOrFail($ma_gv);
-        $giangvien->delete();
-        return redirect()->route('admin/giangvien.index')->with('success', 'Xóa thành công!');
+        return redirect()->route('giangviens.index');
     }
 }
