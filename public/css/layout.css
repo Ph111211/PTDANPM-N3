@@ -1,0 +1,120 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul, ol {
+    list-style: none;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+/*resest*/
+
+
+body {
+    display: flex;
+    max-width: 100vw; /* Tránh khoảng trắng dư */
+    overflow-x: hidden; /* Ngăn chặn cuộn ngang */
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    height: 100vh;
+    max-width: 250px;
+    width: 24%;
+    min-width: 150px; 
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 151.17px;
+    height: 124.35px;
+    margin-top: 16.71px;
+}
+
+.menu ul li,a {
+    list-style: none;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: grid;
+    color: black;
+    font-style: 'Segeo UI';
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.menu ul li a,h2{
+    width: 10rem;
+}
+
+.hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;  
+    margin: 4px 0;
+}
+
+
+.top_bar {
+    margin-top: 0%;
+}
+
+
+.search {
+    height: 40px;
+    margin-left: 6%;
+    margin-top: 13px;
+    background: #F5F6FA;
+    border-radius: 28px;
+}
+
+.search .search-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 40px;
+    padding-right: 35px;
+    gap: 10px;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #181819;
+    background: #F5F6FA;
+}
+.top_bar{
+    justify-content: space-between;
+}
+.container{ 
+    max-width: none;
+    width: 100%;
+    height: 83%;
+    background-color: #F5F6FA;
+}
