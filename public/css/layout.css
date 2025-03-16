@@ -118,3 +118,10 @@ body {
     height: 83%;
     background-color: #F5F6FA;
 }
+
+
+.flex_dis {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}

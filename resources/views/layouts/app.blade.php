@@ -13,7 +13,7 @@
     <body>
         <div class="menu">
             <div class="mx-4">
-                <img src="storage/images/logo.png" alt="No image." class="logo">
+                <img src="{{ asset('storage/images/logo.png') }}" alt="No image." class="logo">
                 <a href="#">
                     <h2>Trang chủ</h2>
                 </a>
