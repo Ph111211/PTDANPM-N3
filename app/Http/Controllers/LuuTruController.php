@@ -7,6 +7,6 @@ class LuuTruController extends Controller
 {
     public function index()
     {
-        return view('updatekq.index');
+        return view('capnhatketqua.index');
     }
 }

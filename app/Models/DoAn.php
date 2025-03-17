@@ -10,7 +10,7 @@ class DoAn extends Model
     use HasFactory;
 
     protected $table = 'do_an';
-    protected $primaryKey = 'ma_do_an';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $incrementing = false;
 
