@@ -22,7 +22,6 @@ return new class extends Migration {
             $table->float('diem_so')->nullable();
             $table->foreign('ma_sv')->references('user_id')->on('sinh_vien')->onDelete('cascade');
             $table->foreign('ma_gv')->references('user_id')->on('giang_vien')->onDelete('cascade');
-            // $table->foreign('ma_dn')->references('ma_dn')->on('doanh_nghiep')->onDelete('cascade');
             $table->timestamps();
         });
     }

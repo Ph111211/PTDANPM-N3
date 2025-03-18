@@ -10,14 +10,12 @@ return new class extends Migration {
             $table->string('ma_ket_qua', 20)->primary();
             $table->unsignedBigInteger('ma_sv');
             $table->unsignedBigInteger('ma_gv');
-            $table->string('ma_do_an', 20);
             $table->float('diem_so')->nullable();
             $table->text('nhan_xet_cua_giang_vien')->nullable();
             $table->text('nhan_xet_cua_doanh_nghiep')->nullable();
             $table->string('ten_dn');// ten doanh nghiep
             $table->foreign('ma_sv')->references('user_id')->on('sinh_vien')->onDelete('cascade');
             $table->foreign('ma_gv')->references('user_id')->on('giang_vien')->onDelete('cascade');
-            // $table->foreign('ma_do_an')->references('ma_do_an')->on('do_an')->onDelete('cascade');
             $table->timestamps();
         });
     }
