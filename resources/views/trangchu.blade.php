@@ -267,7 +267,7 @@
         </svg></a>
         <ul class="menu">
             <li class="sub_menu"><a href="#">Giới thiệu</a></li>
-            <li><a href="{{ route('admin/taikhoan.index') }}">Tin tức & thông báo</a></li>
+            <li><a href="#">Tin tức & thông báo</a></li>
             <li><a href="#">Đào tạo</a></li>
             <li><a href="{{ route('sinhviens.index') }}">Sinh viên</a></li>
             <li><a href="#">Thực tập</a></li>
@@ -343,10 +343,10 @@
         </div>
     </div>
     <div class="function d-grid">
-        <p>* CÁC CHỨC NĂNG CHÍNH:</>
+        <p>* CÁC CHỨC NĂNG CHÍNH:</p>
         <div class="card-function d-flex col-md-4">
                 <div class="card2">
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                    <a href="{{ route('admin/taikhoan.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
                         <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/>
                     </svg></a>
                     <p>Quản lý người dùng</p>

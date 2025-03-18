@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("editForm" + userId).submit();
     };
 
+    window.submitEditDoAnForm = function submitEditDoAnForm(id) {
+        document.getElementById('editForm' + id).submit();
+    }
     // Xác nhận gửi form tạo user
     $("#confirmSubmit").click(function () {
         var modal = bootstrap.Modal.getInstance(document.getElementById("addConfirmModal"));

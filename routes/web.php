@@ -10,6 +10,7 @@ use App\Http\Controllers\KetQuaThucTapController;
 use App\Http\Controllers\PhanCongGVController;
 
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
+
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
 
 Route::get('/sinhvien/create', [SinhVienController::class, 'create'])->name('sinhviens.create');
@@ -28,4 +29,19 @@ Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('c
 
 Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
+// Khi nhấn vào "Quản lý tài khoản", chuyển đến trang index trong TaiKhoanController
+Route::get('/taikhoan', [TaiKhoanController::class, 'index'])->name('admin/taikhoan.index');
+
+// Các route taikhoan
+Route::put('/taikhoan/{id}', [TaiKhoanController::class, 'update'])->name('taikhoan.update');
+Route::delete('/taikhoan/{id}', [TaiKhoanController::class, 'destroy'])->name('taikhoan.destroy');
+Route::post('/taikhoan', [TaiKhoanController::class, 'store'])->name('taikhoan.store');
+
+// Các route capnhatketqua
+Route::put('/capnhatketqua/{id}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua.update');
+
+// Các route phanconggiangvien
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
+Route::put('/phancong/{id}', [PhanCongGVController::class, 'update'])->name('phancong.update');
+Route::delete('/phancong/{id}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
+Route::post('/phancong', [PhanCongGVController::class, 'store'])->name('phancong.store');

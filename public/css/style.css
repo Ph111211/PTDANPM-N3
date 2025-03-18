@@ -66,5 +66,9 @@
 .small-icon {
     font-size: 8px; /* Điều chỉnh kích thước icon */
 }
+.center-td{
+    text-align: center;
+    vertical-align: middle;
+}
 table.table td a.edit { color: #FFC107; }
 table.table td a.delete { color: #F44336;}
