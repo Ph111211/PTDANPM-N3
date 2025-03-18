@@ -10,17 +10,14 @@ class SinhVien extends Model
     use HasFactory;
 
     protected $table = 'sinh_vien';
-    protected $primaryKey = 'ma_sv';
+    protected $primaryKey = 'user_id';
     public $incrementing = false;
-    protected $fillable = ['ma_sv', 'ho_ten','ngay_sinh','gioi_tinh','lop','sdt','email','dia_chi','ma_gv'];
+    protected $fillable = ['user_id', 'ho_ten','ngay_sinh','gioi_tinh','lop','sdt','email','dia_chi'];
 
-    public function giangVien(){
-    return $this->belongsTo(Giangvien::class, 'ma_gv', 'ma_gv');
-}
-public function doAn() {
-    return $this->hasOne(Doan::class, 'ma_sv', 'ma_sv');
-}
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
 
 

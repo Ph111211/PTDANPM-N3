@@ -3,79 +3,98 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SinhVien;
-use App\Models\GiangVien;
+use App\Models\User;
 
 class SinhVienController extends Controller
 {
     public function index()
     {
-        $sinhviens = SinhVien::with(['giangVien', 'doAn.giangVien'])->paginate(5);
+        $sinhviens = SinhVien::paginate(5);
         return view('sinhviens.index', compact('sinhviens'));
     }
-    public function create() {
-        $giangViens = GiangVien::all();
-        return view('sinhviens.create', compact('giangViens'));
+
+    public function create()
+    {
+        return view('sinhviens.create');
     }
-    public function store(Request $request) {
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'ma_sv' => 'required|string|max:20|unique:sinh_vien',
             'ho_ten' => 'required|string|max:100',
             'ngay_sinh' => 'required|date',
             'gioi_tinh' => 'required|in:Nam,Nữ',
             'lop' => 'required|string|max:20',
             'sdt' => 'required|string|max:15',
-            'email' => 'required|email|max:100|unique:sinh_vien',
+            'email' => 'required|email|max:100|unique:users,email',
             'dia_chi' => 'required|string',
-            'ma_gv' => 'required|string|exists:giang_vien,ma_gv',
+            'password' => 'required|string|min:6',
         ]);
-    
-        SinhVien::create($validated);
+
+        $user = User::create([
+            'name' => $validated['ho_ten'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+            'role' => 'student',
+        ]);
+
+        SinhVien::create([
+            'user_id' => $user->id,
+            'ho_ten' => $validated['ho_ten'],
+            'ngay_sinh' => $validated['ngay_sinh'],
+            'gioi_tinh' => $validated['gioi_tinh'],
+            'lop' => $validated['lop'],
+            'sdt' => $validated['sdt'],
+            'email' => $validated['email'],
+            'dia_chi' => $validated['dia_chi'],
+        ]);
+
         return redirect()->route('sinhviens.index')->with('success', 'Thêm sinh viên thành công!');
-}
-    public function edit($ma_sv)
-    {
-        $sinhvien = SinhVien::with('doAn.giangVien')->findOrFail($ma_sv);
-        $giangViens = GiangVien::all();
-        return view('sinhviens.edit', compact('sinhvien', 'giangViens'));
     }
 
-    public function update(Request $request, $ma_sv)
+    public function edit($user_id)
     {
-        $request->validate([
+        $sinhvien = SinhVien::findOrFail($user_id);
+        return view('sinhviens.edit', compact('sinhvien'));
+    }
+
+    public function update(Request $request, $user_id)
+    {
+        $sinhvien = SinhVien::where('user_id', $user_id)->firstOrFail();
+        $user = User::findOrFail($user_id);
+
+        $validated = $request->validate([
             'ho_ten' => 'required|string|max:255',
+            'ngay_sinh' => 'required|date',
+            'gioi_tinh' => 'required|in:Nam,Nữ',
             'lop' => 'required|string|max:50',
-            'tieu_de' => 'nullable|string|max:255',
-            'trang_thai' => 'nullable|string|max:50',
+            'sdt' => 'required|string|max:15',
+            'email' => 'required|email|max:100|unique:users,email,' . $user_id,
+            'dia_chi' => 'required|string',
         ]);
 
-        $sinhvien = SinhVien::where('ma_sv', $ma_sv)->firstOrFail();
-        $sinhvien->ho_ten = $request->ho_ten;
-        $sinhvien->lop = $request->lop;
-        $sinhvien->save();
+        $user->update([
+            'name' => $validated['ho_ten'],
+            'email' => $validated['email'],
+        ]);
 
-        if ($sinhvien->doAn) {
-            $sinhvien->doAn->tieu_de = $request->tieu_de;
-            \DB::table('do_an')
-            ->where('ma_sv', $ma_sv)
-            ->update(['ma_gv' => $request->ma_gv,
-                'trang_thai' => $request->trang_thai,
-                'updated_at' => now()
-            ]);
-            $sinhvien->doAn->save();
-        }
+        $sinhvien->update($validated);
 
         return redirect()->route('sinhviens.index')->with('success', 'Cập nhật thành công');
     }
-    public function destroy($ma_sv)
-{
-    $sinhvien = SinhVien::where('ma_sv', $ma_sv)->first();
 
-    if (!$sinhvien) {
-        return redirect()->route('sinhviens.index')->with('error', 'Không tìm thấy sinh viên!');
+    public function destroy($user_id)
+    {
+        $sinhvien = SinhVien::where('user_id', $user_id)->first();
+        $user = User::find($user_id);
+
+        if (!$sinhvien || !$user) {
+            return redirect()->route('sinhviens.index')->with('error', 'Không tìm thấy sinh viên!');
+        }
+
+        $sinhvien->delete();
+        $user->delete();
+
+        return redirect()->route('sinhviens.index')->with('success', 'Xóa thành công!');
     }
-    \DB::table('do_an')->where('ma_sv', $ma_sv)->delete();
-
-    $sinhvien->delete();
-    return redirect()->route('sinhviens.index')->with('success', 'Xóa thành công!');
-}
 }

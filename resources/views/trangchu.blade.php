@@ -248,10 +248,10 @@
         display: flex;
     }
     footer img{
-        width: 400px;
+        width: 550px;
     }
     .lien-he{
-        padding-left: 300px;
+        padding-left: 200px;
     }
 </style>
 <body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Issue</title>
+    <title>Thêm sinh viên</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
@@ -22,12 +22,6 @@
 
     <form action="{{ route('sinhviens.store') }}" method="POST">
         @csrf
-        
-        <div class="mb-3">
-            <label for="ma_sv" class="form-label">Mã Sinh Viên<span class="text-danger">&nbsp;*</span></label>
-            <input type="text" name="ma_sv" class="form-control" required>
-        </div>
-
         <div class="mb-3">
             <label for="ho_ten" class="form-label">Họ Tên<span class="text-danger">&nbsp;*</span></label>
             <input type="text" name="ho_ten" class="form-control" required>
@@ -64,15 +58,6 @@
         <div class="mb-3">
             <label for="dia_chi" class="form-label">Địa Chỉ<span class="text-danger">&nbsp;*</span></label>
             <textarea name="dia_chi" class="form-control" required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="ma_gv" class="form-label">Giảng Viên Hướng Dẫn<span class="text-danger">&nbsp;*</span></label>
-            <select name="ma_gv" class="form-control">
-                @foreach($giangViens as $gv)
-                    <option value="{{ $gv->ma_gv }}">{{ $gv->ho_ten }}</option>
-                @endforeach
-            </select>
         </div>
         <div class="d-flex">
             <a href="{{ route('sinhviens.index') }}" class="btn border-danger text-danger my-4">Hủy</a>

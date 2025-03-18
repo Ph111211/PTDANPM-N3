@@ -12,14 +12,16 @@ return new class extends Migration {
             $table->text('mo_ta')->nullable();
             $table->date('thoi_gian_bat_dau');
             $table->date('thoi_gian_ket_thuc');
-            $table->string('ma_sv', 20);
-            $table->string('ma_gv', 20);
-            $table->string('ma_dn', 20);
+            $table->unsignedBigInteger('ma_sv');
+            $table->unsignedBigInteger('ma_gv');
+            $table->text('nhan_xet')->nullable();
+            $table->date('ngay_gio');
+            $table->string('dia_diem', 255);
+            $table->string('file_noi_dung');
             $table->enum('trang_thai', ['Chưa hoàn thành', 'Hoàn thành']);
             $table->float('diem_so')->nullable();
-            $table->foreign('ma_sv')->references('ma_sv')->on('sinh_vien')->onDelete('cascade');
-            $table->foreign('ma_gv')->references('ma_gv')->on('giang_vien')->onDelete('cascade');
-            $table->foreign('ma_dn')->references('ma_dn')->on('doanh_nghiep')->onDelete('cascade');
+            $table->foreign('ma_sv')->references('user_id')->on('sinh_vien')->onDelete('cascade');
+            $table->foreign('ma_gv')->references('user_id')->on('giang_vien')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,4 +30,3 @@ return new class extends Migration {
         Schema::dropIfExists('do_an');
     }
 };
-

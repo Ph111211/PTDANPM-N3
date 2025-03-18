@@ -9,8 +9,8 @@ Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.i
 
 Route::get('/sinhvien/create', [SinhVienController::class, 'create'])->name('sinhviens.create');
 Route::post('/sinhvien/store', [SinhVienController::class, 'store'])->name('sinhviens.store');
-Route::get('/sinhvien/{ma_sv}/edit', [SinhVienController::class, 'edit'])->name('sinhviens.edit');
-Route::put('/sinhvien/{ma_sv}', [SinhVienController::class, 'update'])->name('sinhviens.update');
-Route::match(['get', 'delete'], '/sinhvien/{ma_sv}/xoa', [SinhVienController::class, 'destroy'])->name('sinhviens.destroy');
+Route::get('/sinhvien/{user_id}/edit', [SinhVienController::class, 'edit'])->name('sinhviens.edit');
+Route::put('/sinhvien/{user_id}', [SinhVienController::class, 'update'])->name('sinhviens.update');
+Route::match(['get', 'delete'], '/sinhvien/{user_id}/xoa', [SinhVienController::class, 'destroy'])->name('sinhviens.destroy');
 
 Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index');
