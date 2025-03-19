@@ -267,7 +267,7 @@
         </svg></a>
         <ul class="menu">
             <li class="sub_menu"><a href="#">Giới thiệu</a></li>
-            <li><a href="#">Tin tức & thông báo</a></li>
+            <li><a href="{{ route('admin/taikhoan.index') }}">Tin tức & thông báo</a></li>
             <li><a href="#">Đào tạo</a></li>
             <li><a href="{{ route('sinhviens.index') }}">Sinh viên</a></li>
             <li><a href="#">Thực tập</a></li>

@@ -206,9 +206,9 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
         ),
         'Whoops\\' => 
         array (
@@ -588,7 +588,19 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\CapNhatKetQuaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CapNhatKetQuaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\KetQuaThucTapController' => __DIR__ . '/../..' . '/app/Http/Controllers/KetQuaThucTapController.php',
+        'App\\Http\\Controllers\\LuuTruController' => __DIR__ . '/../..' . '/app/Http/Controllers/LuuTruController.php',
+        'App\\Http\\Controllers\\PhanCongGVController' => __DIR__ . '/../..' . '/app/Http/Controllers/PhanCongGVController.php',
+        'App\\Http\\Controllers\\TaiKhoanController' => __DIR__ . '/../..' . '/app/Http/Controllers/TaiKhoanController.php',
+        'App\\Models\\DoAn' => __DIR__ . '/../..' . '/app/Models/DoAn.php',
+        'App\\Models\\DoanhNghiep' => __DIR__ . '/../..' . '/app/Models/DoanhNghiep.php',
+        'App\\Models\\GiangVien' => __DIR__ . '/../..' . '/app/Models/GiangVien.php',
+        'App\\Models\\KetQuaThucTap' => __DIR__ . '/../..' . '/app/Models/KetQuaThucTap.php',
+        'App\\Models\\SinhVien' => __DIR__ . '/../..' . '/app/Models/SinhVien.php',
+        'App\\Models\\TaiKhoan' => __DIR__ . '/../..' . '/app/Models/TaiKhoan.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -710,6 +722,12 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\DoAnSeeder' => __DIR__ . '/../..' . '/database/seeders/DoAnSeeder.php',
+        'Database\\Seeders\\DoanhNghiepSeeder' => __DIR__ . '/../..' . '/database/seeders/DoanhNghiepSeeder.php',
+        'Database\\Seeders\\GiangVienSeeder' => __DIR__ . '/../..' . '/database/seeders/GiangVienSeeder.php',
+        'Database\\Seeders\\KetQuaThucTapSeeder' => __DIR__ . '/../..' . '/database/seeders/KetQuaThucTapSeeder.php',
+        'Database\\Seeders\\SinhVienSeeder' => __DIR__ . '/../..' . '/database/seeders/SinhVienSeeder.php',
+        'Database\\Seeders\\TaiKhoanSeeder' => __DIR__ . '/../..' . '/database/seeders/TaiKhoanSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -7275,9 +7293,7 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Termwind\\ValueObjects\\Node' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Node.php',
         'Termwind\\ValueObjects\\Style' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Style.php',
         'Termwind\\ValueObjects\\Styles' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
-        'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
-        'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',

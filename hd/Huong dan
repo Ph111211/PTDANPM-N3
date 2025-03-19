@@ -59,6 +59,7 @@ Tạo bảng trong CSDL:
 php artisan migrate -->
 6. Tạo Seeder để sinh dữ liệu mẫu
 Chạy lệnh tạo Seeder:
+php artisan migrate:refresh --seed
 
 <!-- bash
 php artisan make:seeder PostsTableSeeder -->
