@@ -28,28 +28,27 @@ class NewPasswordController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
+
         $request->validate([
-            'otp' => ['required','numeric'],
-            'email' => ['required', 'email'],
+            'otp' => ['required', 'numeric'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $user = User::where('email', $request->email)->first();
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+        $email = session('email');
+        $user = User::where('email', $email)->first();
+
         if ($request->otp == session('otp')) {
-            
-            $request->only('email', 'password', 'password_confirmation');
-            
             $user->password = Hash::make($request->password);
             $user->save();
             session()->forget('otp');
-                event(new PasswordReset($user));
-                return redirect()->route('login')->with('success', 'Mật khẩu đã được cập nhật! Vui lòng đăng nhập.');
-            
+            session()->forget('email');
+            event(new PasswordReset($user));
+            return redirect()->route('login')->with('status', __('Password reset successfully.'));
         }
+
+        return back()->withInput($request->only('email'))
+                     ->withErrors(['otp' => __('Invalid OTP.')]);
         // $status = Password::reset(
         //     $request->only('email', 'password', 'password_confirmation', 'token'),
         //     function (User $user) use ($request) {

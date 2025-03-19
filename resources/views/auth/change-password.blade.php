@@ -1,43 +1,16 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('MỜI NHẬP MÃ ĐĂNG NHẬP HOẶC EMAIL') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="width: 671px; height: 598px; position: relative; background: #2F36B5; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); overflow: hidden; border-radius: 30px; outline: 1px black solid; outline-offset: -1px">
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         @method('PUT')
-
-       
-
-        
-
-        <!-- Current Password -->
-        <div class="mt-4">
-            <x-input-label for="current_password" :value="__('Mật khẩu cũ')" />
-            <x-text-input id="current_password" class="block mt-1 w-full" type="password" name="current_password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
-        </div>
-       <!-- New Password -->
-       <div class="mt-4">
-            <x-input-label for="password" :value="__('Nhập mật khẩu mới:')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <button type="submit">Xác nhận</button>
-        </div>
-    </form>
-    </x-guest-layout>
+  <input type = "password" name="current_password" style="width: 468px; height: 65px; left: 113px; top: 140px; position: absolute; background: #F0F0F0; overflow: hidden; border-radius: 10px; color: black; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word; padding-left: 10px" placeholder="Mật khẩu cũ"/></input>
+  
+  <button type="submit" style="width: 468px; height: 68px; left: 102px; top: 485px; position: absolute; background: #003C75; overflow: hidden; border-radius: 10px">
+    <span style="width: 222px; height: 32px; left: 100px; top: 18px; position: absolute; color: white; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word">Xác nhận</span>
+  </button>
+  <div style="left: 113px; top: 66px; position: absolute; color: white; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word">Đổi mật khẩu</div>
+  <input type = "password" name = "password_confirmation" style="width: 468px; height: 68px; left: 113px; top: 343px; position: absolute; background: #F0F0F0; overflow: hidden; border-radius: 10px; color: black; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word; padding-left: 10px" placeholder="Xác nhận mật khẩu mới"/></input>
+  </input>
+  <input type="password" name = "password" style="width: 468px; height: 68px; left: 113px; top: 240px; position: absolute; background: #F0F0F0; overflow: hidden; border-radius: 10px; color: black; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word;" placeholder="Mật khẩu mới">
+  </input>
+</div>

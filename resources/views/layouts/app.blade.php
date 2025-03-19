@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     </head>
     <style>
         body{
@@ -78,7 +81,7 @@
         <div class="menu">
             <div class="mx-4">
                 <img src="storage/images/logo.png" alt="No image." class="logo">
-                <a href="http://127.0.0.1:8000">
+                <a href="/">
                     <h2>Trang chủ</h2>
                 </a>
             </div>
@@ -111,15 +114,52 @@
                     <a href="#">Phân công giảng viên</a>
                 </li>
             </ul>
-            <a class="m-5 bg-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Logout
-                <svg class="logout" width="25" height="25" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+            
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LogoutModal">
+  Logout
+  <svg class="logout" width="25" height="25" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317 
                 51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883 
                 51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031 
                 33.0417H7.625V27.9583H28.4031L21.9219 21.4771L25.4167 17.7917L38.125 30.5L25.4167 43.2083Z" fill="#181819"/>
                 </svg>
-            </a>
+</button>
+
+<style>
+    .modal-footer .btn-secondary {
+        background-color: red;
+        border-color: red;
+    }
+    .modal-footer .btn-primary {
+        background-color: green;
+        border-color: green;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="logOutModalLabel" aria-hidden="true ">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="border: 0;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="border: 0;">
+    <h5 class="modal-title text-center">Bạn có chắc chắn muốn đăng xuất
+      <br></br>
+      không?</h5>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại
+        </button>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('logout-form').submit();"> Có</button>
+      </div>
+    </div>
+  </div>
+</div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
@@ -213,5 +253,9 @@
             @yield('content')
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>
