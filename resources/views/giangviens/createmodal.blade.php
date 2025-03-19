@@ -12,8 +12,8 @@
                 <form action="{{ route('giangviens.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="ma_gv">Mã <span class="text-danger">&nbsp;*</span></label>
-                        <input type="text" class="form-control" id="ma_gv" name="ma_gv" required>
+                        <label for="user-id">Mã <span class="text-danger">&nbsp;*</span></label>
+                        <input type="text" class="form-control" id="uys" name="ma_gv" required>
                     </div>
                     <div class="form-group">
                         <label for="ho_ten">Họ và Tên<span class="text-danger">&nbsp;*</span></label>

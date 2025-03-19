@@ -10,11 +10,6 @@ class Giangvien extends Model
     use HasFactory;
 
     protected $table = 'giang_vien';
-    protected $fillable = [
-        'ma_gv',
-        'ho_ten',
-        'email',
-        'khoa',
-        'sdt',
-    ];
+    protected $fillable = ['ma_gv', 'ho_ten'];
 }
+

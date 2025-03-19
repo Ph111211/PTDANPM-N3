@@ -16,11 +16,11 @@ class GiangVienController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ma_gv' => 'required',
+            'user_id' => 'required',
             'ho_ten' => 'required',
             'email' => 'required|email',
             'khoa' => 'required',
-            'sdt' => 'required',
+            'sdt' => 'required|numeric',
         ]);
 
         GiangVien::create($request->all());

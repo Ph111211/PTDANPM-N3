@@ -22,19 +22,17 @@
             margin-top: 16.71px;
         }
 
-        .menu ul li,a {
-            
+        .menu #sub-menu li,a {
             list-style: none;
             text-decoration: none;
-            margin-top: 10px;
-            display: grid;
-            color: black;
-            font-style: 'Segeo UI';
-            font-weight: 600;
-            word-wrap: break-word;
         }
        .menu ul li a,h2{
             width: 10rem;
+            text-decoration: none;
+            margin-top: 15px;
+            display: block;
+            color: black;
+            font-weight: 600;
        }
         .top_bar {
             margin-left: 12%;
@@ -73,42 +71,45 @@
             height: 83%;
             background-color: #F5F6FA;
         }
+        .top_bar svg{
+            margin-top: 10px;
+        }
     </style>
     <body>
         <div class="menu">
             <div class="mx-4">
                 <img src="storage/images/logo.png" alt="No image." class="logo">
-                <a href="#">
+                <a href="http://127.0.0.1:8000">
                     <h2>Trang chủ</h2>
                 </a>
             </div>
-            <ul>
+            <ul id="sub-menu">
                 <li>
-                    <a href="#">Quản lí tài khoản</a>
+                    <a href="#">Quản lý tài khoản</a>
                 </li>
                 <li>
-                    <a href="{{ route('giangviens.index') }}">Quản lí giảng viên</a>
+                    <a href="{{ route('giangviens.index') }}">Quản lý giảng viên</a>
                 </li>
                 <li>
-                    <a href="#">Quản lí sinh viên</a>
+                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="#">Thống kê</a>
+                    <a href="{{ route('thongke.index') }}">Thống kê</a>
                 </li>
                 <li>
                     <a href="#">Lên lịch bảo vệ đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Cập nhật kết quả đồ án</a>
+                    <a href="{{ route('capnhatketqua.index') }}">Cập nhật kết quả đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Bảng điểm</a>
+                    <a href="{{ route('ketquathuctap.index') }}">Kết quả thực tập</a>
                 </li>
                 <li>
                     <a href="#">Lưu trữ</a>
                 </li>
                 <li>
-                    <a href="#">Phân công giảng viên</a>
+                    <a href="{{ route('phancong.index') }}">Phân công giảng viên</a>
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white">Logout
