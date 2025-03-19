@@ -46,58 +46,48 @@
                         <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
                         <td>{{ $it->tieu_de}}</td>
                         <td>
-                            <div type="button" class="btn btn-sm edit-btn" style="background: #003C75" data-id="{{ $it->id }}" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $it->id }}">
+                            <div type="button" class="btn btn-sm edit-btn" style="background: #003C75" data-id="{{ $it->ma_do_an }}" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $it->ma_do_an }}">
                                 <span style=" color: #ffffff"> Cập nhật kết quả </span>
                             </div>
 
                             <!-- Modal Sửa Người Dùng -->
-                            <div class="modal fade" id="editUserModal{{ $it->id }}" tabindex="-1"
+                            <div class="modal fade" id="editUserModal{{ $it->ma_do_an }}" tabindex="-1"
                                  aria-labelledby="editUserModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">Cập nhật kết quả</h5>
-                                            <form id="editForm{{ $it->id }}" action="{{ url('/capnhatketqua/' . $it->id) }}" method="POST">
-
-                                            @csrf
+                                            <form id="editForm{{ $it->ma_do_an }}" action="{{ route('capnhatketqua', $it->ma_do_an) }}" method="POST">
+                                                @csrf
                                                 @method('PUT')
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3 text-start d-block" for="ma_sv">Mã
-                                                        SV</label>
-                                                    <input type="text" class="form-control small-text-input" id="ma_sv"
-                                                           name="ma_sv" value="{{ $it->ma_sv }}" readonly>
+                                                    <label class="fw-bold mt-3 text-start d-block" for="ho_ten">Họ và tên</label>
+                                                    <p class="text-start" style="border: 1px solid #ccc; padding: 5px; width: 100%;">
+                                                        {{ $it->sinhvien->ho_ten }}
+                                                    </p>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3 text-start  d-block" for="name">Họ và
-                                                        tên</label>
-                                                    <input type="text" class="form-control" id="name" name="ho_ten"
-                                                           value="{{$it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu'  }}"
-                                                           required>
+                                                    <label class="fw-bold mt-3 text-start d-block" for="diem_so">Điểm</label>
+                                                    <input type="text" class="form-control small-text-input" id="diem_so" name="diem_so" value="{{ $it->diem_so ?: 'Chưa có điểm' }}" required>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3 text-start  d-block"
-                                                           for="diem_so">Điểm</label>
-                                                    <input type="text" class="form-control small-text-input"
-                                                           id="diem_so" name="diem_so" value="{{ $it->diem_so ?: 'Chưa có điểm '   }}"
-                                                           required>
+                                                    <label class="fw-bold mt-3 text-start d-block" for="nhan_xet">Nhận xét của giảng viên</label>
+                                                    <textarea class="form-control small-text-input" id="nhan_xet" name="nhan_xet" rows="1" required oninput="autoResize(this)">{{ $it->nhan_xet }}</textarea>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="fw-bold mt-3 text-start  d-block" for="trang_thai">Trạng thái</label>
+                                                    <label class="fw-bold mt-3 text-start d-block" for="trang_thai">Trạng thái</label>
                                                     <select name="trang_thai" class="form-control">
                                                         <option value="Hoàn thành" {{ $it->trang_thai == 'Hoàn thành' ? 'selected' : '' }}>Hoàn thành</option>
                                                         <option value="Chưa hoàn thành" {{ $it->trang_thai == 'Chưa hoàn thành' ? 'selected' : '' }}>Chưa hoàn thành</option>
                                                     </select>
                                                 </div>
+
                                                 <div class="modal-footer d-flex justify-content-between mb-5">
-                                                    <button type="button" class="btn px-5 small-text-input style-button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#confirmUpdateModal{{ $it->id }}"
-                                                    >Lưu kết quả
-                                                    </button>
+                                                    <button type="submit" class="btn px-5 small-text-input style-button">Lưu kết quả</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -106,7 +96,7 @@
                             </div>
 
                             <!-- Modal Xác Nhận Cập Nhật -->
-                            <div class="modal fade" id="confirmUpdateModal{{ $it->id }}" tabindex="-1">
+                            <div class="modal fade" id="confirmUpdateModal{{ $it->ma_do_an }}" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body text-center">
@@ -114,7 +104,7 @@
 
                                             <!-- Nút xác nhận sẽ gọi JavaScript để submit form chỉnh sửa -->
                                             <button type="button" class="btn style-button px-4 mr-3"
-                                                    onclick="submitEditDoAnForm({{ $it->id }})">Có
+                                                    onclick="submitEditDoAnForm({{ $it->ma_do_an }})">Có
                                             </button>
 
                                             <button type="button" class="btn style-button" data-bs-dismiss="modal">

@@ -9,7 +9,7 @@ class KetQuaThucTapController extends Controller
 {
     public function index()
     {
-        $ketquas = KetQuaThucTap::with('sinhvien', 'doanhnghiep')->paginate(10);
+        $ketquas = KetQuaThucTap::paginate(10);
         return view('ketquathuctap.index', compact('ketquas'));
     }
 }

@@ -87,7 +87,7 @@
             </div>
             <ul id="sub-menu">
                 <li>
-                    <a href="#">Quản lý tài khoản</a>
+                    <a href="{{ route('admin/users.index') }}">Quản lý tài khoản</a>
                 </li>
                 <li>
                     <a href="{{ route('giangviens.index') }}">Quản lý giảng viên</a>

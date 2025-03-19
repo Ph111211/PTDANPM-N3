@@ -6,20 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up() {
-        Schema::create('doanh_nghiep', function (Blueprint $table) {
-            $table->string('ma_dn', 20)->primary();
-            $table->string('ten_dn', 255);
-            $table->text('dia_chi');
+        Schema::create('van_phong_khoa', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->unique()->primary();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('ho_ten', 100);
+            $table->string('chuc_vu', 100);
             $table->string('sdt', 15);
             $table->string('email', 100)->unique();
-            $table->string('nguoi_lien_he', 100);
-            $table->integer('so_luong_sinh_vien_tiep')->default(0);
             $table->timestamps();
         });
     }
 
     public function down() {
-        Schema::dropIfExists('doanh_nghiep');
+        Schema::dropIfExists('van_phong_khoa');
     }
 };
-

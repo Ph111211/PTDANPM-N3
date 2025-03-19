@@ -24,8 +24,9 @@ class CapNhatKetQuaController extends Controller
     {
         $ketquadoan = DoAn::findOrFail($id);
         $ketquadoan->update([
-            'ma_sv' => $request->ma_sv,
+            'ma_do_an' => $request->ma_do_an,
             'diem_so' => $request->diem_so,
+            'nhan_xet' => $request->nhan_xet,
             'trang_thai' => $request->trang_thai,
         ]);
         return redirect()->route('capnhatketqua.index')->with('success', 'Cập nhật thành công!');

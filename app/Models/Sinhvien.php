@@ -12,12 +12,16 @@ class SinhVien extends Model
     protected $table = 'sinh_vien';
     protected $primaryKey = 'user_id';
     public $incrementing = false;
-    protected $fillable = ['user_id', 'ho_ten','ngay_sinh','gioi_tinh','lop','sdt','email','dia_chi'];
+    protected $fillable = ['user_id', 'ho_ten', 'ngay_sinh', 'gioi_tinh', 'lop', 'sdt', 'email', 'dia_chi'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function doan()
+    {
+        return $this->hasOne(DoAn::class, 'ma_sv', 'user_id');
+    }
+
 }
-
-
