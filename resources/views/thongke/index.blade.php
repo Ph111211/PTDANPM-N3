@@ -41,12 +41,6 @@
     .btn-primary:hover {
             background-color: #00A366 !important;
         }
-    .table{
-            box-sizing: border-box;
-            table-layout: fixed;
-            text-align: center;
-            display: none;
-    }
 </style>
 </html>
 
@@ -97,105 +91,4 @@
         </div>
     </div>
 </div>
-<div class="table-container">
-<table class="table">
-    <thead class="table-secondary">
-        <tr>
-            <th>Mã</th>
-            <th>Họ và tên</th>
-            <th>Lớp</th>
-            <th>Đề tài</th>
-            <th>Giảng viên</th>
-            <th>Tiến độ</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sinhviens as $sinhvien)
-            <tr>
-                <td>{{ $sinhvien->ma_sv }}</td>
-                <td>{{ $sinhvien->ho_ten }}</td>
-                <td>{{ $sinhvien->lop }}</td>
-                <td>{{ optional($sinhvien->doAn)->tieu_de ?? 'Chưa có' }}</td>
-                <td>{{ optional($sinhvien->giangVien)->ho_ten ?? 'Chưa có giảng viên' }}</td>
-                <td class="{{ optional($sinhvien->doAn)->trang_thai == 'Hoàn thành' ? 'text-success' : 'text-danger' }}">
-                    {{ optional($sinhvien->doAn)->trang_thai ?? 'Chưa hoàn thành' }}
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
 @endsection
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let table = document.querySelector(".table");
-    let radioButtons = document.querySelectorAll('input[name="filter"]');
-    let searchInput = document.getElementById("search-input");
-    let searchBtn = document.getElementById("search-btn");
-    let tableContainer = document.querySelector(".table");
-
-    // Mặc định ẩn bảng khi tải trang
-    tableContainer.style.display = "none";
-
-    radioButtons.forEach(radio => {
-        radio.addEventListener("change", function () {
-            if (this.id === "student") {
-                searchInput.placeholder = "Nhập mã sinh viên...";
-            } else if (this.id === "teacher") {
-                searchInput.placeholder = "Nhập tên giảng viên...";
-            } else if (this.id === "topic") {
-                searchInput.placeholder = "Nhập tên đề tài...";
-            } else if (this.id === "course") {
-                searchInput.placeholder = "Nhập khóa học...";
-            }
-        });
-    });
-
-    searchBtn.addEventListener("click", function () {
-        let keyword = searchInput.value.trim().toLowerCase();
-        let selectedValue = document.querySelector('input[name="criteria"]:checked');
-
-        if (!selectedValue) {
-            alert("Vui lòng chọn tiêu chí thống kê!");
-            return;
-        }
-
-        if (keyword === "") {
-            alert("Vui lòng nhập từ khóa tìm kiếm...");
-            return;
-        }
-
-        let tableBody = document.querySelector("tbody");
-        let rows = document.querySelectorAll("tbody tr");
-        let found = false;
-
-        rows.forEach(row => {
-            let columns = row.getElementsByTagName("td");
-            let matchFound = false;
-            if (selectedValue.id === "student" && rows[0]) {
-                found = rows[0].textContent.includes(keyword);
-            } else if (selectedValue === "teacher" && rows[4]) {
-                found = rows[4].textContent.includes(keyword);
-            } else if (selectedValue === "topic" && rows[3]) {
-                found = rows[3].textContent.includes(keyword);
-            } else if (selectedValue === "course" && rows[2]) {
-                found = rows[2].textContent.includes(keyword);
-            }
-
-            rows.forEach(row => row.style.display = "none");
-
-            if (found) {
-                table.classList.remove("hidden");
-                rows.forEach(row => {
-                    if (row.textContent.includes(keyword)) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                });
-            } else {
-                table.classList.add("hidden");
-            }
-        });
-});
-</script>

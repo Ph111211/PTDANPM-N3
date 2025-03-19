@@ -9,7 +9,7 @@ class ThongKeController extends Controller
 {
     public function index()
     {
-        $sinhviens = SinhVien::with(['giangVien', 'doAn.giangVien'])->get();
+        $sinhviens = SinhVien::all();
         return view('thongke.index', compact('sinhviens'));
     }
 }
