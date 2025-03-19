@@ -27,14 +27,15 @@
             width: 100%;
             list-style: none;
             text-decoration: none;
+            margin-top: 10px;
+            display: grid;
+            color: black;
+            font-style: 'Segeo UI';
+            font-weight: 600;
+            word-wrap: break-word;
         }
        .menu ul li a,h2{
             width: 10rem;
-            text-decoration: none;
-            margin-top: 15px;
-            display: block;
-            color: black;
-            font-weight: 600;
        }
         .top_bar {
             margin-left: 12%;
@@ -122,10 +123,7 @@
                 51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031
                 33.0417H7.625V27.9583H28.4031L21.9219 21.4771L25.4167 17.7917L38.125 30.5L25.4167 43.2083Z" fill="#181819"/>
                 </svg>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+            </button>
         </div>
         <div>
         <div class="top_bar d-flex">

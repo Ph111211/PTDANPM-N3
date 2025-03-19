@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SinhVien;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SinhVienController extends Controller
 {
@@ -21,6 +21,7 @@ class SinhVienController extends Controller
 
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'ho_ten' => 'required|string|max:100',
             'ngay_sinh' => 'required|date',

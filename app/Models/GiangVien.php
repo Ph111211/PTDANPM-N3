@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SinhVien extends Model
+class GiangVien extends Model
 {
     use HasFactory;
 
-    protected $table = 'sinh_vien';
+    protected $table = 'giang_vien';
     protected $primaryKey = 'user_id';
     public $incrementing = false;
-    protected $fillable = ['user_id', 'ho_ten', 'ngay_sinh', 'gioi_tinh', 'lop', 'sdt', 'email', 'dia_chi'];
+    protected $fillable = ['user_id', 'ho_ten', 'khoa', 'sdt', 'email', 'so_luong_sinh_vien_huong_dan'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function doan()
-    {
-        return $this->hasOne(DoAn::class, 'ma_sv', 'user_id');
-    }
-
 }

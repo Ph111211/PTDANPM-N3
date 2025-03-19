@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up() {
         Schema::create('giang_vien', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->unique()->primary();
+            $table->unsignedBigInteger('user_id')->primary();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('ho_ten', 100);
             $table->string('khoa', 100);

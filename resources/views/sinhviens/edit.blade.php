@@ -22,7 +22,18 @@
             <label class="form-label">Họ và tên</label>
             <input type="text" name="ho_ten" class="form-control" value="{{ $sinhvien->ho_ten }}" required>
         </div>
+        <div class="mb-3">
+            <label for="ngay_sinh" class="form-label">Ngày Sinh<span class="text-danger">&nbsp;*</span></label>
+            <input type="date" name="ngay_sinh" class="form-control" required>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label">Giới Tính<span class="text-danger">&nbsp;*</span></label>
+            <select name="gioi_tinh" class="form-control" value="{{ $sinhvien->gioi_tinh }}"required>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
         <div class="mb-3">
             <label class="form-label">Lớp</label>
             <input type="text" name="lop" class="form-control" value="{{ $sinhvien->lop }}" required>
@@ -32,6 +43,7 @@
             <label class="form-label">Đề tài</label>
             <input type="text" name="tieu_de" class="form-control" value="{{ optional($sinhvien->doAn)->tieu_de }}">
         </div>
+
         <div class="mb-3">
             <label for="ma_gv" class="form-label">Giảng Viên Hướng Dẫn<span class="text-danger">&nbsp;*</span></label>
             <select name="ma_gv" class="form-control">
@@ -40,6 +52,7 @@
                 @endforeach
             </select>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Trạng thái</label>
             <select name="trang_thai" class="form-select">
@@ -47,6 +60,7 @@
                 <option value="Hoàn thành" {{ optional($sinhvien->doAn)->trang_thai == 'Hoàn thành' ? 'selected' : '' }}>Hoàn thành</option>
             </select>
         </div>
+
         <button type="submit" class="btn btn-primary">Cập nhật</button>
         <a href="{{ route('sinhviens.index') }}" class="btn btn-secondary">Quay lại</a>
     </form>

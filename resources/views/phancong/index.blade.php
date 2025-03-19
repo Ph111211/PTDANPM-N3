@@ -150,6 +150,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td class="center-td">{{ $it->doan ? $it->doan->trang_thai : 'Không có dữ liệu'  }}</td>
 
                             <td class="center-td">{{ $it->trang_thai}}</td>
 
@@ -247,6 +248,8 @@
                                     </div>
                                 </div>
 
+
+                                <!-- Nút Xóa -->
                                 <button type="button" class="btn btn-sm" style="background: #87CEEB"
                                         data-bs-toggle="modal" data-bs-target="#deleteModal{{ $it->ma_do_an }}">
                                     <i class="bi bi-trash-fill"></i>

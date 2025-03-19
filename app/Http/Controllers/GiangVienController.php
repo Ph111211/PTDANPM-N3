@@ -9,8 +9,6 @@ class GiangVienController extends Controller
 {
     public function index()
     {
-        $giangviens = GiangVien::all();
-        return view('giangviens.index', ['giangviens' => $giangviens]);
     }
 
     public function store(Request $request)
