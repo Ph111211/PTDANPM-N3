@@ -10,15 +10,12 @@ class GiangVien extends Model
     use HasFactory;
 
     protected $table = 'giang_vien';
-    protected $primaryKey = 'ma_gv';
-    public $timestamps = false;
+    protected $primaryKey = 'user_id';
+    public $incrementing = false;
+    protected $fillable = ['user_id', 'ho_ten', 'khoa', 'sdt', 'email', 'so_luong_sinh_vien_huong_dan'];
 
-    protected $fillable = [
-        'ma_gv', 'ho_ten', 'khoa', 'sdt', 'email', 'so_luong_sinh_vien_huong_dan'
-    ];
-
-    public function sinhvien()
+    public function user()
     {
-        return $this->hasMany(SinhVien::class, 'ma_gv', 'ma_gv');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -45,16 +45,16 @@
                     <tr>
                         <td>{{ $it->ma_sv }}</td>
                         <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
-                        <td>{{ $it->doanhnghiep ? $it->doanhnghiep->ten_dn : 'Không có dữ liệu' }}</td>
+                        <td>{{ $it->ten_dn }}</td>
                         <td>{{ $it->diem_so?:"Chưa có điểm" }}</td>
                         <td>
-                            <div type="button" class="btn btn-sm edit-btn" data-id="{{ $it->id }}">
+                            <div type="button" class="btn btn-sm edit-btn" data-id="{{ $it->ma_ket_qua }}">
                                 <span style="color: #0c63e4"> Xem chi tiết</span>
 
                             </div>
 
                             <!-- Modal Show -->
-                            <div class="modal fade" id="editUserModal{{ $it->id }}" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="editUserModal{{ $it->ma_ket_qua }}" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -77,7 +77,7 @@
                                             <div class="form-group">
                                                 <label class="fw-bold mt-3 text-start d-block">Doanh nghiệp</label>
                                                 <p class="text-start" style="border: 1px solid #ccc; padding: 5px; width: 100%;">
-                                                    {{ $it->doanhnghiep ? $it->doanhnghiep->ten_dn : 'Không có dữ liệu' }}</p>
+                                                    {{ $it->ten_dn}}</p>
                                             </div>
 
                                             <div class="form-group">
@@ -88,8 +88,10 @@
 
                                             <div class="form-group">
                                                 <label class="fw-bold mt-3 text-start d-block">Nhận xét của giảng viên</label>
-                                                <p class="text-start" style="border: 1px solid #ccc; padding: 5px; width: 100%;">
-                                                    {{$it->nhan_xet_cua_giang_vien ?: 'Không có dữ liệu'}}</p>
+                                                <p class="text-start" style="border: 1px solid #ccc; padding: 5px; width: 100%; word-wrap: break-word; white-space: normal;">
+                                                    {{ $it->nhan_xet_cua_giang_vien ?: 'Không có dữ liệu' }}
+                                                </p>
+
                                             </div>
 
                                             <div class="modal-footer d-flex justify-content-between mb-3">

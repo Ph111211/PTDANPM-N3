@@ -9,26 +9,19 @@ class SinhVien extends Model
 {
     use HasFactory;
 
-    protected $table = 'sinh_vien'; // Tên bảng trong CSDL
-    protected $primaryKey = 'ma_sv'; // Khóa chính
+    protected $table = 'sinh_vien';
+    protected $primaryKey = 'user_id';
     public $incrementing = false;
-    public $timestamps = false; // Không sử dụng timestamps
+    protected $fillable = ['user_id', 'ho_ten', 'ngay_sinh', 'gioi_tinh', 'lop', 'sdt', 'email', 'dia_chi'];
 
-        protected $fillable = [
-            'ma_sv', 'ho_ten', 'ngay_sinh', 'gioi_tinh', 'lop', 'sdt', 'email', 'dia_chi', 'ma_gv', 'ma_dn'
-        ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function doan()
     {
-        return $this->hasOne(DoAn::class, 'ma_sv', 'ma_sv');
+        return $this->hasOne(DoAn::class, 'ma_sv', 'user_id');
     }
 
-    public function giangvien()
-    {
-        return $this->belongsTo(GiangVien::class, 'ma_gv', 'ma_gv');
-    }
-    public function ketquathuctap()
-    {
-        return $this->hasOne(KetQuaThucTap::class, 'ma_sv', 'ma_sv');
-    }
 }

@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\KetQuaThucTap;
+use App\Models\SinhVien;
+use App\Models\GiangVien;
 use Faker\Factory as Faker;
 
 class KetQuaThucTapSeeder extends Seeder
@@ -11,25 +13,22 @@ class KetQuaThucTapSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $sinhViens = SinhVien::all();
+        $giangViens = GiangVien::all();
 
-        $sinhViens = DB::table('sinh_vien')->pluck('ma_sv')->toArray();
-        $doanhNghieps = DB::table('doanh_nghiep')->pluck('ma_dn')->toArray();
-        $giangViens = DB::table('giang_vien')->pluck('ma_gv')->toArray();
-        $doAns = DB::table('do_an')->pluck('ma_do_an')->toArray();
+        foreach ($sinhViens as $sinhVien) {
+            $giangVien = $giangViens->random();
 
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('ket_qua_thuc_tap')->insert([
-                'ma_ket_qua' => $faker->unique()->regexify('KQ[0-9]{4}'),
-                'ma_sv' => $faker->randomElement($sinhViens),
-                'ma_dn' => $faker->randomElement($doanhNghieps),
-                'ma_gv' => $faker->randomElement($giangViens),
-                'ma_do_an' => $faker->randomElement($doAns),
-                'diem_so' => $faker->optional()->randomFloat(1, 0, 10),
-                'nhan_xet_cua_giang_vien' => $faker->optional()->paragraph,
-                'nhan_xet_cua_doanh_nghiep' => $faker->optional()->paragraph,
-                'created_at' => now(),
-                'updated_at' => now(),
+            KetQuaThucTap::create([
+                'ma_ket_qua' => 'KQ' . $faker->unique()->randomNumber(5),
+                'ma_sv' => $sinhVien->user_id,
+                'ma_gv' => $giangVien->user_id,
+                'diem_so' => $faker->randomFloat(5, 7, 10),
+                'nhan_xet_cua_giang_vien' => $faker->sentence,
+                'nhan_xet_cua_doanh_nghiep' => $faker->sentence,
+                'ten_dn' => $faker->company,
             ]);
         }
     }
 }
+

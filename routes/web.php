@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SinhvienController;
@@ -29,19 +30,19 @@ Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('c
 
 Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
-// Khi nhấn vào "Quản lý tài khoản", chuyển đến trang index trong TaiKhoanController
-Route::get('/taikhoan', [TaiKhoanController::class, 'index'])->name('admin/taikhoan.index');
+// Khi nhấn vào "Quản lý tài khoản", chuyển đến trang index trong UserController
+Route::get('/users', [UserController::class, 'index'])->name('admin/users.index');
 
-// Các route taikhoan
-Route::put('/taikhoan/{id}', [TaiKhoanController::class, 'update'])->name('taikhoan.update');
-Route::delete('/taikhoan/{id}', [TaiKhoanController::class, 'destroy'])->name('taikhoan.destroy');
-Route::post('/taikhoan', [TaiKhoanController::class, 'store'])->name('taikhoan.store');
+// Các route users
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 // Các route capnhatketqua
-Route::put('/capnhatketqua/{id}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua.update');
+Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua');
 
 // Các route phanconggiangvien
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
-Route::put('/phancong/{id}', [PhanCongGVController::class, 'update'])->name('phancong.update');
-Route::delete('/phancong/{id}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
+Route::put('/phancong/{user_id}', [PhanCongGVController::class, 'update'])->name('phancong.update');
+Route::delete('/phancong/{user_id}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
 Route::post('/phancong', [PhanCongGVController::class, 'store'])->name('phancong.store');

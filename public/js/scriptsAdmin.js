@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("editForm" + userId).submit();
     };
 
+    window.autoResize =function autoResize(textarea) {
+        textarea.style.height = "auto"; // Reset chiều cao trước
+        textarea.style.height = textarea.scrollHeight + "px"; // Đặt chiều cao theo nội dung
+    }
+
     window.submitEditDoAnForm = function submitEditDoAnForm(id) {
         document.getElementById('editForm' + id).submit();
     }

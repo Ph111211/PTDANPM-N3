@@ -12,7 +12,7 @@ return array(
     'App\\Http\\Controllers\\KetQuaThucTapController' => $baseDir . '/app/Http/Controllers/KetQuaThucTapController.php',
     'App\\Http\\Controllers\\LuuTruController' => $baseDir . '/app/Http/Controllers/LuuTruController.php',
     'App\\Http\\Controllers\\PhanCongGVController' => $baseDir . '/app/Http/Controllers/PhanCongGVController.php',
-    'App\\Http\\Controllers\\TaiKhoanController' => $baseDir . '/app/Http/Controllers/TaiKhoanController.php',
+    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Models\\DoAn' => $baseDir . '/app/Models/DoAn.php',
     'App\\Models\\DoanhNghiep' => $baseDir . '/app/Models/DoanhNghiep.php',
     'App\\Models\\GiangVien' => $baseDir . '/app/Models/GiangVien.php',

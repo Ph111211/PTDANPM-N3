@@ -84,13 +84,13 @@
             </div>
             <ul>
                 <li>
-                    <a href="{{ route('admin/taikhoan.index') }}">Quản lý sinh viên</a>
+                    <a href="#">Quản lý sinh viên</a>
                 </li>
                 <li>
                     <a href="#">Quản lý giảng viên</a>
                 </li>
                 <li>
-                    <a href="{{ route('sinhviens.index') }}">Quản lý đề tài </a>
+                    <a href="{{ route('users.index') }}">Quản lý đề tài </a>
                 </li>
                 <li>
                     <a href="#">Quản lý đồ án</a>
