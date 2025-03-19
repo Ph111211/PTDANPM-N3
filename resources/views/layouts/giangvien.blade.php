@@ -11,7 +11,7 @@
             display: flex;
         }
         .menu {
-            width: 14%; 
+            width: 14%;
             margin-top: 0%;
             margin-bottom: 0%;
         }
@@ -22,17 +22,19 @@
             margin-top: 16.71px;
         }
 
-        .menu #sub-menu li,a {
+        .menu ul li,a {
+
             list-style: none;
             text-decoration: none;
+            margin-top: 10px;
+            display: grid;
+            color: black;
+            font-style: 'Segeo UI';
+            font-weight: 600;
+            word-wrap: break-word;
         }
        .menu ul li a,h2{
             width: 10rem;
-            text-decoration: none;
-            margin-top: 15px;
-            display: block;
-            color: black;
-            font-weight: 600;
        }
         .top_bar {
             margin-left: 12%;
@@ -65,14 +67,11 @@
         .top_bar{
             justify-content: space-between;
         }
-        .container{ 
+        .container{
             margin-left: 12%;
             width: 86%;
             height: 83%;
             background-color: #F5F6FA;
-        }
-        .top_bar svg{
-            margin-top: 10px;
         }
     </style>
     <body>
@@ -83,41 +82,35 @@
                     <h2>Trang chủ</h2>
                 </a>
             </div>
-            <ul id="sub-menu">
+            <ul>
                 <li>
-                    <a href="#">Quản lý tài khoản</a>
+                    <a href="#">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="">Quản lý giảng viên</a>
+                    <a href="#">Quản lý giảng viên</a>
                 </li>
                 <li>
-                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
+                    <a href="{{ route('users.index') }}">Quản lý đề tài </a>
                 </li>
                 <li>
-                    <a href="{{ route('thongke.index') }}">Thống kê</a>
+                    <a href="#">Quản lý đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Lên lịch bảo vệ đồ án</a>
+                    <a href="#">Kế hoạch thực hiện đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Cập nhật kết quả đồ án</a>
+                    <a href="{{ route('capnhatketqua.index') }}">Quản lý điểm</a>
                 </li>
                 <li>
-                    <a href="#">Kết quả thực tập</a>
-                </li>
-                <li>
-                    <a href="#">Lưu trữ</a>
-                </li>
-                <li>
-                    <a href="#">Phân công giảng viên</a>
+                    <a href="{{ route('ketquathuctap.index') }}">Quy định</a>
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white">Logout
-        
+
                 <svg class="logout" width="25" height="25" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317 
-                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883 
-                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031 
+                    <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317
+                51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883
+                51.883C50.8884 52.8794 49.6913 53.3767 48.2917 53.375H30.5ZM25.4167 43.2083L21.9219 39.5229L28.4031
                 33.0417H7.625V27.9583H28.4031L21.9219 21.4771L25.4167 17.7917L38.125 30.5L25.4167 43.2083Z" fill="#181819"/>
                 </svg>
             </button>
