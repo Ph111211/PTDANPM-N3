@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <h2>Chỉnh sửa sinh viên</h2>
-    <form action="{{ route('sinhviens.update', $sinhvien->ma_sv) }}" method="POST">
+    <form action="{{ route('sinhviens.update', $sinhvien->user_id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -22,31 +22,37 @@
             <label class="form-label">Họ và tên</label>
             <input type="text" name="ho_ten" class="form-control" value="{{ $sinhvien->ho_ten }}" required>
         </div>
+        <div class="mb-3">
+            <label for="ngay_sinh" class="form-label">Ngày Sinh<span class="text-danger">&nbsp;*</span></label>
+            <input type="date" name="ngay_sinh" class="form-control" required>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label">Giới Tính<span class="text-danger">&nbsp;*</span></label>
+            <select name="gioi_tinh" class="form-control" value="{{ $sinhvien->gioi_tinh }}"required>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
         <div class="mb-3">
             <label class="form-label">Lớp</label>
             <input type="text" name="lop" class="form-control" value="{{ $sinhvien->lop }}" required>
         </div>
+        <div class="mb-3">
+            <label for="sdt" class="form-label">Số Điện Thoại<span class="text-danger">&nbsp;*</span></label>
+            <input type="text" name="sdt" class="form-control" value="{{ $sinhvien->sdtsdt }}" required>
+        </div>
 
         <div class="mb-3">
-            <label class="form-label">Đề tài</label>
-            <input type="text" name="tieu_de" class="form-control" value="{{ optional($sinhvien->doAn)->tieu_de }}">
+            <label for="email" class="form-label">Email<span class="text-danger">&nbsp;*</span></label>
+            <input type="email" name="email" class="form-control" value="{{ $sinhvien->email }}" required>
         </div>
+
         <div class="mb-3">
-            <label for="ma_gv" class="form-label">Giảng Viên Hướng Dẫn<span class="text-danger">&nbsp;*</span></label>
-            <select name="ma_gv" class="form-control">
-                @foreach($giangViens as $gv)
-                    <option value="{{ $gv->ma_gv }}">{{ $gv->ho_ten }}</option>
-                @endforeach
-            </select>
+            <label for="dia_chi" class="form-label">Địa Chỉ<span class="text-danger">&nbsp;*</span></label>
+            <textarea name="dia_chi" class="form-control" required></textarea>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Trạng thái</label>
-            <select name="trang_thai" class="form-select">
-                <option value="Chưa hoàn thành" {{ optional($sinhvien->doAn)->trang_thai == 'Chưa hoàn thành' ? 'selected' : '' }}>Chưa hoàn thành</option>
-                <option value="Hoàn thành" {{ optional($sinhvien->doAn)->trang_thai == 'Hoàn thành' ? 'selected' : '' }}>Hoàn thành</option>
-            </select>
-        </div>
+    
         <button type="submit" class="btn btn-primary">Cập nhật</button>
         <a href="{{ route('sinhviens.index') }}" class="btn btn-secondary">Quay lại</a>
     </form>

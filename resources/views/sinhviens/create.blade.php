@@ -14,16 +14,10 @@
 <body>
     <div class="container mt-5">
     <h2 class="text-center mb-4">Thêm Sinh Viên</h2>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <form action="{{ route('sinhviens.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="ho_ten" class="form-label">Họ Tên<span class="text-danger">&nbsp;*</span></label>
+            <label for="ho_ten" class="form-label">Họ và Tên<span class="text-danger">&nbsp;*</span></label>
             <input type="text" name="ho_ten" class="form-control" required>
         </div>
 
