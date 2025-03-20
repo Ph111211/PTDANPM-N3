@@ -32,7 +32,6 @@
                         <input type="text" class="form-control" id="sdt" name="sdt" required>
                     </div>
                     <div class="modal-footer d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                 </form>

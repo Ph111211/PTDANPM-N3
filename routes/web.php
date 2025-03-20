@@ -7,7 +7,9 @@ use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\GiangVienController;
 use App\Http\Controllers\CapNhatKetQuaController;
 use App\Http\Controllers\KetQuaThucTapController;
+use App\Http\Controllers\LichBaoVeController;
 use App\Http\Controllers\PhanCongGVController;
+
 
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
@@ -29,3 +31,5 @@ Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('c
 Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
+
+route::get('/lichbaove', [LichBaoVeController::class, 'index'])->name('lichbaove.index');

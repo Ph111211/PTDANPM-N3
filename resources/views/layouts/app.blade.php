@@ -97,7 +97,7 @@
                     <a href="{{ route('thongke.index') }}">Thống kê</a>
                 </li>
                 <li>
-                    <a href="#">Lên lịch bảo vệ đồ án</a>
+                    <a href="{{ route('lichbaove.index') }}">Lên lịch bảo vệ đồ án</a>
                 </li>
                 <li>
                     <a href="{{ route('capnhatketqua.index') }}">Cập nhật kết quả đồ án</a>
