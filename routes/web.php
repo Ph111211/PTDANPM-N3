@@ -17,3 +17,9 @@ Route::match(['get', 'delete'], '/sinhvien/{user_id}/xoa', [SinhVienController::
 Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index');
 
 Route::get('/giangvien/quanlysinhvien', [GV_QLySinhvienController::class, 'index'])->name('giangvien/quanlysinhvien.index');
+Route::post('/cap-nhat-trang-thai', [GV_QLySinhvienController::class, 'capNhatTrangThai'])->name('doan.capnhat');
+Route::post('/huy-phan-cong', [GV_QLySinhvienController::class, 'huyPhanCong'])->name('doan.huyPhanCong');
+Route::get('/giangvien/quanlysinhvien/create', [GV_QLySinhvienController::class, 'create'])->name('giangvien/quanlysinhvien.create');
+Route::post('/giangvien/quanlysinhvien/store', [GV_QLySinhvienController::class, 'store'])->name('giangvien/quanlysinhvien.store');
+
+Route::get('/giangvien/quanlydetai', [GV_QLySinhvienController::class, 'index'])->name('giangvien/quanlydetai.index');

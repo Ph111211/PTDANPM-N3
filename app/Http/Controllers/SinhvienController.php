@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SinhVien;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SinhVienController extends Controller
 {
@@ -20,7 +21,8 @@ class SinhVienController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        
+        $request->validate([
             'ho_ten' => 'required|string|max:100',
             'ngay_sinh' => 'required|date',
             'gioi_tinh' => 'required|in:Nam,Nữ',
@@ -28,26 +30,28 @@ class SinhVienController extends Controller
             'sdt' => 'required|string|max:15',
             'email' => 'required|email|max:100|unique:users,email',
             'dia_chi' => 'required|string',
-            'password' => 'required|string|min:6',
         ]);
 
         $user = User::create([
-            'name' => $validated['ho_ten'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
+            'name' => $request->ho_ten,
+            'email' => $request->email,
+            'password' => "00000000",
+            
             'role' => 'student',
         ]);
 
         SinhVien::create([
             'user_id' => $user->id,
-            'ho_ten' => $validated['ho_ten'],
-            'ngay_sinh' => $validated['ngay_sinh'],
-            'gioi_tinh' => $validated['gioi_tinh'],
-            'lop' => $validated['lop'],
-            'sdt' => $validated['sdt'],
-            'email' => $validated['email'],
-            'dia_chi' => $validated['dia_chi'],
+            'ho_ten' => $request->ho_ten,
+            'ngay_sinh' => $request->ngay_sinh,
+            'gioi_tinh' => $request->gioi_tinh,
+            'lop' => $request->lop,
+            'sdt' => $request->sdt,
+            'email' => $request->email,
+            'dia_chi' => $request->dia_chi,
+            
         ]);
+            
 
         return redirect()->route('sinhviens.index')->with('success', 'Thêm sinh viên thành công!');
     }
