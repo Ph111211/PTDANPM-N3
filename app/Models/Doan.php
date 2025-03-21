@@ -10,16 +10,14 @@ class Doan extends Model
     use HasFactory;
 
     protected $table = 'do_an';
-    protected $fillable = ['ma_do_an', 'tieu_de','ma_sv', 'ma_gv', 'trang_thai'];
+    protected $fillable = ['ma_do_an', 'tieu_de', 'ma_sv', 'ma_gv', 'trang_thai'];
 
     public function giangVien()
     {
-        return $this->belongsTo(Giangvien::class, 'ma_gv', 'ma_gv');
+        return $this->belongsTo(Giangvien::class, 'ma_gv', 'user_id');
     }
     public function sinhVien()
     {
-    return $this->belongsTo(SinhVien::class, 'ma_sv', 'ma_sv');
+        return $this->belongsTo(SinhVien::class, 'ma_sv', 'user_id');
     }
-
 }
-

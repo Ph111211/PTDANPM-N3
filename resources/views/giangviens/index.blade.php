@@ -78,7 +78,7 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a.5.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg>
                     </button>
-                    <form action="#" method="POST" style="display:inline;">
+                    <form action="/giangvien/{{$giangvien->user_id}}/xoa" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm  btn-info my-3">
@@ -149,7 +149,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="edit_ma_gv">Mã</label>
-                        <input type="text" class="form-control" id="edit_ma_gv" name="ma_gv" readonly>
+                        <input type="text" class="form-control" id="edit_ma_gv" name="ma_gv" >
                     </div>
                     <div class="form-group">
                         <label for="edit_ho_ten">Họ và Tên</label>
@@ -183,7 +183,7 @@
     $(document).ready(function() {
         $('.btn-view').on('click', function() {
             var giangvien = $(this).data('giangvien');
-            $('#showModal #ma_gv').text(giangvien.ma_gv);
+            $('#showModal #ma_gv').text(giangvien.user_id);
             $('#showModal #ho_ten').text(giangvien.ho_ten);
             $('#showModal #email').text(giangvien.email);
             $('#showModal #khoa').text(giangvien.khoa);
@@ -191,6 +191,15 @@
             $('#showModal').modal('show');
         });
 
-       
+        $('.btn-edit').on('click', function() {
+            var giangvien = $(this).data('giangvien');
+            $('#editForm').attr('action', '/giangvien/' + giangvien.user_id);
+            $('#edit_ma_gv').val(giangvien.user_id);
+            $('#edit_ho_ten').val(giangvien.ho_ten);
+            $('#edit_email').val(giangvien.email);
+            $('#edit_khoa').val(giangvien.khoa);
+            $('#edit_sdt').val(giangvien.sdt);
+            $('#editModal').modal('show');
+        });
     });
 </script>

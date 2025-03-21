@@ -33,3 +33,5 @@ Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('k
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
 
 route::get('/lichbaove', [LichBaoVeController::class, 'index'])->name('lichbaove.index');
+Route::delete('/giangvien/{user_id}/xoa', [GiangVienController::class, 'destroy'])->name('giangviens.destroy');
+Route::put('/giangvien/{user_id}', [GiangVienController::class, 'update'])->name('giangviens.update');
