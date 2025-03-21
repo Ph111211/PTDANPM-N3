@@ -85,10 +85,10 @@
             </div>
             <ul id="sub-menu">
                 <li>
-                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
+                    <a href="{{ route('giangvien/quanlysinhvien.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="#">Quản lý đề tài</a>
+                    <a href="{{ route('giangvien/quanlydetai.index') }}">Quản lý đề tài</a>
                 </li>
                 <li>
                     <a href="#">Quản lý đồ án</a>
