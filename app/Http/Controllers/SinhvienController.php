@@ -59,7 +59,35 @@ class SinhVienController extends Controller
         return view('sinhviens.edit', compact('sinhvien'));
     }
 
-    public function update(Request $request, $user_id)
+
+    public function updateFromDoAn(Request $request)
+    {
+        $request->validate([
+            'ma_sv' => 'required|exists:sinh_vien,user_id',
+        ]);
+
+        // Lấy thông tin đồ án gần nhất của sinh viên
+        $doAn = DoAn::where('ma_sv', $request->ma_sv)->orderBy('thoi_gian_ket_thuc', 'desc')->first();
+
+        if ($doAn) {
+            $sinhVien = SinhVien::find($request->ma_sv);
+            if ($sinhVien) {
+                // Ví dụ: Cập nhật trạng thái sinh viên nếu đồ án đã hoàn thành
+                if ($doAn->trang_thai === 'Hoàn thành') {
+                    $sinhVien->lop = 'Đã tốt nghiệp';  // Giả sử bạn có cột này
+                    $sinhVien->save();
+                }
+
+                return response()->json(['success' => true, 'message' => 'Cập nhật sinh viên thành công']);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy đồ án của sinh viên'], 404);
+    }
+
+
+
+public function update(Request $request, $user_id)
     {
         $sinhvien = SinhVien::where('user_id', $user_id)->firstOrFail();
         $user = User::findOrFail($user_id);

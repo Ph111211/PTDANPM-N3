@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Models\DoAn;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SinhvienController;
@@ -43,6 +45,6 @@ Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update
 
 // Các route phanconggiangvien
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
-Route::put('/phancong/{user_id}', [PhanCongGVController::class, 'update'])->name('phancong.update');
-Route::delete('/phancong/{user_id}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
-Route::post('/phancong', [PhanCongGVController::class, 'store'])->name('phancong.store');
+Route::put('/phancong/{ma_do_an}', [PhanCongGVController::class, 'update'])->name('phancong.update');
+Route::delete('/phancong/{ma_do_an}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
+Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');

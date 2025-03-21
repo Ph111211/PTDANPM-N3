@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -12,11 +13,18 @@ class DoAnSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $sinhViens = SinhVien::all();
+        $sinhViens = SinhVien::take(10)->get(); // Lấy 10 sinh viên đầu tiên
         $giangViens = GiangVien::all();
 
+        $tyLeGanGiangVien = 60; // Thay đổi tỷ lệ phần trăm ở đây
+
         foreach ($sinhViens as $sinhVien) {
-            $giangVien = $giangViens->random();
+            $maGv = null;
+
+            if ($faker->boolean($tyLeGanGiangVien)) {
+                $giangVien = $giangViens->random();
+                $maGv = $giangVien->user_id;
+            }
 
             DoAn::create([
                 'ma_do_an' => 'DA' . $faker->unique()->randomNumber(5),
@@ -25,7 +33,7 @@ class DoAnSeeder extends Seeder
                 'thoi_gian_bat_dau' => $faker->date,
                 'thoi_gian_ket_thuc' => $faker->date,
                 'ma_sv' => $sinhVien->user_id,
-                'ma_gv' => $giangVien->user_id,
+                'ma_gv' => $maGv,
                 'nhan_xet' => $faker->sentence,
                 'ngay_gio' => $faker->date,
                 'dia_diem' => $faker->address,
