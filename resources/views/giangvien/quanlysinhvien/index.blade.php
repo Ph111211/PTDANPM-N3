@@ -86,7 +86,7 @@
                     </form>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#confirmModal{{ $sinhvien->user_id }}">
+                    <button type="button" class="btn btn-sm btn-info py-2" data-bs-toggle="modal" data-bs-target="#confirmModal{{ $sinhvien->user_id }}">
                         Hủy phân công
                     </button>
                 </td>

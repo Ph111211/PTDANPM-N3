@@ -26,3 +26,8 @@ Route::post('/giangvien/quanlysinhvien/store', [GV_QLySinhvienController::class,
 Route::get('/giangvien/quanlydetai', [GV_QLyDeTaiController::class, 'index'])->name('giangvien/quanlydetai.index');
 Route::get('/giangvien/quanlydetai/create', [GV_QLyDeTaiController::class, 'create'])->name('giangvien/quanlydetai.create');
 Route::post('/giangvien/quanlydetai/store', [GV_QLyDeTaiController::class, 'store'])->name('giangvien/quanlydetai.store');
+Route::get('/giangvien/quanlydetai/show/{id}', [GV_QLyDeTaiController::class, 'show'])->name('giangvien/quanlydetai.show');
+Route::get('/giangvien/quanlydetai/edit/{id}', [GV_QLyDeTaiController::class, 'edit'])->name('giangvien/quanlydetai.edit');
+Route::put('/giangvien/quanlydetai/{id}', [GV_QLyDeTaiController::class, 'update'])->name('giangvien/quanlydetai.update');
+Route::delete('giangvien/quanlydetai/{ma_do_an}', [GV_QLyDeTaiController::class, 'destroy'])->name('giangvien/quanlydetai.destroy');
+

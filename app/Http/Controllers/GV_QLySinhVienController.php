@@ -32,7 +32,7 @@ public function huyPhanCong(Request $request)
 
     if ($sinhvien && $sinhvien->doAn) {
         $sinhvien->doAn->update([
-            'tieu_de' => "Chưa có đề tài",
+            "ma_sv" => null,
             'trang_thai' => 'Chưa có đề tài',
         ]);
 
