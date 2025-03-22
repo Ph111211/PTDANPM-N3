@@ -90,7 +90,7 @@
                     <a href="#">Đăng ký đề tài</a>
                 </li>
                 <li>
-                    <a href="#">Giảng viên hướng dẫn </a>
+                    <a href="{{ route('giangvienhd.index') }}">Giảng viên hướng dẫn </a>
                 </li>
                 <li>
                     <a href="#">Tiến độ đồ án</a>
@@ -99,10 +99,10 @@
                     <a href="#">Báo cáo đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Đánh giá doanh nghiệp </a>
+                    <a href="{{ route('danhgiatudoanhnghiep.index') }}">Đánh giá doanh nghiệp </a>
                 </li>
                 <li>
-                    <a href="#">Kết quả thực tập</a>
+                    <a href="{{ route('ketquathuctapsv.index') }}">Kết quả thực tập</a>
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white">Logout
