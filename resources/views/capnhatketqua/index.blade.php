@@ -14,7 +14,7 @@
 
 </head>
 <body>
-@extends('layouts.app')
+@extends('layouts.sinhvien')
 
 @section('title', 'Cập nhật kết quả')
 

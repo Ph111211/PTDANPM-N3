@@ -43,85 +43,152 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($sinhvien as $it)
+                    @foreach ($doans as $it)
                         <tr>
-                            <td class="center-td">{{ $it->ma_sv }}</td>
-                            <td class="center-td">{{ $it->ho_ten }}</td>
-                            <td class="center-td">{{ $it->lop }}</td>
-                            <td class="center-td">{{ $it->doan ? $it->doan->tieu_de : 'Không có dữ liệu'  }}</td>
-                            <td class="center-td">
+                            <td class="center-td">{{ $it->ma_do_an}}</td>
+                            <td class="center-td">{{ $it->sinhvien->ho_ten}}</td>
+                            <td class="center-td">{{ $it->sinhvien->lop }}</td>
+                            <td class="center-td">{{ $it->tieu_de}}</td>
+                            <td class="center-td">{{ $it->user_id }}
                                 @if ($it->giangvien)
                                     {{ $it->giangvien->ho_ten }}
                                 @else
                                     <button type="button" class="btn btn-sm edit-btn btn-create align-items-center"
-                                            data-bs-toggle="modal" data-bs-target="#addUserModal"
+                                            data-bs-toggle="modal" data-bs-target="#listGiangVienModal_{{ $it->ma_do_an}}"
                                             style="background-color: #87CEEB; color: black">
-                                        <i class="material-icons" style="vertical-align : middle; line-height: 1;">&#xE145;</i>
+                                        <i class="material-icons" style="vertical-align: middle; line-height: 1;">&#xE145;</i>
                                     </button>
                                 @endif
-                            </td>
-                            <td class="center-td">{{ $it->doan ? $it->doan->trang_thai : 'Không có dữ liệu'  }}</td>
-                            <td class="center-td">
-                                <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB"
-                                        data-id="{{ $it->id }}">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
 
-                                <!-- Modal Sửa Người Dùng -->
-                                <div class="modal fade" id="editUserModal{{ $it->id }}" tabindex="-1"
+                                <!-- Modal danh sách giảng viên -->
+                                <div class="modal fade" id="listGiangVienModal_{{ $it->ma_do_an}}" tabindex="-1">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-hover">
+                                                    <thead class="table-secondary">
+                                                    <tr>
+                                                        <th>Mã Giảng Viên</th>
+                                                        <th>Họ và Tên</th>
+                                                        <th>Khoa</th>
+                                                        <th>Số lượng sinh viên</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach ($giangviens as $gv)
+                                                        <tr>
+                                                            <td>{{ $gv->user_id }}</td>
+                                                            <td>{{ $gv->ho_ten }}</td>
+                                                            <td>{{ $gv->khoa }}</td>
+                                                            <td>{{ $gv->so_luong_sinh_vien_huong_dan }}</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary"
+                                                                        onclick="assignGiangVien('{{ $it->ma_do_an }}', '{{ $gv->user_id }}')">
+                                                                    Chọn
+                                                                </button>
+                                                                <script>
+                                                                    function assignGiangVien(maDoAn, maGv) {
+                                                                       
+                                                                        console.log("Đã nhấn nút chọn giảng viên!", maDoAn, maGv); // Kiểm tra xem hàm có chạy không
+                                                                        fetch('{{ route("assign.giangvien") }}', {
+                                                                            method: 'POST',
+                                                                            headers: {
+                                                                                'Content-Type': 'application/json',
+                                                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                                            },
+                                                                            body: JSON.stringify({
+                                                                                ma_do_an: maDoAn,
+                                                                                ma_gv: maGv
+                                                                            })
+                                                                        })
+                                                                            .then(response => response.json())
+                                                                            .then(data => {
+                                                                                console.log("Response từ server:", data); // Kiểm tra dữ liệu trả về
+                                                                                if (data.success) {
+                                                                                    alert("Giảng viên đã được gán thành công!");
+                                                                                    location.reload();
+                                                                                } else {
+                                                                                    alert("Lỗi! Không thể gán giảng viên.");
+                                                                                }
+                                                                            })
+                                                                            .catch(error => console.error('Lỗi:', error));
+
+                                                                        
+                                                                    }
+                                                                </script>
+
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger px-5 small-text-input text-center " data-bs-dismiss="modal">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="center-td">{{ $it->trang_thai}}</td>
+
+                            
+                            <td class="center-td">
+                            <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB"
+                                        data-bs-toggle="modal" data-bs-target="#editUserModal{{ $it->ma_do_an }}">
+                                    <i class="bi bi-pencil-square"></i>
+                            </button>
+
+
+                                <div class="modal fade" id="editUserModal{{$it->ma_do_an}}" tabindex="-1"
                                      aria-labelledby="editUserModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-body">
-                                                <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">Sửa
-                                                    người dùng</h5>
+                                                <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">
+                                                    Sửa người dùng
+                                                </h5>
 
-                                                <form id="editForm{{ $it->id }}"
-                                                      action="{{ route('phancong.update', $it->id) }}" method="POST">
+                                                <form id="editForm{{$it->ma_do_an}}"
+                                                      action="{{ route('phancong.update', $it->ma_do_an)}}" method="POST">
                                                     @csrf
                                                     @method('PUT')
 
-                                                    <div class="form-group">
+                                                    <input type="hidden" name="ma_do_an" value="{{ $it->ma_do_an }}"> <div class="form-group">
                                                         <label class="fw-bold mt-3 text-start d-block"
                                                                for="ma">Mã</label>
                                                         <input type="text" class="form-control small-text-input" id="ma"
-                                                               name="ma" value="{{ $it->ma }}" readonly>
+                                                               name="ma" value="{{ $it->ma_do_an  }}" readonly>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label class="fw-bold mt-3 text-start  d-block" for="name">Họ và
                                                             tên</label>
                                                         <input type="text" class="form-control" id="name" name="ho_ten"
-                                                               value="{{ $it->ho_ten }}" required>
+                                                               value="{{ $it->sinhvien->ho_ten }}" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="email">Email</label>
-                                                        <input type="email" class="form-control small-text-input"
-                                                               id="email" name="email" value="{{ $it->email }}"
+                                                        <label class="fw-bold mt-3 text-start  d-block" for="lop">Lớp</label>
+                                                        <input type="text" class="form-control" id="lop" name="lop"
+                                                               value="{{ $it->sinhvien->lop }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start  d-block" for="dia_chi">Địa chỉ</label>
+                                                        <input type="text" class="form-control" id="dia_chi" name="dia_diem"
+                                                               value="{{ $it->dia_diem }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start  d-block" for="tieu_de">Tiêu đề</label>
+                                                        <input type="text" class="form-control small-text-input"
+                                                               id="tieu_de" name="tieu_de" value="{{ $it->tieu_de }}"
                                                                required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="role">Vai
-                                                            trò</label>
-                                                        <select name="vai_tro" class="form-control">
-                                                            <option
-                                                                value="Giảng viên" {{ $it->vai_tro == 'Giảng viên' ? 'selected' : '' }}>
-                                                                Giảng viên
-                                                            </option>
-                                                            <option
-                                                                value="Sinh viên" {{ $it->vai_tro == 'Sinh viên' ? 'selected' : '' }}>
-                                                                Sinh viên
-                                                            </option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="phone">Số
-                                                            điện thoại</label>
-                                                        <input type="tel" class="form-control small-text-input"
-                                                               id="phone" name="sdt" value="{{ $it->sdt }}" required>
                                                     </div>
 
                                                     <div class="modal-footer d-flex justify-content-between mb-5">
@@ -129,12 +196,10 @@
                                                                 class="btn btn-outline-danger px-5 small-text-input"
                                                                 data-bs-dismiss="modal">Hủy
                                                         </button>
-                                                        <!-- Button mở modal xác nhận -->
-                                                        <button type="button"
-                                                                class="btn px-5 small-text-input style-button"
+                                                        <button type="button" class="btn px-5 small-text-input style-button"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#confirmUpdateModal{{ $it->id }}"
-                                                        >Cập nhật
+                                                                data-bs-target="#confirmUpdateModal{{ $it->ma_do_an }}">
+                                                            Cập nhật
                                                         </button>
                                                     </div>
                                                 </form>
@@ -143,16 +208,14 @@
                                     </div>
                                 </div>
 
-                                <!-- Modal Xác Nhận Cập Nhật -->
-                                <div class="modal fade" id="confirmUpdateModal{{ $it->id }}" tabindex="-1">
+                                <div class="modal fade" id="confirmUpdateModal{{ $it->ma_do_an }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
                                                 <p class="fw-bold">Bạn có chắc chắn muốn cập nhật thông tin không?</p>
 
-                                                <!-- Nút xác nhận sẽ gọi JavaScript để submit form chỉnh sửa -->
-                                                <button type="button" class="btn style-button px-4 mr-3"
-                                                        onclick="submitEditForm({{ $it->id }})">Có
+                                                <button type="button" class="btn style-button px-4 mr-3" onclick="submitEditPhanCong({{ $it->ma_do_an }})">
+                                                    Có
                                                 </button>
                                                 <button type="button" class="btn style-button" data-bs-dismiss="modal">
                                                     Không
@@ -162,22 +225,18 @@
                                     </div>
                                 </div>
 
-
-                                <!-- Nút Xóa -->
                                 <button type="button" class="btn btn-sm" style="background: #87CEEB"
-                                        data-bs-toggle="modal" data-bs-target="#deleteModal{{ $it->id }}">
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal{{ $it->ma_do_an }}">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
 
-                                <!-- Modal Xác nhận Xóa -->
-                                <div class="modal fade" id="deleteModal{{ $it->id }}" tabindex="-1">
+                                <div class="modal fade" id="deleteModal{{ $it->ma_do_an }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
                                                 <p class="fw-bold">Bạn có chắc chắn muốn xóa không?</p>
 
-                                                <!-- Form Xóa -->
-                                                <form action="{{ route('phancong.destroy', $it->id) }}" method="POST">
+                                                <form action="{{ route('phancong.destroy', $it->ma_do_an ) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn style-button px-4 mr-3">Có</button>
@@ -197,11 +256,22 @@
             </div>
         </div>
 
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-top">
+                <div class="modal-content p-2">
+                    <div class="modal-body alert text-center m-0 p-6 fw-bold" style="color: #2ca02c">
+                        {{ session('success') }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 </body>
+
 <script>
     var successMessage = "{{ session('success') }}";
 </script>
+
 <script src="{{ asset('js/scriptsAdmin.js') }}"></script>
 </html>

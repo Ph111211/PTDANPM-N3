@@ -127,6 +127,16 @@
             font-weight: 400;
             word-wrap: break-word;
         }
+        .custom-alert {
+            background-color: #ff4d4d; /* Màu nền đỏ đậm */
+            color: white; /* Màu chữ trắng */
+            border: 1px solid #cc0000; /* Viền đỏ đậm */
+            border-radius: 5px; /* Bo góc */
+            padding: 10px; /* Khoảng cách bên trong */
+            font-size: 18px; /* Kích thước chữ */
+            text-align: center; /* Căn giữa nội dung */
+            margin-top: 20px; /* Khoảng cách phía trên */
+        }
     </style>
 </head>
 <body>
@@ -138,22 +148,23 @@
                 <span><br/></span>
             </div>
             <div class="custom-subtitle">TRƯỜNG ĐẠI HỌC THỦY LỢI</div>
+            @if(session('error'))
+                <div class="custom-alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                    <input type="text" name="email" class="custom-input" style="top: 300px; font-size: 25px;" placeholder=" Email/Mã đăng nhập"/>
-                    <input type="password" name="password" class="custom-input" style="top: 400px; font-size: 25px;" placeholder="  Mật khẩu"/>
+                <input type="text" name="email" class="custom-input" style="top: 300px; font-size: 25px;" placeholder=" Email/Mã đăng nhập"/>
+                <input type="password" name="password" class="custom-input" style="top: 400px; font-size: 25px;" placeholder="  Mật khẩu"/>
                 
-                
-                    <button type="submit" class="custom-button">
-                        <span class="custom-button-text">
-                        Đăng nhập
-                        </span>
-                    </button>
-                
-                </form>
-                <a href="{{ route('password.request') }}" class="custom-forgot-password">Quên mật khẩu?</a>
-            
-        </div>
+                <button type="submit" class="custom-button">
+                    <span class="custom-button-text">
+                    Đăng nhập
+                    </span>
+                </button>
+            </form>
+            <a href="{{ route('password.request') }}" class="custom-forgot-password">Quên mật khẩu?</a>
     </div>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>

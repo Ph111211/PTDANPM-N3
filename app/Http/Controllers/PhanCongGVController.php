@@ -1,62 +1,79 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\GiangVien;
 use App\Models\SinhVien;
+use App\Models\DoAn;
 use Illuminate\Http\Request;
 
 class PhanCongGVController extends Controller
 {
     public function index()
     {
-        $sinhvien = SinhVien::with('giangvien')->paginate(10);
-        return view('phancong.index', compact('sinhvien'));
+        $doans = DoAn::with('sinhvien','giangvien')->paginate(10);
+        $giangviens = GiangVien::all();
+        return view('phancong.index', compact('doans', 'giangviens'));
     }
 
-    /**
-     * Hiển thị form thêm người dùng mới.
-     */
-    public function create()
+    public function store(Request $request)
     {
-        $giangvien = GiangVien::all();
-        return view('phancong.create', compact('giangvien'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'ma_sv' => 'required|string|max:20',
-            'ho_ten' => 'required|string|max:255',
-            'ngay_sinh' => 'required|date', // Thêm validation cho ngay_sinh
-            'gioi_tinh' => 'required|in:Nam,Nữ', // Thêm validation cho gioi_tinh
-            'lop' => 'required|string|max:20', // Thêm validation cho lop
-            'sdt' => 'required|string|max:15',
-            'email' => 'required|email|max:100|unique:sinh_viens,email,' . $id, // Sửa tên bảng thành sinh_viens
-            'dia_chi' => 'required|string|max:255', // Thêm validation cho dia_chi
-            'ma_gv' => 'nullable|string|max:20', // Thêm validation cho ma_gv (nullable)
-            'ma_dn' => 'nullable|string|max:20', // Thêm validation cho ma_dn (nullable)
-        ]);
-
-        $sinhvien = SinhVien::findOrFail($id);
-        $sinhvien->update([
+        DoAn::create([
             'ma_sv' => $request->ma_sv,
-            'ho_ten' => $request->ho_ten,
-            'ngay_sinh' => $request->ngay_sinh,
-            'gioi_tinh' => $request->gioi_tinh,
-            'lop' => $request->lop,
-            'sdt' => $request->sdt,
-            'email' => $request->email,
-            'dia_chi' => $request->dia_chi,
+            'ten_do_an' => $request->ten_do_an,
+            'diem_so' => $request->diem_so,
             'ma_gv' => $request->ma_gv,
-            'ma_dn' => $request->ma_dn,
+            // Thêm các trường khác nếu cần
         ]);
 
-        return redirect()->route('phancong.index')->with('success', 'Sửa sinh viên thành công!');
+        return redirect()->route('phancong.index')->with('success', 'Tạo đồ án thành công!');
+    }
+
+    public function update(Request $request, $ma_do_an)
+    {
+        $doan = DoAn::findOrFail($ma_do_an);
+
+        $doan->update([
+            'dia_diem' => $request->dia_diem,
+            'tieu_de' => $request->tieu_de,
+            // Thêm các trường khác nếu cần
+        ]);
+
+        // Cập nhật thông tin sinh viên liên quan
+        if ($doan->sinhvien) {
+            $doan->sinhvien->update([
+                'ho_ten' => $request->ho_ten,
+                'lop' => $request->lop,
+            ]);
+        }
+
+        return redirect()->route('phancong.index')->with('success', 'Cập nhật đồ án thành công!');
     }
     public function destroy($id)
     {
-        $sinhvien = SinhVien::findOrFail($id);
-        $sinhvien->delete();
-        return redirect()->route('phancong.index')->with('success', 'Xóa thành công!');
+        $doan = DoAn::findOrFail($id);
+        $doan->delete();
+        return redirect()->route('phancong.index')->with('success', 'Xóa đồ án thành công!');
+    }
+
+    public function assignGiangVien(Request $request)
+    {
+        $request->validate([
+            'ma_do_an' => 'required|exists:do_an,ma_do_an',
+            'ma_gv' => 'required|exists:giang_vien,user_id',
+        ]);
+
+        $doAn = DoAn::find($request->ma_do_an);
+        if ($doAn) {
+            $doAn->ma_gv = $request->ma_gv;
+            $doAn->save();
+            $giangVien = GiangVien::find($request->ma_gv);
+            return response()->json([
+                'success' => true,
+                'ten_gv' => $giangVien->ho_ten
+            ]);
+        }
+
+        return redirect()->route('phancong.index')->with('success', 'Cập nhật đồ án thành công!');
     }
 }

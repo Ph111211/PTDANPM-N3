@@ -24,11 +24,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors(['error' => 'Sai tên đăng nhập hoặc mật khẩu.']);
+        }
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif (Auth::user()->role === 'sinh_vien') {
+            return redirect()->route('sinhvien.dashboard');
+        }
+        elseif (Auth::user()->role === 'giang_vien') {
+            return redirect()->route('giangvien.dashboard');
+        }
+
+        return redirect()->route('home');
     }
 
     /**

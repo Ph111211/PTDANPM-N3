@@ -31,5 +31,4 @@ class CapNhatKetQuaController extends Controller
         ]);
         return redirect()->route('capnhatketqua.index')->with('success', 'Cập nhật thành công!');
     }
-
 }

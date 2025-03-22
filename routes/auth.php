@@ -18,6 +18,7 @@ use App\Http\Controllers\CapNhatKetQuaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SinhvienController;
 use App\Http\Controllers\ThongKeController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -100,4 +101,12 @@ Route::put('/sinhvien/{user_id}', [SinhVienController::class, 'update'])->name('
 Route::match(['get', 'delete'], '/sinhvien/{user_id}/xoa', [SinhVienController::class, 'destroy'])->name('sinhviens.destroy');
 
 Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index');
+// Các route capnhatketqua
+Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua');
+
+// Các route phanconggiangvien
+Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
+Route::put('/phancong/{ma_do_an}', [PhanCongGVController::class, 'update'])->name('phancong.update');
+Route::delete('/phancong/{ma_do_an}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
+Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');
 });
