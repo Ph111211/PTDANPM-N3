@@ -85,32 +85,31 @@
             </div>
             <ul id="sub-menu">
                 <li>
-                    Quản lý tài khoản</a>
+                    <a href="#">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="{{ route('giangviens.index') }}">Quản lý giảng viên</a>
+                    <a href="{{ route('quanlidetai.index') }}">Quản lý đề tài</a>
                 </li>
                 <li>
-                    <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
+                    <a href="{{ route('quanlidoan.index') }}">Quản lý đồ án</a>
                 </li>
                 <li>
-                    Thống kê</a>
+                    <a href="#">Kế hoạch thưc hiện đồ án</a>
                 </li>
                 <li>
-                    <a href="{{ route('lichbaove.index') }}">Lên lịch bảo vệ đồ án</a>
+                    <a href="#">Quản lý điểm</a>
                 </li>
                 <li>
-                    <a href="{{ route('capnhatketqua.index') }}">Cập nhật kết quả đồ án</a>
+                    <a href="#">Q & A</a>
                 </li>
                 <li>
-                    <a href="{{ route('ketquathuctap.index') }}">Kết quả thực tập</a>
+                    <a href="#">Sự kiện</a>
                 </li>
                 <li>
-                    Lưu trữ</a>
+                    <a href="#">Quy định</a>
                 </li>
-                <li>
-                    Phân công giảng viên</a>
-                </li>
+                
+                
             </ul>
             <button type="button" class="m-5 bg-white">Logout
         

@@ -18,4 +18,15 @@ class LichBaoVeController extends Controller
 
         return view('lichbaove.index', compact('data'));
     }
+
+    public function update(Request $request, $tieu_de)
+    {
+        $doan = DoAn::where('tieu_de', $tieu_de)->firstOrFail();
+
+        $doan->ngay_gio = $request->ngay_gio;
+        $doan->dia_diem = $request->dia_diem;
+        $doan->save();
+
+        return redirect()->route('lichbaove.index');
+    }
 }

@@ -9,7 +9,8 @@ use App\Http\Controllers\CapNhatKetQuaController;
 use App\Http\Controllers\KetQuaThucTapController;
 use App\Http\Controllers\LichBaoVeController;
 use App\Http\Controllers\PhanCongGVController;
-
+use App\Http\Controllers\QuanLiDeTaiController;
+use App\Http\Controllers\QuanLiDoAnController;
 
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
@@ -31,7 +32,15 @@ Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('c
 Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
 Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.index');
+route::put('/phancong/{user_id}', [PhanCongGVController::class, 'update'])->name('phancong.update');
 
 route::get('/lichbaove', [LichBaoVeController::class, 'index'])->name('lichbaove.index');
 Route::delete('/giangvien/{user_id}/xoa', [GiangVienController::class, 'destroy'])->name('giangviens.destroy');
 Route::put('/giangvien/{user_id}', [GiangVienController::class, 'update'])->name('giangviens.update');
+
+route::put('/lichbaove/{tieu_de}', [LichBaoVeController::class, 'update'])->name('lichbaove.update');
+
+//quanlidoan
+
+route::get('/quanlidetai', [QuanLiDeTaiController::class, 'index'])->name('quanlidetai.index');
+route::get('/quanlidoan', [QuanLiDoAnController::class, 'index'])->name('quanlidoan.index');

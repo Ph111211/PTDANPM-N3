@@ -149,7 +149,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="edit_ma_gv">Mã</label>
-                        <input type="text" class="form-control" id="edit_ma_gv" name="ma_gv" >
+                        <input type="text" class="form-control" id="edit_ma_gv" name="ma_gv" readonly>
                     </div>
                     <div class="form-group">
                         <label for="edit_ho_ten">Họ và Tên</label>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-end">
                       
-                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </form>
             </div>
