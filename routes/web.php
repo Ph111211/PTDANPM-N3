@@ -38,6 +38,9 @@ route::get('/lichbaove', [LichBaoVeController::class, 'index'])->name('lichbaove
 Route::delete('/giangvien/{user_id}/xoa', [GiangVienController::class, 'destroy'])->name('giangviens.destroy');
 Route::put('/giangvien/{user_id}', [GiangVienController::class, 'update'])->name('giangviens.update');
 
+
+route::put('/lichbaove/{tieu_de}', [LichBaoVeController::class, 'update'])->name('lichbaove.update');
+
 route::put('/lichbaove/{tieu_de}', [LichBaoVeController::class, 'update'])->name('lichbaove.update');
 
 //quanlidoan
