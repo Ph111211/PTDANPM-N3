@@ -15,8 +15,12 @@
 </head>
 <body>
 @extends('layouts.giangvien')
-@section('title', 'Cập nhật kết quả')
+@section('title', 'dashboard')
+
 @section('content')
+<h1>
+    
+</h1>
 @endsection
 </body>
 </html>

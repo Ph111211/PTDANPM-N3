@@ -22,6 +22,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GiangVienController;
 use App\Http\Controllers\KetQuaThucTapSinhVienController;
 use App\Http\Controllers\LichBaoVeController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -75,7 +76,10 @@ Route::middleware('auth')->group(function () {
     Route::get('change-password', [ProfileController::class ,'showChangePasswordForm']);
     Route::get('add-date-defence',[ProjectDefenseController::class,'showProjectnullDate']);
     Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
-
+    Route::get('/dashboardsinhvien', [DashboardController::class, 'sinhvien'])->name('dashboard.sinhvien');
+    Route::get('/dashboardgiangvien', [DashboardController::class, 'giangvien'])->name('dashboard.giangvien');
+    Route::get('/dashboardadmin', [DashboardController::class, 'admin'])->name('dashboard.admin');
+    
 
 Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('capnhatketqua.index');
 
