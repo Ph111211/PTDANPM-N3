@@ -95,14 +95,13 @@
                     </svg></button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-info my-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                    </svg>
-                    </button>
+                <button type="button" class="btn btn-sm btn-info my-3" data-bs-toggle="modal" data-bs-target="#phanCongModal" data-userid="{{ $doan->ma_sv }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor" class="bi bi-plus " viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+                </button>
                 </td>
-            </tr>
-            
+            </tr>         
 <div class="modal fade" id="deleteModal{{ $doan->ma_do_an }}" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content shadow-lg">
@@ -123,8 +122,54 @@
         @endforeach
     </tbody>
 </table>
+<div class="modal fade" id="phanCongModal" tabindex="-1" aria-labelledby="phanCongLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Danh sách phân công</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Mã sinh viên</th>
+                            <th>Tên sinh viên</th>
+                            <th>Phân công</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $stt = 1; @endphp
+                        @foreach ($sinhviens as $sinhvien)
+                            <tr>
+                                <td>{{ $stt++ }}</td>
+                                <td>{{ $sinhvien->user_id }}</td>
+                                <td>{{ $sinhvien->ho_ten }}</td>
+                                <td>
+                                    <form action="{{ route('giangvien/quanlydetai.phancong') }}" method="POST">
+                                        @csrf
+                                            <input type="hidden" name="do_an_id" value="{{ $doan->ma_do_an }}">
+                                            <input type="hidden" name="user_id" value="{{ $sinhvien->user_id }}">
+                                                @if ($doan->ma_sv == $sinhvien->user_id)
+                                                    <button type="submit" class="btn btn-sm btn-danger px-3 my-2">Hủy</button>
+                                                @else
+                                                    <button type="submit" class="btn btn-sm btn-info my-2">Thêm</button>
+                                                @endif
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-success" onclick="submitPhanCong()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div>{{ $doans->links('pagination::bootstrap-5') }}</div>
-
 @endsection
-
 

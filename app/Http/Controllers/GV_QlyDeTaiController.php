@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use App\Models\SinhVien;
 use App\Models\DoAn;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class GV_QLyDeTaiController extends Controller
@@ -12,7 +11,8 @@ class GV_QLyDeTaiController extends Controller
     {   
         $logo = asset('storage/images/logo.png');
         $doans = DoAn::paginate(5);
-        return view('giangvien/quanlydetai.index', compact('doans','logo'));
+        $sinhviens = Sinhvien::get();
+        return view('giangvien/quanlydetai.index', compact('doans','logo','sinhviens'));
     }
     public function create()
     {
@@ -64,4 +64,28 @@ public function destroy($ma_do_an)
 
     return redirect()->route('giangvien/quanlydetai.index')->with('success', 'Đề tài đã được xóa thành công.');
 }
+public function phancong(Request $request)
+    {
+        $request->validate([
+            'do_an_id' => 'required|exists:do_an,ma_do_an',
+            'user_id'  => 'required|exists:sinh_vien,user_id'
+        ]);
+
+        $doan = DoAn::where('ma_do_an', $request->do_an_id)->firstOrFail();
+        $user_id = $request->user_id;
+
+        if ($doan->ma_sv == $user_id) {
+            $doan->update([
+                'ma_sv'      => null,
+                'trang_thai' => 'Chưa có đề tài'
+            ]);
+            return redirect()->back()->with('success', 'Hủy phân công thành công.');
+        } else {
+            $doan->update([
+                'ma_sv'      => $user_id,
+            ]);
+            return redirect()->back()->with('success', 'Phân công thành công.');
+        }
+    }
+
 }

@@ -30,4 +30,4 @@ Route::get('/giangvien/quanlydetai/show/{id}', [GV_QLyDeTaiController::class, 's
 Route::get('/giangvien/quanlydetai/edit/{id}', [GV_QLyDeTaiController::class, 'edit'])->name('giangvien/quanlydetai.edit');
 Route::put('/giangvien/quanlydetai/{id}', [GV_QLyDeTaiController::class, 'update'])->name('giangvien/quanlydetai.update');
 Route::delete('giangvien/quanlydetai/{ma_do_an}', [GV_QLyDeTaiController::class, 'destroy'])->name('giangvien/quanlydetai.destroy');
-
+Route::post('/giangvien/quanlydetai/phancong', [GV_QLyDeTaiController::class, 'phancong'])->name('giangvien/quanlydetai.phancong');
