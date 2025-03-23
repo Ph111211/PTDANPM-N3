@@ -31,7 +31,7 @@ use App\Http\Controllers\DanhGiaTuDoanhNghiepController;
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
+    Route::get('/trangchu', [HomeController::class, 'trangchu'])->name('trangchu');
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -57,8 +57,9 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     
-        Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
-        Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
+    Route::get('/', [HomeController::class, 'dashboard']);
+    Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
+    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')
@@ -71,8 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('change-password', [ProfileController::class ,'showChangePasswordForm']);
     Route::get('/dashboardadmin', [DashboardController::class, 'admin'])->name('dashboard.admin');
     // Các route users
@@ -110,8 +110,10 @@ Route::middleware('auth')->group(function () {
 
    
 
+
+
+
     
-        
         Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -133,9 +135,16 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
     Route::get('change-password', [ProfileController::class ,'showChangePasswordForm']);
-    //dashboard giang vien
-    Route::get('/dashboardgiangvien', [DashboardController::class, 'giangvien'])->name('dashboard.giangvien');
-  
+        Route::get('/dashboardgiangvien', [DashboardController::class, 'giangvien'])->name('dashboard.giangvien');
+        // Cập nhập kết quả đồ án
+        Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('capnhatketqua.index');
+        Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua');
+        
+        // Add other giangvien-specific routes here
+   
+
+
+
 
     
         Route::get('verify-email', EmailVerificationPromptController::class)
@@ -171,12 +180,22 @@ Route::middleware('auth')->group(function () {
    Route::post('/dangkithuctap', [KetQuaThucTapSinhVienController::class, 'store'])->name('dangkithuctap.store');
     
     
+        // Add other sinhvien-specific routes here
+    
+        
+
+    
+        
+      
+
+    
+       
     
     
     
     
 
-Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
+// Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
 
 
