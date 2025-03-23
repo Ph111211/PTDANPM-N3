@@ -108,7 +108,5 @@
     </tbody>
 </table>
 
-
-
 @endsection
 
