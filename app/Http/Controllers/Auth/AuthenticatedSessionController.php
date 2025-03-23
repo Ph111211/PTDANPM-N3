@@ -29,16 +29,18 @@ class AuthenticatedSessionController extends Controller
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors(['error' => 'Sai tên đăng nhập hoặc mật khẩu.']);
         }
-
+        $request->session()->put('user_id', Auth::id());
+        $request->session()->put('user_login', Auth::user()->username);
         $request->session()->regenerate();
 
+
         if (Auth::user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('dashboard.admin');
         } elseif (Auth::user()->role === 'sinh_vien') {
-            return redirect()->route('sinhvien.dashboard');
+            return redirect()->route('dashboard.sinhvien');
         }
         elseif (Auth::user()->role === 'giang_vien') {
-            return redirect()->route('giangvien.dashboard');
+            return redirect()->route('dashboard.giangvien');
         }
 
         return redirect()->route('home');

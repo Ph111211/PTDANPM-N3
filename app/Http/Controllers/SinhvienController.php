@@ -37,7 +37,7 @@ class SinhVienController extends Controller
             'email' => $request->email,
             'password' => "00000000",
             
-            'role' => 'student',
+            'role' => 'sinh_vien',
         ]);
 
         SinhVien::create([

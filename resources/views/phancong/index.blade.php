@@ -46,8 +46,8 @@
                     @foreach ($doans as $it)
                         <tr>
                             <td class="center-td">{{ $it->ma_do_an}}</td>
-                            <td class="center-td">{{ $it->sinhvien->ho_ten}}</td>
-                            <td class="center-td">{{ $it->sinhvien->lop }}</td>
+                            <td class="center-td">{{ $it->sinhvien ->ho_ten }}</td>
+                            <td class="center-td">{{ $it->sinhvien ->lop }}</td>
                             <td class="center-td">{{ $it->tieu_de}}</td>
                             <td class="center-td">{{ $it->user_id }}
                                 @if ($it->giangvien)
@@ -85,49 +85,66 @@
                                                             <td>{{ $gv->khoa }}</td>
                                                             <td>{{ $gv->so_luong_sinh_vien_huong_dan }}</td>
                                                             <td>
-                                                                <button type="button" class="btn btn-primary"
+                                                                <button type="button" class="btn style-button"
                                                                         onclick="assignGiangVien('{{ $it->ma_do_an }}', '{{ $gv->user_id }}')">
                                                                     Chọn
                                                                 </button>
-                                                                <script>
-                                                                    function assignGiangVien(maDoAn, maGv) {
-                                                                       
-                                                                        console.log("Đã nhấn nút chọn giảng viên!", maDoAn, maGv); // Kiểm tra xem hàm có chạy không
-                                                                        fetch('{{ route("assign.giangvien") }}', {
-                                                                            method: 'POST',
-                                                                            headers: {
-                                                                                'Content-Type': 'application/json',
-                                                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                                                            },
-                                                                            body: JSON.stringify({
-                                                                                ma_do_an: maDoAn,
-                                                                                ma_gv: maGv
-                                                                            })
+                                                            <script>
+                                                                function assignGiangVien(maDoAn, maGv) {
+                                                                    fetch('{{ route("assign.giangvien") }}', {
+                                                                        method: 'POST',
+                                                                        headers: {
+                                                                            'Content-Type': 'application/json',
+                                                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                                        },
+                                                                        body: JSON.stringify({
+                                                                            ma_do_an: maDoAn,
+                                                                            ma_gv: maGv
                                                                         })
-                                                                            .then(response => response.json())
-                                                                            .then(data => {
-                                                                                console.log("Response từ server:", data); // Kiểm tra dữ liệu trả về
-                                                                                if (data.success) {
-                                                                                    alert("Giảng viên đã được gán thành công!");
-                                                                                    location.reload();
-                                                                                } else {
-                                                                                    alert("Lỗi! Không thể gán giảng viên.");
-                                                                                }
-                                                                            })
-                                                                            .catch(error => console.error('Lỗi:', error));
+                                                                    })
+                                                                        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+                                                                        .then(({ status, body }) => {
+                                                                            if (status === 200 && body.success) {
+                                                                                alert("Giảng viên đã được gán thành công!");
+                                                                                location.reload();
+                                                                            } else {
+                                                                                document.getElementById('errorMessage').innerText = body.message;
+                                                                                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                                                                                errorModal.show();
+                                                                            }
+                                                                        })
+                                                                        .catch(error => console.error('Lỗi:', error));
+                                                                }
 
-                                                                        
-                                                                    }
-                                                                </script>
-
+                                                            </script>
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
+
                                                 </table>
+                                                <!-- Modal cảnh báo -->
+                                                <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="errorModalLabel">Cảnh báo</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p id="errorMessage">Giảng viên này đã hướng dẫn đủ 10 sinh viên!</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-danger px-5 small-text-input text-center " data-bs-dismiss="modal">Hủy</button>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <button type="button" class="btn btn-outline-danger px-5 small-text-input" data-bs-dismiss="modal">
+                                                    Hủy
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,71 +153,77 @@
 
                             <td class="center-td">{{ $it->trang_thai}}</td>
 
-                            
                             <td class="center-td">
-                            <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB"
-                                        data-bs-toggle="modal" data-bs-target="#editUserModal{{ $it->ma_do_an }}">
+                                <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB"
+                                        data-id="{{ $it->ma_do_an}}">
                                     <i class="bi bi-pencil-square"></i>
-                            </button>
-
-
-                                <div class="modal fade" id="editUserModal{{$it->ma_do_an}}" tabindex="-1"
+                                </button>
+                                <div class="modal fade" id="editUserModal{{ $it->ma_do_an }}" tabindex="-1"
                                      aria-labelledby="editUserModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-body">
                                                 <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">
-                                                    Sửa người dùng
+                                                    Sửa thông tin đồ án và sinh viên
                                                 </h5>
 
-                                                <form id="editForm{{$it->ma_do_an}}"
-                                                      action="{{ route('phancong.update', $it->ma_do_an)}}" method="POST">
+                                                <form id="editForm{{ $it->ma_do_an }}" action="{{ route('phancong.update', $it->ma_do_an) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
 
-                                                    <input type="hidden" name="ma_do_an" value="{{ $it->ma_do_an }}"> <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start d-block"
-                                                               for="ma">Mã</label>
-                                                        <input type="text" class="form-control small-text-input" id="ma"
-                                                               name="ma" value="{{ $it->ma_do_an  }}" readonly>
+                                                    <input type="hidden" name="ma_do_an" value="{{ $it->ma_do_an }}">
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start d-block" for="tieu_de">Tiêu đề</label>
+                                                        <input type="text" class="form-control" id="tieu_de" name="tieu_de" value="{{ $it->tieu_de }}" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="name">Họ và
-                                                            tên</label>
-                                                        <input type="text" class="form-control" id="name" name="ho_ten"
-                                                               value="{{ $it->sinhvien->ho_ten }}" required>
+                                                        <label class="fw-bold mt-3 text-start d-block" for="dia_diem">Địa điểm</label>
+                                                        <input type="text" class="form-control" id="dia_diem" name="dia_diem" value="{{ $it->dia_diem }}" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="lop">Lớp</label>
-                                                        <input type="text" class="form-control" id="lop" name="lop"
-                                                               value="{{ $it->sinhvien->lop }}" required>
+                                                        <label class="fw-bold mt-3 text-start d-block" for="ho_ten">Họ và tên</label>
+                                                        <input type="text" class="form-control" id="ho_ten" name="ho_ten" value="{{ $it->sinhvien->ho_ten }}" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="dia_chi">Địa chỉ</label>
-                                                        <input type="text" class="form-control" id="dia_chi" name="dia_diem"
-                                                               value="{{ $it->dia_diem }}" required>
+                                                        <label class="fw-bold mt-3 text-start d-block" for="lop">Lớp</label>
+                                                        <input type="text" class="form-control" id="lop" name="lop" value="{{ $it->sinhvien->lop }}" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="fw-bold mt-3 text-start  d-block" for="tieu_de">Tiêu đề</label>
-                                                        <input type="text" class="form-control small-text-input"
-                                                               id="tieu_de" name="tieu_de" value="{{ $it->tieu_de }}"
-                                                               required>
+                                                        <label class="fw-bold mt-3 text-start d-block" for="ngay_sinh">Ngày sinh</label>
+                                                        <input type="date" class="form-control" id="ngay_sinh" name="ngay_sinh" value="{{ $it->sinhvien->ngay_sinh }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start d-block" for="gioi_tinh">Giới tính</label>
+                                                        <select class="form-control" id="gioi_tinh" name="gioi_tinh" required>
+                                                            <option value="Nam" {{ $it->sinhvien->gioi_tinh == 'Nam' ? 'selected' : '' }}>Nam</option>
+                                                            <option value="Nữ" {{ $it->sinhvien->gioi_tinh == 'Nữ' ? 'selected' : '' }}>Nữ</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start d-block" for="sdt">Số điện thoại</label>
+                                                        <input type="text" class="form-control" id="sdt" name="sdt" value="{{ $it->sinhvien->sdt }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start d-block" for="email">Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email" value="{{ $it->sinhvien->email }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold mt-3 text-start d-block" for="dia_chi">Địa chỉ</label>
+                                                        <input type="text" class="form-control" id="dia_chi" name="dia_chi" value="{{ $it->sinhvien->dia_chi }}" required>
                                                     </div>
 
                                                     <div class="modal-footer d-flex justify-content-between mb-5">
-                                                        <button type="button"
-                                                                class="btn btn-outline-danger px-5 small-text-input"
-                                                                data-bs-dismiss="modal">Hủy
-                                                        </button>
-                                                        <button type="button" class="btn px-5 small-text-input style-button"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#confirmUpdateModal{{ $it->ma_do_an }}">
-                                                            Cập nhật
-                                                        </button>
+                                                        <button type="button" class="btn btn-outline-danger px-5 small-text-input" data-bs-dismiss="modal">Hủy</button>
+                                                        <button type="button" class="btn px-5 small-text-input style-button" data-bs-toggle="modal" data-bs-target="#confirmUpdateModal{{ $it->ma_do_an }}">Cập nhật</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -213,8 +236,7 @@
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
                                                 <p class="fw-bold">Bạn có chắc chắn muốn cập nhật thông tin không?</p>
-
-                                                <button type="button" class="btn style-button px-4 mr-3" onclick="submitEditPhanCong({{ $it->ma_do_an }})">
+                                                <button type="button" class="btn style-button px-4 mr-3" onclick="submitEditPhanCong('{{ $it->ma_do_an}}')">
                                                     Có
                                                 </button>
                                                 <button type="button" class="btn style-button" data-bs-dismiss="modal">
@@ -236,7 +258,7 @@
                                             <div class="modal-body text-center">
                                                 <p class="fw-bold">Bạn có chắc chắn muốn xóa không?</p>
 
-                                                <form action="{{ route('phancong.destroy', $it->ma_do_an ) }}" method="POST">
+                                                <form action="{{ route('phancong.destroy', $it->ma_do_an) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn style-button px-4 mr-3">Có</button>

@@ -14,7 +14,7 @@
 
 </head>
 <body>
-@extends('layouts.sinhvien')
+@extends('layouts.app')
 
 @section('title', 'Cập nhật kết quả')
 
@@ -70,7 +70,7 @@
 
                                                 <div class="form-group">
                                                     <label class="fw-bold mt-3 text-start d-block" for="diem_so">Điểm</label>
-                                                    <input type="text" class="form-control small-text-input" id="diem_so" name="diem_so" value="{{ $it->diem_so ?: 'Chưa có điểm' }}" required>
+                                                    <input type="text" class="form-control small-text-input" id="diem_so" name="diem_so" value="{{ $it->diem_so ?: null }}" placeholder="{{$it->diem_so ?: 'Chưa có điểm'}}" required>
                                                 </div>
 
                                                 <div class="form-group">

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('ma_sv')->nullable();
             $table->unsignedBigInteger('ma_gv')->nullable();
             $table->text('nhan_xet')->nullable();
-            $table->date('ngay_gio');
+            $table->dateTime('ngay_gio')->nullable();
             $table->string('dia_diem', 255);
             $table->string('file_noi_dung');// thay vi ghi noi dung bao cao o day thi minh se luu file bao cao
             $table->enum('trang_thai', ['Chưa hoàn thành', 'Hoàn thành']);
