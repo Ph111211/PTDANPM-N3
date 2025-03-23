@@ -36,14 +36,15 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::user()->role === 'admin') {
             return redirect()->route('dashboard.admin');
-        } elseif (Auth::user()->role === 'sinh_vien') {
+        } 
+        if (Auth::user()->role === 'sinh_vien') {
             return redirect()->route('dashboard.sinhvien');
         }
-        elseif (Auth::user()->role === 'giang_vien') {
+        if (Auth::user()->role === 'giang_vien') {
             return redirect()->route('dashboard.giangvien');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('/dashboard');
     }
 
     /**
@@ -51,12 +52,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        // Log out the user
+        Auth::logout();
 
+        // Invalidate the session
         $request->session()->invalidate();
 
+        // Regenerate the session token to prevent CSRF attacks
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Redirect to the login page or home
+        return redirect()->route('trangchu');
     }
 }

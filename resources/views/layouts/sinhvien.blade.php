@@ -215,7 +215,7 @@
                     </svg>
                     <div class="border-0 px-3 ">
                         <p class ="text-nowrap">{{auth()->user()->name}} </p>
-                        <p class ="text-nowrap"> Sinh viên</p>
+                        <p class ="text-nowrap">Sinh viên</p>
                         
                     </div>
                     <div class="dropdown">
