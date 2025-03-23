@@ -54,6 +54,23 @@
                     <button type="submit" id="save-btn" class="btn btn-success px-4 d-flex align-items-center">
                         <i class="fas fa-save me-2"></i> Lưu
                     </button>
+<<<<<<< HEAD
+=======
+                    <!-- Modal thông báo tải thành công -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
+                                <div class="modal-body">
+                                    <h4 class="fw-bold">Tải thành công</h4>
+                                    <button type="button" id="success-ok-btn" class="btn btn-success d-flex align-items-center justify-content-center mx-auto px-4 py-2"
+                                            data-bs-dismiss="modal" aria-label="Close" style="border-radius: 8px;">
+                                        <i class="bi bi-check-lg me-2"></i> OK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 47d777d61ab0002d6161ccdd69ef1d665353d6f9
 
                 </div>
             </div>
@@ -84,6 +101,18 @@
             link.href = URL.createObjectURL(blob);
             link.download = "DanhGiaDoanhNghiep.txt";
             link.click();
+<<<<<<< HEAD
+=======
+
+            // Hiển thị modal thông báo thành công
+            let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        });
+
+        // Khi nhấn OK, chuyển hướng về route
+        document.getElementById('success-ok-btn').addEventListener('click', function () {
+            window.location.href = "{{ route('danhgiatudoanhnghiep.index') }}";
+>>>>>>> 47d777d61ab0002d6161ccdd69ef1d665353d6f9
         });
 
         document.getElementById('cancel-btn').addEventListener('click', function () {

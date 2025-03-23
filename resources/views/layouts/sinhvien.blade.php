@@ -96,7 +96,7 @@
                     <a href="#">Tiến độ đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Báo cáo đồ án</a>
+                    <a href="{{ route('baocaocuoiky.index') }}">Báo cáo đồ án</a>
                 </li>
                 <li>
                     <a href="{{ route('danhgiatudoanhnghiep.index') }}">Đánh giá doanh nghiệp </a>
