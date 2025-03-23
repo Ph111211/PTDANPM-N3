@@ -44,7 +44,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('dashboard.giangvien');
         }
 
-        return redirect()->route('/dashboard');
+        
     }
 
     /**

@@ -22,7 +22,7 @@
 
         <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
-                <h4 class="fw-bold text-center">Chọn Giảng Viên Hướng Dẫn</h4>
+                <h4 class="fw-bold text-center">Đánh giá từ Doanh nghiệp</h4>
 
                 <div class="form-group mb-3">
                     <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách giảng viên khả dụng</label>

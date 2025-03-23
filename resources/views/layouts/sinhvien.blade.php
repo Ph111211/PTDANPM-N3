@@ -84,7 +84,7 @@
             </div>
             <ul>
                 <li>
-                    <a href="#">Đăng ký thực tập</a>
+                    <a href="/dangkithuctap">Đăng ký thực tập</a>
                 </li>
                 <li>
                     <a href="#">Đăng ký đề tài</a>
