@@ -83,9 +83,7 @@
                 </a>
             </div>
             <ul>
-                <li>
-                    <a href="#">Quản lý sinh viên</a>
-                </li>
+                
                 <li>
                     <a href="">Quản lý đề tài </a>
                 </li>

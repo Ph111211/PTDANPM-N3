@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->text('nhan_xet_cua_giang_vien')->nullable();
             $table->text('nhan_xet_cua_doanh_nghiep')->nullable();
             $table->string('ten_dn');// ten doanh nghiep
+            $table->string('vi_tri')->nullable();// dia chi doanh nghiep
 
             $table->foreign('ma_sv')->references('user_id')->on('sinh_vien')->onDelete('set null');
             $table->foreign('ma_gv')->references('user_id')->on('giang_vien')->onDelete('set null');

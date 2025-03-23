@@ -12,7 +12,10 @@ class CapNhatKetQuaController extends Controller
      */
     public function index()
     {
-        $ketquadoan = DoAn::paginate(10);
+        $ketquadoan = DoAn::whereNull('diem_so')
+            ->orWhere('trang_thai', '<>', 'Hoàn thành')
+            ->orWhereNull('nhan_xet')
+            ->paginate(10);
         return view('capnhatketqua.index', compact('ketquadoan'));
     }
 
