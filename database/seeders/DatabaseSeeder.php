@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         
         DB::table('users')->insert([
-            ['name' => 'Nguyễn Văn An', 'email' => 'phph111211@gmail.com', 'role' => 'giang_vien','password' => bcrypt('123456')],
+            ['name' => 'Nguyễn Văn An', 'email' => 'phph111211@gmail.com', 'role' => 'admin','password' => bcrypt('123456')],
             ['name' => 'Trần Thị Bắc', 'email' => 'tranthib@university.edu', 'role' => 'giang_vien','password' => bcrypt('123456')],
             ['name' => 'Lê Văn Cao', 'email' => 'levanc@university.edu', 'role' => 'giang_vien','password' => bcrypt('123456')],
             ['name' => 'Phạm Minh Dương', 'email' => 'phamminhd@university.edu', 'role' => 'giang_vien','password' => bcrypt('123456')],
