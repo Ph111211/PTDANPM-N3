@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +22,7 @@
 
         <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
-                <h4 class="fw-bold text-center">Chọn Giảng Viên Hướng Dẫn</h4>
+                <h4 class="fw-bold text-center">Kết quả thực tập</h4>
 
                 <div class="form-group mb-3">
                     <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách giảng viên khả dụng</label>
@@ -50,13 +51,15 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" id ="cancel-btn" class="btn btn-danger px-4 d-flex align-items-center">
-                        <i class="fas fa-times me-2"></i> Hủy
-                    </button>
 
                     <button type="submit" id="save-btn" class="btn btn-success px-4 d-flex align-items-center">
-                        <i class="fas fa-save me-2"></i> Lưu
+                        <i class="fas fa-save me-2"></i> Tải về
                     </button>
+
+                    <button type="submit" id ="cancel-btn" class="btn btn-success px-4 d-flex align-items-center">
+                        OK
+                    </button>
+
                     <!-- Modal thông báo thành công -->
                     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -71,6 +74,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal cảnh báo khi thiếu dữ liệu -->
+                    <div class="modal fade" id="warningModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
+                                <div class="modal-body">
+                                    <h4 class="fw-bold text-danger">Vui lòng nhập đầy đủ thông tin trước khi lưu!</h4>
+                                    <button type="button" id="warning-ok-btn" class="btn btn-danger px-4 py-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                        OK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -106,6 +125,13 @@
             let nhanXetDN = document.getElementById('nhan_xet_dn').value;
             let ketQua = document.getElementById('kq').value;
 
+            // Kiểm tra nếu chưa nhập đủ thông tin
+            if (!nhanXetGV || !nhanXetDN || !ketQua) {
+                let warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
+                warningModal.show();
+                return;
+            }
+
             // Nội dung file text
             let noiDung = `Nhận xét từ giảng viên: ${nhanXetGV}\nNhận xét từ doanh nghiệp: ${nhanXetDN}\nKết quả thực tập: ${ketQua}`;
 
@@ -119,10 +145,17 @@
             // Hiển thị modal thông báo thành công
             let successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
-            // Chuyển hướng sau khi đóng modal
-            document.getElementById('success-ok-btn').addEventListener('click', function () {
+
+            // Sau 5 giây, đóng modal và chuyển hướng
+            setTimeout(function () {
+                successModal.hide();
                 window.location.href = "{{ route('ketquathuctapsv.index') }}";
-            });
+            }, 5000);
+        });
+
+        // Khi nhấn "OK", cũng chuyển hướng ngay lập tức
+        document.getElementById('success-ok-btn').addEventListener('click', function () {
+            window.location.href = "{{ route('ketquathuctapsv.index') }}";
         });
 
         document.getElementById('cancel-btn').addEventListener('click', function () {

@@ -11,38 +11,30 @@ class GiangVienHuongDanController extends Controller
 {
     public function index()
     {
-        $giangvienhd = DoAn::with('sinhvien')->get();
         $giangviens = GiangVien::all(); // Lấy danh sách giảng viên
 
-        return view('sinhvienrole/giangvienhd.index', compact('giangvienhd', 'giangviens'));
+        return view('sinhvienrole/giangvienhd.index', compact('giangviens'));
     }
 
-    public function capnhatGiangVien(Request $request, $ma_do_an)
+
+    public function updateSoLuong(Request $request, $user_id)
     {
-        $doAn = DoAn::where('ma_do_an', $ma_do_an)->first();
-        if (!$doAn) {
-            return response()->json(['message' => 'Đồ án không tồn tại'], 404);
-        }
 
-        $giangVien = GiangVien::where('user_id', $request->giang_vien)->first();
+        // Tìm giảng viên theo ID
+        $giangVien = GiangVien::where('user_id', $user_id)->first();
+
         if (!$giangVien) {
-            return response()->json(['message' => 'Giảng viên không tồn tại'], 404);
+            return response()->json(['success' => false, 'message' => 'Giảng viên không tồn tại!'], 404);
         }
 
-        try {
-            DB::beginTransaction();
-            // Cập nhật số lượng sinh viên hướng dẫn
-            $giangVien->so_luong_sinh_vien_huong_dan = $request->so_luong;
-            $giangVien->save();
-            // Cập nhật thông tin đồ án
-            $doAn->giangvien_id = $request->giang_vien;
-//            $doAn->tieu_chi_giang_vien = $request->tieu_chi;
-            $doAn->save();
-            DB::commit();
-            return response()->json(['message' => 'Cập nhật thành công']);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => 'Lỗi khi cập nhật: ' . $e->getMessage()], 500);
-        }
+        // Kiểm tra số lượng sinh viên hợp lệ
+        $request->validate([
+            'so_luong' => 'required|integer|min:0|max:10'
+        ]);
+
+        // Cập nhật số lượng sinh viên hướng dẫn
+        $giangVien->so_luong_sinh_vien_huong_dan = $request->so_luong;
+        $giangVien->save();
+        return redirect()->route('giangvienhd.index')->with('success', 'Cập nhật thành công!');
     }
 }

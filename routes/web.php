@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\BaoCaoCuoiKYController;
+use App\Http\Controllers\DangKyDeTaiNghiepController;
 use App\Http\Controllers\DanhGiaTuDoanhNghiepController;
 use App\Http\Controllers\GiangVienHuongDanController;
 use App\Http\Controllers\KetQuaThucTapSinhVienController;
+use App\Http\Controllers\TienDoThucTapController;
 use App\Http\Controllers\UserController;
 use App\Models\DoAn;
 use Illuminate\Http\Request;
@@ -54,8 +57,16 @@ Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien
 
 //actor sinh vien
 Route::get('/giangvienhd', [GiangVienHuongDanController::class, 'index'])->name('giangvienhd.index');
-Route::post('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien']);
 
 Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
 
 Route::get('/ketquathuctapsv', [KetQuaThucTapSinhVienController::class, 'index'])->name('ketquathuctapsv.index');
+
+Route::get('/baocaocuoiky', [BaoCaoCuoiKYController::class, 'index'])->name('baocaocuoiky.index');
+
+Route::put('/capnhatgiangvien/{user_id}', [GiangVienHuongDanController::class, 'updateSoLuong']);
+
+
+route::get('/dangkydetai', [DangKyDeTaiNghiepController::class, 'index'])->name('dangkydetai.index');
+Route::post('/do-an/store', [DangKyDeTaiNghiepController::class, 'store'])->name('doan.store');
+Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');

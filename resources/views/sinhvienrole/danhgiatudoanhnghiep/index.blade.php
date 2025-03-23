@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -22,7 +23,7 @@
 
         <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
-                <h4 class="fw-bold text-center">Chọn Giảng Viên Hướng Dẫn</h4>
+                <h4 class="fw-bold text-center">Đánh giá doanh nghiệp</h4>
 
                 <div class="form-group mb-3">
                     <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách giảng viên khả dụng</label>
@@ -68,6 +69,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal cảnh báo khi dữ liệu rỗng -->
+                    <div class="modal fade" id="warningModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
+                                <div class="modal-body">
+                                    <h4 class="fw-bold text-danger" id="warningMessage">Lỗi</h4>
+                                    <button type="button" id="warning-ok-btn" class="btn btn-danger px-4 py-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                        OK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -78,6 +93,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let selectedOption;
+
         document.getElementById('ket_qua_thuc_tap').addEventListener('change', function () {
             selectedOption = this.options[this.selectedIndex];
             let doanhNghiep = selectedOption.getAttribute('data-ten');
@@ -89,8 +105,19 @@
         document.getElementById('save-btn').addEventListener('click', function (event) {
             event.preventDefault(); // Ngăn chặn submit form mặc định
 
-            let tenDN = document.getElementById('ten_dn').value;
-            let nhanXet = document.getElementById('nhan_xet').value;
+            let tenDN = document.getElementById('ten_dn').value.trim();
+            let nhanXet = document.getElementById('nhan_xet').value.trim();
+
+            if (!tenDN) {
+                showWarningModal("Vui lòng chọn kết quả thực tập để lấy tên doanh nghiệp!");
+                return;
+            }
+
+            if (!nhanXet) {
+                showWarningModal("Vui lòng nhập nhận xét chi tiết trước khi lưu!");
+                return;
+            }
+
             let noiDung = `Tên doanh nghiệp: ${tenDN}\nNhận xét chi tiết: ${nhanXet}`;
 
             let blob = new Blob([noiDung], { type: "text/plain" });
@@ -99,12 +126,10 @@
             link.download = "DanhGiaDoanhNghiep.txt";
             link.click();
 
-            // Hiển thị modal thông báo thành công
             let successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
         });
 
-        // Khi nhấn OK, chuyển hướng về route
         document.getElementById('success-ok-btn').addEventListener('click', function () {
             window.location.href = "{{ route('danhgiatudoanhnghiep.index') }}";
         });
@@ -112,5 +137,11 @@
         document.getElementById('cancel-btn').addEventListener('click', function () {
             window.location.href = "{{ route('danhgiatudoanhnghiep.index') }}";
         });
+
+        function showWarningModal(message) {
+            document.getElementById('warningMessage').textContent = message;
+            let warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
+            warningModal.show();
+        }
     });
 </script>

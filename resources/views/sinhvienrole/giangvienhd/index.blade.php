@@ -1,15 +1,16 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 </body>
 
 
@@ -66,91 +67,116 @@
                     <button type="submit" class="btn btn-success px-4 d-flex align-items-center">
                         <i class="fas fa-save me-2"></i> Lưu
                     </button>
+
+                    <!-- Modal thông báo lỗi -->
+                    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
+                                <div class="modal-body">
+                                    <h4 class="fw-bold text-danger">Giảng viên đã đạt giới hạn hướng dẫn 10 sinh viên!</h4>
+                                    <button type="button" id="error-ok-btn" class="btn btn-danger px-4 py-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                        OK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal thông báo thành công -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
+                                <div class="modal-body">
+                                    <h4 class="fw-bold text-success">Lưu thành công!</h4>
+                                    <button type="button" id="success-ok-btn" class="btn btn-success px-4 py-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                        OK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </form>
 
 @endsection
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        let selectedOption;
+        let giangVienSelect = document.getElementById('giang_vien');
+        let chuyenNganhInput = document.getElementById('chuyen_nganh');
+        let soLuongInput = document.getElementById('so_luong');
+        let tieuChiInput = document.getElementById('tieu_chi');
+        let saveButton = document.querySelector('.btn-success');
 
-        document.getElementById('giang_vien').addEventListener('change', function () {
-            selectedOption = this.options[this.selectedIndex];
-            let khoa = selectedOption.getAttribute('data-khoa');
-            let soLuong = parseInt(selectedOption.getAttribute('data-so-luong'));
-            document.getElementById('chuyen_nganh').value = khoa;
-            document.getElementById('so_luong').value = soLuong;
+        // Khi chọn giảng viên, cập nhật thông tin
+        giangVienSelect.addEventListener('change', function () {
+            let selectedOption = this.options[this.selectedIndex];
+            chuyenNganhInput.value = selectedOption.getAttribute('data-khoa') || "";
+            soLuongInput.value = selectedOption.getAttribute('data-so-luong') || "";
         });
 
-        document.getElementById('save-btn').addEventListener('click', function () {
-            if (!selectedOption) {
-                alert("Vui lòng chọn giảng viên!");
+        saveButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Ngăn chặn submit form mặc định
+
+            let selectedOption = giangVienSelect.options[giangVienSelect.selectedIndex];
+            let giangVienId = parseInt(giangVienSelect.value); // Lấy ID giảng viên
+            let soLuong = parseInt(selectedOption.getAttribute('data-so-luong') || "0");
+
+            // Kiểm tra nếu chưa chọn giảng viên hoặc tiêu chí rỗng
+            if (!giangVienId || !tieuChiInput.value) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
 
-            let soLuong = parseInt(selectedOption.getAttribute('data-so-luong'));
+            // Kiểm tra nếu số lượng > 10
             if (soLuong >= 10) {
-                alert("Số lượng sinh viên đã đạt giới hạn (10)!");
+                let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
                 return;
             }
 
-            soLuong++;
-            document.getElementById('so_luong').value = soLuong;
-            selectedOption.setAttribute('data-so-luong', soLuong);
+            // Cập nhật số lượng sinh viên hướng dẫn (tăng 1)
+            let newSoLuong = soLuong + 1;
+            selectedOption.setAttribute('data-so-luong', newSoLuong);
+            soLuongInput.value = newSoLuong;
 
-            let selectedGV = document.getElementById('giang_vien').value;
-            let chuyenNganh = document.getElementById('chuyen_nganh').value;
-
-            // Kiểm tra các trường nhập liệu
-            let errors = false;
-            if (!selectedGV) {
-                alert("Vui lòng chọn giảng viên!");
-                errors = true;
-            }
-            if (!tieuChi) {
-                document.querySelector('#tieu_chi + .error').style.display = 'block';
-                errors = true;
-            } else {
-                document.querySelector('#tieu_chi + .error').style.display = 'none';
-            }
-
-            if (errors) return;
-
-            fetch(`/capnhat-giangvien/{{ $giangvienhd->first()->ma_do_an }}`, {
-                method: "POST",
+            // Gửi request cập nhật vào database
+            fetch(`{{ url('/capnhatgiangvien') }}/${giangVienId}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
                 body: JSON.stringify({
-                    giang_vien: selectedGV,
-                    chuyen_nganh: chuyenNganh,
-                    so_luong: soLuong,
+                    so_luong: newSoLuong // Đảm bảo bạn gửi 'so_luong'
                 })
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    setTimeout(function () {
-                        window.location.href = "{{ route('giangvienhd.index') }}";
-                    }, 100);
-                })
-                .catch(error => {
-                    console.error('Error:', error); // In lỗi ra console
-                    alert("Lỗi khi cập nhật giảng viên: " + error.message);
+                    if (data.success) {
+                        let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                        successModal.show();
+
+                        setTimeout(function () {
+                            successModal.hide();
+                            window.location.href = "{{ route('giangvienhd.index') }}";
+                        }, 3000);
+                    }
                 });
         });
 
-        document.getElementById('cancel-btn').addEventListener('click', function () {
+        document.getElementById('success-ok-btn').addEventListener('click', function () {
             window.location.href = "{{ route('giangvienhd.index') }}";
         });
+
+        document.getElementById('error-ok-btn').addEventListener('click', function () {
+            document.getElementById('errorModal').classList.remove('show');
+        });
     });
+
 
 </script>

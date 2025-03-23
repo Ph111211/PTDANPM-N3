@@ -87,16 +87,16 @@
                     <a href="#">Đăng ký thực tập</a>
                 </li>
                 <li>
-                    <a href="#">Đăng ký đề tài</a>
+                    <a href="{{ route('dangkydetai.index') }}">Đăng ký đề tài</a>
                 </li>
                 <li>
                     <a href="{{ route('giangvienhd.index') }}">Giảng viên hướng dẫn </a>
                 </li>
                 <li>
-                    <a href="#">Tiến độ đồ án</a>
+                    <a href="{{ route('tiendothuctap.index') }}">Tiến độ đồ án</a>
                 </li>
                 <li>
-                    <a href="{{ route('baocaocuoiky.index') }}">Báo cáo đồ án</a>
+                    <a href="{{ route('baocaocuoiky.index') }}">Báo cáo cuối kỳ</a>
                 </li>
                 <li>
                     <a href="{{ route('danhgiatudoanhnghiep.index') }}">Đánh giá doanh nghiệp </a>
