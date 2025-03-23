@@ -62,6 +62,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         // Redirect to the login page or home
+
         return redirect()->route('trangchu');
     }
 }
