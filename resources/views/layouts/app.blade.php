@@ -85,7 +85,7 @@
             </div>
             <ul id="sub-menu">
                 <li>
-                    <a href="#">Quản lý tài khoản</a>
+                    Quản lý tài khoản</a>
                 </li>
                 <li>
                     <a href="{{ route('giangviens.index') }}">Quản lý giảng viên</a>
@@ -94,7 +94,7 @@
                     <a href="{{ route('sinhviens.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="{{ route('thongke.index') }}">Thống kê</a>
+                    Thống kê</a>
                 </li>
                 <li>
                     <a href="{{ route('lichbaove.index') }}">Lên lịch bảo vệ đồ án</a>
@@ -106,10 +106,10 @@
                     <a href="{{ route('ketquathuctap.index') }}">Kết quả thực tập</a>
                 </li>
                 <li>
-                    <a href="#">Lưu trữ</a>
+                    Lưu trữ</a>
                 </li>
                 <li>
-                    <a href="{{ route('phancong.index') }}">Phân công giảng viên</a>
+                    Phân công giảng viên</a>
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white">Logout
