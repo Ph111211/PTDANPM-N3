@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
                 'ma_sv' => '9',
                 'ma_gv' => '1',
                 'nhan_xet' => null,
-                'ngay_gio' => '2025-01-22',
+                'ngay_gio' => null,
                 'dia_diem' => '175 Tây Sơn',
                 'file_noi_dung' => '',
                 'trang_thai' => 'Chưa hoàn thành',

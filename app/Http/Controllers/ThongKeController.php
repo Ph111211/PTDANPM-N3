@@ -10,7 +10,7 @@ class ThongKeController extends Controller
 {
     public function index(){
     
-        $sinhviens = DoAn::with(['SinhVien.GiangVien'])->get();
+        $sinhviens = DoAn::with(['sinhvien', 'giangvien'])->get();
         
 
         return view('thongke.index', compact('sinhviens'));

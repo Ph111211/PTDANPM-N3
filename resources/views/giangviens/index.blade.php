@@ -10,10 +10,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+
 </body>
 <style>
-    
+
     .table{
     box-sizing: border-box;
     table-layout: fixed;
@@ -41,7 +41,7 @@
 <button type="button" class="btn btn-sm my-4" id="plus" data-toggle="modal" data-target="#addModal">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-    </svg> &nbsp;Thêm 
+    </svg> &nbsp;Thêm
 </button>
 
 @include('giangviens.createmodal')
@@ -60,11 +60,11 @@
     <tbody>
         @foreach ($giangviens as $giangvien)
             <tr>
-                <td>{{ $giangvien->user_id }}</td> 
-                <td>{{ $giangvien->ho_ten }}</td> 
-                <td>{{ $giangvien->email }}</td> 
-                <td>{{ $giangvien->khoa }}</td> 
-                <td>{{ $giangvien->sdt }}</td> 
+                <td>{{ $giangvien->user_id }}</td>
+                <td>{{ $giangvien->ho_ten }}</td>
+                <td>{{ $giangvien->email }}</td>
+                <td>{{ $giangvien->khoa }}</td>
+                <td>{{ $giangvien->sdt }}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-info my-3 btn-view" data-giangvien='@json($giangvien)'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -79,9 +79,11 @@
                         </svg>
                     </button>
                     <form action="#" method="POST" style="display:inline;">
+                    <form action="/giangvien/{{$giangvien->user_id}}/xoa" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger my-3">
+                        <button type="submit" class="btn btn-sm  btn-info my-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7H6v7a.5.5 0 0 1-1 0v-7z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1H14a1 1 0 0 1 1 1v1zM4.118 4 4 4.118V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.118L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -94,12 +96,16 @@
     </tbody>
 </table>
 
+<div class="d-flex justify-content-center">
+                {{ $giangviens->links('pagination::bootstrap-4') }}
+            </div>
+
 <!-- Modal hiển thị thông tin giảng viên -->
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="showModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="showModalLabel">Thông Tin Giảng Viên</h5>
+                <h5 class="modal-title text-center" id="showModalLabel">Thông tin chi tiết</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -183,7 +189,7 @@
     $(document).ready(function() {
         $('.btn-view').on('click', function() {
             var giangvien = $(this).data('giangvien');
-            $('#showModal #ma_gv').text(giangvien.ma_gv);
+            $('#showModal #ma_gv').text(giangvien.user_id);
             $('#showModal #ho_ten').text(giangvien.ho_ten);
             $('#showModal #email').text(giangvien.email);
             $('#showModal #khoa').text(giangvien.khoa);
@@ -191,6 +197,15 @@
             $('#showModal').modal('show');
         });
 
-       
+        $('.btn-edit').on('click', function() {
+            var giangvien = $(this).data('giangvien');
+            $('#editForm').attr('action', '/giangvien/' + giangvien.user_id);
+            $('#edit_ma_gv').val(giangvien.user_id);
+            $('#edit_ho_ten').val(giangvien.ho_ten);
+            $('#edit_email').val(giangvien.email);
+            $('#edit_khoa').val(giangvien.khoa);
+            $('#edit_sdt').val(giangvien.sdt);
+            $('#editModal').modal('show');
+        });
     });
 </script>

@@ -19,6 +19,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SinhvienController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GiangVienController;
+use App\Http\Controllers\KetQuaThucTapSinhVienController;
+use App\Http\Controllers\LichBaoVeController;
 
 
 
@@ -101,6 +104,10 @@ Route::put('/sinhvien/{user_id}', [SinhVienController::class, 'update'])->name('
 Route::match(['get', 'delete'], '/sinhvien/{user_id}/xoa', [SinhVienController::class, 'destroy'])->name('sinhviens.destroy');
 
 Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index');
+route::get('/giangvien', [GiangVienController::class, 'index'])->name('giangviens.index');
+route::post('/giangvien/store', [GiangVienController::class, 'store'])->name('giangviens.store');
+Route::delete('/giangvien/{user_id}/xoa', [GiangVienController::class, 'destroy'])->name('giangviens.destroy');
+Route::put('/giangvien/{user_id}', [GiangVienController::class, 'update'])->name('giangviens.update');
 // Các route capnhatketqua
 Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua');
 
@@ -109,4 +116,15 @@ Route::get('/phancong', [PhanCongGVController::class, 'index'])->name('phancong.
 Route::put('/phancong/{ma_do_an}', [PhanCongGVController::class, 'update'])->name('phancong.update');
 Route::delete('/phancong/{ma_do_an}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
 Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');
+Route::get('/giangvienhd', [GiangVienHuongDanController::class, 'index'])->name('giangvienhd.index');
+Route::post('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien']);
+
+Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
+
+Route::get('/ketquathuctapsv', [KetQuaThucTapSinhVienController::class, 'index'])->name('ketquathuctapsv.index');
+route::get('/lichbaove', [LichBaoVeController::class, 'index'])->name('lichbaove.index');
+route::put('/lichbaove/{tieu_de}', [LichBaoVeController::class, 'update'])->name('lichbaove.update');
+
+route::put('/lichbaove/{tieu_de}', [LichBaoVeController::class, 'update'])->name('lichbaove.update');
 });
+
