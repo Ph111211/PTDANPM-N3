@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'bcb6980738a212e2948ea445641342050fce6203',
+        'reference' => 'e15cf15993e565033fbd9e51866c05222ecd9db2',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -192,6 +192,15 @@
             'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'hi-folks/rando-php' => array(
+            'pretty_version' => 'v0.2.0',
+            'version' => '0.2.0.0',
+            'reference' => 'fd1e1421effa441c652f1df25e4a55c934bb6709',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../hi-folks/rando-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'illuminate/auth' => array(
             'dev_requirement' => false,
@@ -412,6 +421,15 @@
                 0 => '*',
             ),
         ),
+        'laravel/breeze' => array(
+            'pretty_version' => 'v2.3.5',
+            'version' => '2.3.5.0',
+            'reference' => '1d85805c4aecc425a0ce157147384d4becea3fa2',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/breeze',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v11.43.2',
             'version' => '11.43.2.0',
@@ -424,7 +442,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'bcb6980738a212e2948ea445641342050fce6203',
+            'reference' => 'e15cf15993e565033fbd9e51866c05222ecd9db2',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -958,6 +976,15 @@
             'replaced' => array(
                 0 => '4.7.6',
             ),
+        ),
+        'sadiqsalau/laravel-otp' => array(
+            'pretty_version' => 'v1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => 'f322ef85df45a640f787d0c37d0c304a40ab09d9',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../sadiqsalau/laravel-otp',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '3.0.2',
