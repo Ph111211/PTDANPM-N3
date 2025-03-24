@@ -119,8 +119,8 @@
         </div>
     </div>
 </div>
-        @endforeach
-    </tbody>
+@endforeach
+</tbody>
 </table>
 <div class="modal fade" id="phanCongModal" tabindex="-1" aria-labelledby="phanCongLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

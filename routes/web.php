@@ -6,6 +6,7 @@ use App\Http\Controllers\SinhvienController;
 use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\GV_QLySinhvienController;
 use App\Http\Controllers\GV_QLyDeTaiController;
+use App\Http\Controllers\GV_QLyDoAnController;
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
 
@@ -31,3 +32,8 @@ Route::get('/giangvien/quanlydetai/edit/{id}', [GV_QLyDeTaiController::class, 'e
 Route::put('/giangvien/quanlydetai/{id}', [GV_QLyDeTaiController::class, 'update'])->name('giangvien/quanlydetai.update');
 Route::delete('giangvien/quanlydetai/{ma_do_an}', [GV_QLyDeTaiController::class, 'destroy'])->name('giangvien/quanlydetai.destroy');
 Route::post('/giangvien/quanlydetai/phancong', [GV_QLyDeTaiController::class, 'phancong'])->name('giangvien/quanlydetai.phancong');
+
+Route::get('/giangvien/quanlydoan', [GV_QLyDoAnController::class, 'index'])->name('giangvien/quanlydoan.index');
+Route::get('/giangvien/quanlydoan/show/{id}', [GV_QLyDoanController::class, 'show'])->name('giangvien/quanlydoan.show');
+Route::post('/giangvien/quanlydoan/chamdiem', [GV_QLyDoanController::class, 'chamdiem'])->name('giangvien/quanlydoan.chamdiem');
+Route::get('/giangvien/quanlydoan/lichnop', [GV_QLyDoAnController::class, 'lichnop'])->name('giangvien/quanlydoan.lichnop');

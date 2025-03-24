@@ -91,7 +91,7 @@
                     <a href="{{ route('giangvien/quanlydetai.index') }}">Quản lý đề tài</a>
                 </li>
                 <li>
-                    <a href="#">Quản lý đồ án</a>
+                    <a href="{{ route('giangvien/quanlydoan.index') }}">Quản lý đồ án</a>
                 </li>
                 <li>
                     <a href="#">Kế hoạch thực hiện đồ án</a>

@@ -87,5 +87,4 @@ public function phancong(Request $request)
             return redirect()->back()->with('success', 'Phân công thành công.');
         }
     }
-
 }

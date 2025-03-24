@@ -64,13 +64,14 @@
             <a href="{{ route('giangvien/quanlydetai.index') }}" class="btn btn-danger"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1">
                     <path d="M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>Hủy</a>
+            </svg>Hủy</a>
             <button type="submit" class="btn btn-success">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1">
                     <path d="M15.2898 3.50977C15.8174 3.51728 16.3206 3.73294 16.6898 4.10977L20.4898 7.90977C20.8667 8.27903 21.0823 8.78223 21.0898 9.30977V19.5098C21.0898 20.0402 20.8791 20.5489 20.5041 20.924C20.129 21.2991 19.6203 21.5098 19.0898 21.5098H5.08984C4.55941 21.5098 4.0507 21.2991 3.67563 20.924C3.30056 20.5489 3.08984 20.0402 3.08984 19.5098V5.50977C3.08984 4.97933 3.30056 4.47062 3.67563 4.09555C4.0507 3.72048 4.55941 3.50977 5.08984 3.50977H15.2898Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M17.0898 21.5098V14.5098C17.0898 14.2445 16.9845 13.9902 16.797 13.8027C16.6094 13.6151 16.3551 13.5098 16.0898 13.5098H8.08984C7.82463 13.5098 7.57027 13.6151 7.38274 13.8027C7.1952 13.9902 7.08984 14.2445 7.08984 14.5098V21.5098" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M7.08984 3.50977V7.50977C7.08984 7.77498 7.1952 8.02934 7.38274 8.21687C7.57027 8.40441 7.82463 8.50977 8.08984 8.50977H15.0898" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>Lưu</button>
+                </svg>Lưu
+            </button>
         </div>
     </form>
 </div>
