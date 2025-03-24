@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{ $it->ma_sv }}</td>
                             <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
-                            <td>{{ $it->ten_dn }}</td>
+                            <td>{{ $it->nhiem_vu }}</td>
                             <td class="w-50" >{{ $it->thoi_gian_bat_dau }} - {{ $it->thoi_gian_ket_thuc }}</td>
                             <td>
                                 @if(isset($it->diem_so) && is_numeric($it->diem_so))
@@ -72,20 +72,29 @@
 
                 <div class="text-end ">
                     <div type="button" class="btn btn-sm edit-btn px-4 py-2" style="background: #28A745"
+<<<<<<< HEAD
                          data-id="{{ $it->ma_ket_qua }}">
+=======
+                         data-id="{{ $it->ma_do_an}}">
+>>>>>>> 566db1f1d61da673f2b530abbebf0b4576dcb321
                         <i class="bi bi-pencil-square text-white"></i>
                         <span style="color: #f5f6fa"> Cập nhật tiến độ</span>
                     </div>
                 </div>
+<<<<<<< HEAD
 
 
                 <!-- Modal Show -->
                 <div class="modal fade" id="editUserModal{{ $it->ma_ket_qua }}" tabindex="-1"
+=======
+                <div class="modal fade" id="editUserModal{{ $it->ma_do_an}}" tabindex="-1"
+>>>>>>> 566db1f1d61da673f2b530abbebf0b4576dcb321
                      aria-labelledby="editUserModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">
+<<<<<<< HEAD
                                     Thông tin người dùng</h5>
 
                                 <div class="form-group">
@@ -134,11 +143,36 @@
                                             data-bs-dismiss="modal">Đóng
                                     </button>
                                 </div>
+=======
+                                    Cập nhật tiến độ</h5>
+                                <form action="{{ route('tiendothuctap', $it->ma_do_an) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="form-group">
+                                        <label class="fw-bold mt-3 text-start d-block">Công việc đã thực hiện</label>
+                                        <input type="text" class="form-control" name="nhiem_vu" value="{{ $it->nhiem_vu }}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="fw-bold mt-3 text-start d-block">Kết quả đạt được</label>
+                                        <textarea class="form-control" name="mo_ta_nhiem_vu" rows="3">{{ $it->mo_ta_nhiem_vu }}</textarea>
+                                    </div>
+
+                                    <div class="modal-footer d-flex justify-content-between mb-3">
+                                        <button type="button" class="btn btn-outline-danger px-5 small-text-input" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="submit" class="btn btn-success px-5">Cập nhật thay đổi</button>
+                                    </div>
+                                </form>
+>>>>>>> 566db1f1d61da673f2b530abbebf0b4576dcb321
                             </div>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 566db1f1d61da673f2b530abbebf0b4576dcb321
                 <div class="d-flex justify-content-center">
                     {{ $ketquas->links('pagination::bootstrap-4') }}
                 </div>
@@ -153,7 +187,10 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 566db1f1d61da673f2b530abbebf0b4576dcb321
     </div>
 @endsection
 </body>

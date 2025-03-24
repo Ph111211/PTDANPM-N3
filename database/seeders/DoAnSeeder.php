@@ -40,6 +40,8 @@ class DoAnSeeder extends Seeder
                 'file_noi_dung' => 'do_an_' . $sinhVien->user_id . '.pdf',
                 'trang_thai' => $faker->randomElement(['Chưa hoàn thành', 'Hoàn thành']),
                 'diem_so' => $faker->randomFloat(5, 7, 10),
+                'nhiem_vu' => $faker->sentence, // Thêm nhiệm vụ
+                'mo_ta_nhiem_vu' => $faker->paragraph, // Thêm mô tả nhiệm vụ
             ]);
         }
     }

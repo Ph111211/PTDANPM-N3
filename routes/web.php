@@ -69,4 +69,6 @@ Route::put('/capnhatgiangvien/{user_id}', [GiangVienHuongDanController::class, '
 
 route::get('/dangkydetai', [DangKyDeTaiNghiepController::class, 'index'])->name('dangkydetai.index');
 Route::post('/do-an/store', [DangKyDeTaiNghiepController::class, 'store'])->name('doan.store');
+
 Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');
+Route::put('/tiendothuctap/{ma_do_an}', [TienDoThucTapController::class, 'update'])->name('tiendothuctap');
