@@ -83,21 +83,23 @@
                 </a>
             </div>
             <ul>
-                
                 <li>
-                    <a href="">Quản lý đề tài </a>
+                    <a href="{{ route('giangvien/quanlysinhvien.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
-                    <a href="#">Quản lý đồ án</a>
+                    <a href="{{ route('giangvien/quanlysinhvien.index') }}">Quản lý đề tài </a>
+                </li>
+                <li>
+                    <a href="{{ route('giangvien/quanlydoan.index') }}">Quản lý đồ án</a>
                 </li>
                 <li>
                     <a href="#">Kế hoạch thực hiện đồ án</a>
                 </li>
                 <li>
-                    <a href="{{ route('capnhatketqua.index') }}">Quản lý điểm</a>
+                    <a href="#">Quản lý điểm</a>
                 </li>
                 <li>
-                    <a href="{{ route('ketquathuctap.index') }}">Quy định</a>
+                    <a href="#">Quy định</a>
                 </li>
             </ul>
             <button type="button" class="m-5 bg-white" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout

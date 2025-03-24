@@ -96,10 +96,11 @@
                     <a href="{{ route('tiendothuctap.index') }}">Tiến độ thực tập</a>
                 </li>
                 <li>
-                    <a href="{{ route('baocaocuoiky.index') }}">Báo cáo cuối kỳ</a>
+                    <a href="{{route('baocaocuoiky.index')}}">Báo cáo đồ án</a>
                 </li>
                 <li>
-                    <a href="{{ route('danhgiatudoanhnghiep.index') }}">Đánh giá doanh nghiệp </a>
+                    <a href="{{route('danhgiatudoanhnghiep.index')}}">Đánh giá doanh nghiệp </a>
+
                 </li>
                 <li>
                     <a href="{{ route('ketquathuctapsv.index') }}">Kết quả thực tập</a>
@@ -216,7 +217,7 @@
                     <div class="border-0 px-3 ">
                         <p class ="text-nowrap">{{auth()->user()->name}} </p>
                         <p class ="text-nowrap">Sinh viên</p>
-                        
+
                     </div>
                     <div class="dropdown">
                             <button class="border-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
@@ -233,7 +234,7 @@
                                 </li>
                             </ul>
                         </div>
-                    
+
                 </div>
             </div>
         </div>

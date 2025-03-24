@@ -198,6 +198,5 @@
         });
     });
 </script>
-
 <script src="{{ asset('js/scriptsAdmin.js') }}"></script>
 </html>

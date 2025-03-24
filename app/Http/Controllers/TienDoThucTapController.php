@@ -12,7 +12,6 @@ class TienDoThucTapController extends Controller
         $ketquas = DoAn::paginate(10);
         return view('sinhvienrole/tiendothuctap.index', compact('ketquas'));
     }
-
     public function update(Request $request, $ma_do_an)
     {
         $ketquadoan = DoAn::find($ma_do_an); // Sử dụng find thay vì findOrFail để xử lý trường hợp không tìm thấy

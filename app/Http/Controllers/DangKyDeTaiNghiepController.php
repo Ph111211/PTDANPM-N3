@@ -36,5 +36,5 @@ class DangKyDeTaiNghiepController extends Controller
             'nhan_xet' => $request->nhan_xet,
         ]);
 
-        return redirect()->route('doan.index')->with('success', 'Đồ án đã được đăng ký thành công.');
+        return redirect()->route('dangkydetai.index')->with('success', 'Đồ án đã được đăng ký thành công.');
     }}
