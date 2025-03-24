@@ -120,3 +120,12 @@ CREATE TABLE KET_QUA_THUC_TAP (
     FOREIGN KEY (MA_DO_AN) REFERENCES DO_AN(MA_DO_AN)
 );
 ALTER TABLE do_an MODIFY trang_thai ENUM('Chưa có đề tài', 'Chưa hoàn thành', 'Hoàn thành','Đang mở','Đóng') NOT NULL;
+-- Cập nhật cột ngay_sinh, sdt, dia_chi có thể NULL
+ALTER TABLE SINH_VIEN 
+MODIFY NGAY_SINH DATE NULL,
+MODIFY SDT VARCHAR(15) NULL,
+MODIFY DIA_CHI VARCHAR(255) NULL;
+
+-- Cập nhật cột gioi_tinh mặc định là 'Nam'
+ALTER TABLE SINH_VIEN 
+MODIFY GIOI_TINH VARCHAR(10) DEFAULT 'Nam' NOT NULL;

@@ -97,7 +97,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Điểm</label>
-            <input type="number" class="form-control" name="diem" min="0" max="10" required>
+            <input type="number" class="form-control" name="diem_so" min="0" max="10"  step="0.1" required>
             <span class="text-danger d-none" id="error">* Điểm phải từ 0 đến 10!</span>
           </div>
           <div class="modal-footer">

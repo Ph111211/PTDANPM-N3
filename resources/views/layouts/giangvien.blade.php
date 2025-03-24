@@ -97,7 +97,7 @@
                     <a href="#">Kế hoạch thực hiện đồ án</a>
                 </li>
                 <li>
-                    <a href="#">Quản lý điểm</a>
+                    <a href="{{ route('giangvien/quanlydiem.index') }}">Quản lý điểm</a>
                 </li><hr>
                 <li>
                     <a href="#">Q & A</a>

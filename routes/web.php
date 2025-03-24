@@ -7,6 +7,8 @@ use App\Http\Controllers\ThongKeController;
 use App\Http\Controllers\GV_QLySinhvienController;
 use App\Http\Controllers\GV_QLyDeTaiController;
 use App\Http\Controllers\GV_QLyDoAnController;
+use App\Http\Controllers\GV_QLyDiemController;
+use App\Http\Controllers\LichNopDoAnController;
 Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
 Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
 
@@ -36,4 +38,12 @@ Route::post('/giangvien/quanlydetai/phancong', [GV_QLyDeTaiController::class, 'p
 Route::get('/giangvien/quanlydoan', [GV_QLyDoAnController::class, 'index'])->name('giangvien/quanlydoan.index');
 Route::get('/giangvien/quanlydoan/show/{id}', [GV_QLyDoanController::class, 'show'])->name('giangvien/quanlydoan.show');
 Route::post('/giangvien/quanlydoan/chamdiem', [GV_QLyDoanController::class, 'chamdiem'])->name('giangvien/quanlydoan.chamdiem');
-Route::get('/giangvien/quanlydoan/lichnop', [GV_QLyDoAnController::class, 'lichnop'])->name('giangvien/quanlydoan.lichnop');
+Route::get('/giangvien/quanlydoan/lichnop', [LichNopDoAnController::class, 'lichnop'])->name('giangvien/quanlydoan.lichnop');
+Route::post('/giangvien/quanlydoan/lichnop/create', [LichNopDoAnController::class, 'create'])->name('lichnop.create');
+Route::post('/giangvien/quanlydoan/lichnop/store', [LichNopDoAnController::class, 'store'])->name('lichnop.store');
+Route::put('/lichnop/update/{id}', [LichNopDoAnController::class, 'update'])->name('lichnop.update');
+Route::delete('/lichnop/destroy/{id}', [LichNopDoAnController::class, 'destroy'])->name('lichnop.destroy');
+
+Route::get('/giangvien/quanlydiem', [GV_QLyDiemController::class, 'index'])->name('giangvien/quanlydiem.index');
+Route::post('/giangvien/quanlydiem/chamdiem', [GV_QLyDiemController::class, 'chamdiem'])->name('giangvien/quanlydiem.chamdiem');
+Route::post('/giangvien/quanlydiem/suadiem', [GV_QLyDiemController::class, 'suadiem'])->name('giangvien/quanlydiem.suadiem');
