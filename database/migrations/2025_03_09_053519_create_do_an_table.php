@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->string('file_noi_dung');// thay vi ghi noi dung bao cao o day thi minh se luu file bao cao
             $table->enum('trang_thai', ['Chưa hoàn thành', 'Hoàn thành']);
             $table->float('diem_so')->nullable();
+            $table->string('nhiem_vu', 255)->nullable();
+            $table->text('mo_ta_nhiem_vu')->nullable();
             
             $table->foreign('ma_sv')->references('user_id')->on('sinh_vien')->onDelete('set null');
             $table->foreign('ma_gv')->references('user_id')->on('giang_vien')->onDelete('set null');

@@ -25,6 +25,10 @@ use App\Http\Controllers\LichBaoVeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GiangVienHuongDanController;
 use App\Http\Controllers\DanhGiaTuDoanhNghiepController;
+use App\Http\Controllers\DangKyDeTaiNghiepController;
+use App\Http\Controllers\TienDoThucTapController;
+use App\Http\Controllers\BaoCaoCuoiKYController;
+
 
 
 
@@ -109,8 +113,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');
     Route::get('/giangvienhd', [GiangVienHuongDanController::class, 'index'])->name('giangvienhd.index');
     Route::post('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien']);
-
-   
+    Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');
+    Route::get('/baocaocuoiky', [BaoCaoCuoiKYController::class, 'index'])->name('baocaocuoiky.index');
+    Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
+    
 
 
 
@@ -158,8 +164,8 @@ Route::middleware('auth')->group(function () {
     
 
 Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
-
-
+route::get('/dangkydetai', [DangKyDeTaiNghiepController::class, 'index'])->name('dangkydetai.index');
+Route::post('/do-an/store', [DangKyDeTaiNghiepController::class, 'store'])->name('doan.store');
 
 
 
@@ -172,6 +178,7 @@ Route::get('/thongke', [ThongKeController::class, 'index'])->name('thongke.index
 Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
 
 Route::get('/ketquathuctapsv', [KetQuaThucTapSinhVienController::class, 'index'])->name('ketquathuctapsv.index');
+Route::put('/tiendothuctap/{ma_do_an}', [TienDoThucTapController::class, 'update'])->name('tiendothuctap');
 
 
 });
