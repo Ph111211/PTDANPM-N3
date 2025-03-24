@@ -157,7 +157,7 @@ Route::middleware('auth')->group(function () {
     
     
 
-// Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
+Route::get('/ketquathuctap', [KetQuaThucTapController::class, 'index'])->name('ketquathuctap.index');
 
 
 
