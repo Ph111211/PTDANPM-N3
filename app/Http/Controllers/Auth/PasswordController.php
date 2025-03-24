@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
@@ -23,15 +24,10 @@ class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
-
+            
         
-        if (Auth::user()->role === 'admin') {
-            return redirect()->route('dashboard.admin')->with('status', 'password-updated');;
-        } 
-        if (Auth::user()->role === 'sinh_vien') {
-            return redirect()->route('dashboard.sinhvien')->with('status', 'password-updated');
-        }
-        if (Auth::user()->role === 'giang_vien') {
-            return redirect()->route('dashboard.giangvien')->with('status', 'password-updated');       }
+        
+         return redirect()->route('dashboard')->with('status', 'password-updated');
     }
+    
 }

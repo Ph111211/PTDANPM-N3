@@ -236,7 +236,9 @@
                                 <li><a class="dropdown-item" href="/change-password">Đổi mật khẩu</a></li>
                                 <li><a class="dropdown-item" href="#">Tài khoản</a></li>
 
-                                <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Đăng xuất</a>
+                                </li>
                             </ul>
                         </div>
                     
