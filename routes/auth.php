@@ -38,7 +38,7 @@ use App\Http\Controllers\GV_QLySinhvienController;
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/trangchu', [HomeController::class, 'trangchu'])->name('trangchu');
+    Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -65,7 +65,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     
     
-    Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
@@ -88,7 +88,7 @@ Route::middleware('auth')->group(function () {
     // Khi nhấn vào "Quản lý tài khoản", chuyển đến trang index trong UserController
     Route::get('/users', [UserController::class, 'index'])->name('admin/users.index');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     // Cac route sinh vien
     Route::get('/sinhvien', [SinhvienController::class, 'index'])->name('sinhviens.index');
@@ -115,7 +115,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/phancong/{ma_do_an}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
     Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');
     Route::get('/giangvienhd', [GiangVienHuongDanController::class, 'index'])->name('giangvienhd.index');
-    Route::post('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien']);
+    Route::put('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien'])->name('capnhatGiangVien');
     Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');
     Route::get('/baocaocuoiky', [BaoCaoCuoiKYController::class, 'index'])->name('baocaocuoiky.index');
     Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
@@ -201,7 +201,8 @@ Route::put('/giangvien/quanlydetai/{id}', [GV_QLyDeTaiController::class, 'update
 Route::delete('giangvien/quanlydetai/{ma_do_an}', [GV_QLyDeTaiController::class, 'destroy'])->name('giangvien/quanlydetai.destroy');
 Route::post('/giangvien/quanlydetai/phancong', [GV_QLyDeTaiController::class, 'phancong'])->name('giangvien/quanlydetai.phancong');
 
-
+Route::delete('/giangvien/{user_id}/xoa', [GiangVienController::class, 'destroy'])->name('giangviens.destroy');
+Route::put('/giangvien/{user_id}', [GiangVienController::class, 'update'])->name('giangviens.update');
 Route::get('/giangvien/quanlydoan', [GV_QLyDoAnController::class, 'index'])->name('giangvien/quanlydoan.index');
 Route::get('/giangvien/quanlydoan/show/{id}', [GV_QLyDoanController::class, 'show'])->name('giangvien/quanlydoan.show');
 Route::post('/giangvien/quanlydoan/chamdiem', [GV_QLyDoanController::class, 'chamdiem'])->name('giangvien/quanlydoan.chamdiem');

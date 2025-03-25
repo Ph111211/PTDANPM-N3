@@ -9,7 +9,7 @@ class DanhGiaTuDoanhNghiepController extends Controller
 {
     public function index()
     {
-        $ketquas = KetQuaThucTap::paginate(10);
+        $ketquas = KetQuaThucTap::with(['sinhvien', 'giangvien'])->paginate(10);
         return view('sinhvienrole/danhgiatudoanhnghiep.index', compact('ketquas'));
     }
 }

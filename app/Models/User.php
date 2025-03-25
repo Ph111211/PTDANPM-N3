@@ -32,4 +32,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(VanPhongKhoa::class, 'user_id');
     }
+    /**
+     * Get the lecturer associated with the user.
+     */
+    public function GiangVien()
+    {
+        return $this->hasOne(GiangVien::class);
+    }
+
+    /**
+     * Get the students associated with the user.
+     */
+    public function SinhVien()
+    {
+        return $this->hasOne(SinhVien::class);
+    }
 }

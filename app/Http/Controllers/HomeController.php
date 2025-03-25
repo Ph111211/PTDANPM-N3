@@ -16,6 +16,7 @@ class HomeController extends Controller
 }
 public function dashboard()
 {
+    
     if (Auth::user()->role === 'admin') {
         return redirect()->route('dashboard.admin');
     }

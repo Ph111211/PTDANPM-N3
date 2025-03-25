@@ -106,7 +106,7 @@
                     <a href="/capnhatketqua">Cập nhật kết quả đồ án</a>
                 </li>
                 <li>
-                    <a href="/ketquathuctapsv">Kết quả thực tập</a>
+                    <a href="#">Kết quả thực tập</a>
                 </li>
                 <li>
                     <a href="#">Lưu trữ</a>
