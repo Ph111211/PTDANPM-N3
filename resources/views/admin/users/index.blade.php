@@ -145,9 +145,9 @@
                         <td>{{ $tk->email }}</td>
                         @php
                             $vaiTro = match ($tk->role) {
-                                'lecture' => 'Giảng viên',
+                                'giang_vien' => 'Giảng viên',
                                 'admin' => 'Quản trị viên',
-                                'student' => 'Sinh viên',
+                                'sinh_vien' => 'Sinh viên',
                                 default => 'Không có dữ liệu',
                             };
                         @endphp
@@ -155,13 +155,13 @@
                         <td>{{ $vaiTro }}</td>
 
                         @php
-                            $soDienThoai = null;
-                            if ($tk->sinhvien) {
-                                $soDienThoai = $tk->sinhvien->sdt;
-                            } elseif ($tk->giangvien) {
-                                $soDienThoai = $tk->giangvien->sdt;
-                            } elseif ($tk->vanphongkhoa) {
-                                $soDienThoai = $tk->vanphongkhoa->sdt;
+                            
+                            if ($tk->role == 'giang_vien') {
+                                $soDienThoai = $tk->giangvien->sdt ?? 'Không có dữ liệu';
+                            } elseif ($tk->role == 'sinh_vien' ) {
+                                $soDienThoai = $tk->sinhvien->sdt ?? 'Không có dữ liệu';
+                            } else if ($tk->role == 'admin') {
+                                $soDienThoai = 'Không có dữ liệu';
                             } else {
                                 $soDienThoai = 'Không có dữ liệu';
                             }
@@ -202,8 +202,8 @@
                                                 <div class="form-group">
                                                     <label class="fw-bold mt-3 text-start d-block" for="role">Vai trò</label>
                                                     <select name="role" class="form-control">
-                                                        <option value="lecture" {{ $tk->role == 'lecture' ? 'selected' : '' }}>Giảng viên</option>
-                                                        <option value="student" {{ $tk->role == 'student' ? 'selected' : '' }}>Sinh viên</option>
+                                                        <option value="giang_vien" {{ $tk->role == 'giang_vien' ? 'selected' : '' }}>Giảng viên</option>
+                                                        <option value="sinh_vien" {{ $tk->role == 'sinh_vien' ? 'selected' : '' }}>Sinh viên</option>
                                                         <option value="admin" {{ $tk->role == 'admin' ? 'selected' : '' }}>Quản trị viên</option>
                                                     </select>
                                                 </div>

@@ -47,4 +47,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Get the lecturer associated with the user.
+     */
+    public function GiangVien()
+    {
+        return $this->hasOne(GiangVien::class);
+    }
+
+    /**
+     * Get the students associated with the user.
+     */
+    public function SinhVien()
+    {
+        return $this->hasOne(SinhVien::class);
+    }
 }

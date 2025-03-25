@@ -13,7 +13,7 @@ class LichBaoVeController extends Controller
     public function index()
 
     {
-        $data = [];
+       
         $data = DoAn::with(['SinhVien', 'GiangVien'])->whereNull('ngay_gio')->get();
 
         return view('lichbaove.index', compact('data'));
