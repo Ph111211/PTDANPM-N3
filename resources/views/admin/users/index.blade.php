@@ -169,7 +169,8 @@
                         <td>{{ $soDienThoai }}</td>
 
                         <td>
-                            <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB" data-id="{{ $tk->id }}">
+                            @if ($tk->id != auth()->user()->id)
+                                <button type="button" class="btn btn-sm edit-btn" style="background: #87CEEB" data-id="{{ $tk->id }}">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
 
@@ -263,7 +264,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
+                            
+                            @endif
                         </td>
                     </tr>
                 @endforeach

@@ -68,6 +68,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
+        if($user->role == 'sinh_vien'){
+            return redirect()->route('sinhviens.index')->with('success', 'Xóa sinh viên thành công!');
+        } else {
+            return redirect()->route('giangviens.index')->with('success', 'Xóa giảng viên thành công!');
+        }
         return redirect()->route('admin/users.index')->with('success', 'Xóa tài khoản thành công!');
     }
 }

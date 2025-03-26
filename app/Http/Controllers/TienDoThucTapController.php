@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DoAn;
+use App\Models\KetQuaThucTap;
 use Illuminate\Http\Request;
 
 class TienDoThucTapController extends Controller
 {
     public function index()
     {
-        $ketquas = DoAn::paginate(10);
+        $ketquas = KetQuaThucTap::paginate(10);
         return view('sinhvienrole/tiendothuctap.index', compact('ketquas'));
     }
-    public function update(Request $request, $ma_do_an)
+    public function update(Request $request, $ma_ket_qua)
     {
-        $ketquadoan = DoAn::find($ma_do_an); // Sử dụng find thay vì findOrFail để xử lý trường hợp không tìm thấy
+        $ketquadoan = DoAn::find($ma_ket_qua); // Sử dụng find thay vì findOrFail để xử lý trường hợp không tìm thấy
 
         if (!$ketquadoan) {
             return redirect()->route('tiendothuctap.index')->with('error', 'Không tìm thấy bản ghi.');

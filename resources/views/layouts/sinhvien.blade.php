@@ -94,7 +94,7 @@
                     <a href="{{ route('giangvienhd.index') }}">Giảng viên hướng dẫn </a>
                 </li>
                 <li>
-                    <a href="{{ route('tiendothuctap.index') }}">Tiến độ thực tập</a>
+                    <a href="#">Tiến độ thực tập</a>
                 </li>
                 <li>
                     <a href="{{route('baocaocuoiky.index')}}">Báo cáo đồ án</a>

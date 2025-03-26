@@ -45,12 +45,12 @@ class GiangVienController extends Controller
     public function destroy($id)
     {
         // $giangvien = GiangVien::where('user_id', $id)->firstOrFail();
-        $user = User::findOrFail($id);
+        
 
         GiangVien::where('user_id', $id)->delete();
-        $user->delete();
-
-        return redirect()->route('giangviens.index');
+        return redirect()->route('giangviens.index')->with('success', 'Xóa giảng viên thành công');
+        
+        
     }
 
     public function edit($id)

@@ -18,7 +18,11 @@
 @section('title', 'Giảng viên hướng dẫn')
 
 @section('content')
-    <form class="m-lg-auto " style="width: 100%">
+
+    <form class="m-lg-auto " style="width: 100%" action="/capnhat-giangvien/{{ $giangvienhd->first()->ma_do_an ?? '' }}"
+          method="POST">
+          @csrf
+          @method('PUT')
 
         <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
@@ -45,8 +49,7 @@
 
                 <div class="form-group mb-3">
                     <label for="so_luong" class="fw-bold">Số lượng sinh viên đã nhận</label>
-                    <input type="number" class="form-control" id="so_luong" placeholder="Số lượng sinh viên đã nhận"
-                           readonly>
+                    <input type="number" class="form-control" id="so_luong" placeholder="Số lượng sinh viên đã nhận" name="so_luong" value="{{$gv->so_luong_sinh_vien_huong_dan}}"                           readonly>
                     <p class="error text-danger mt-1" style="display: none;">* Số lượng sinh viên không thể bỏ
                         trống!</p>
                 </div>
@@ -119,7 +122,7 @@
 
             if (errors) return;
 
-            fetch(`/capnhat-giangvien/{{ $giangvienhd->first()->ma_do_an }}`, {
+            fetch(`/capnhat-giangvien/{{ $giangvienhd->first()->ma_do_an ?? '' }}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

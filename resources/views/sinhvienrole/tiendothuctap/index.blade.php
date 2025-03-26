@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{ $it->ma_sv }}</td>
                             <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
-                            <td>{{ $it->nhiem_vu }}</td>
+                            <td>{{ $it->vi_tri }}</td>
                             <td class="w-50" >{{ $it->thoi_gian_bat_dau }} - {{ $it->thoi_gian_ket_thuc }}</td>
                             <td>
                                 @if(isset($it->diem_so) && is_numeric($it->diem_so))

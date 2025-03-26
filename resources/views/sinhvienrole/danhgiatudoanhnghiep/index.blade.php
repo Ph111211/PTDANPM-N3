@@ -18,14 +18,14 @@
 @section('title', 'Giảng viên hướng dẫn')
 
 @section('content')
-    <form class="m-lg-auto " style="width: 100%">
+    <form class="m-lg-auto " style="width: 100%" action="">
 
         <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
                 <h4 class="fw-bold text-center">Đánh giá từ Doanh nghiệp</h4>
 
                 <div class="form-group mb-3">
-                    <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách giảng viên khả dụng</label>
+                    <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách sinh viên khả dụng</label>
                     <select class="form-control" name="ket_qua_thuc_tap" id="ket_qua_thuc_tap">
                         <option value="">Danh sách sinh viên thực tập</option>
                         @foreach($ketquas as $gv)

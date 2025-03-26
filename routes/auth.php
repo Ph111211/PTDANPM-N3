@@ -38,7 +38,7 @@ use App\Http\Controllers\GV_QLySinhvienController;
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/trangchu', [HomeController::class, 'trangchu'])->name('trangchu');
+    Route::get('/', [HomeController::class, 'trangchu'])->name('trangchu');
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -65,7 +65,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     
     
-    Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
@@ -115,7 +115,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/phancong/{ma_do_an}', [PhanCongGVController::class, 'destroy'])->name('phancong.destroy');
     Route::post('/assign-giang-vien', [PhanCongGVController::class, 'assignGiangVien'])->name('assign.giangvien');
     Route::get('/giangvienhd', [GiangVienHuongDanController::class, 'index'])->name('giangvienhd.index');
-    Route::post('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien']);
+    Route::put('/capnhat-giangvien/{ma_do_an}', [GiangVienHuongDanController::class, 'capnhatGiangVien'])->name('capnhatGiangVien');
     Route::get('/tiendothuctap', [TienDoThucTapController::class, 'index'])->name('tiendothuctap.index');
     Route::get('/baocaocuoiky', [BaoCaoCuoiKYController::class, 'index'])->name('baocaocuoiky.index');
     Route::get('/danhgiatudoanhnghiep', [DanhGiaTuDoanhNghiepController::class, 'index'])->name('danhgiatudoanhnghiep.index');
