@@ -10,10 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </head>
-<body>
-
-</body>
-
 
 @extends('layouts.sinhvien')
 
@@ -28,7 +24,7 @@
 
                 <div class="form-group mb-3">
                     <label for="fileInput" class="fw-bold">Tải file từ máy tính</label>
-                    <input type="file" class="form-control" id="fileInput" accept=".txt">
+                    <input type="file" class="form-control" id="fileInput" accept=".pdf">
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">
@@ -54,15 +50,17 @@
                         </div>
                     </div>
 
-                    <!-- Modal cảnh báo khi chưa chọn file -->
-                    <div class="modal fade" id="warningModal" tabindex="-1" aria-hidden="true">
+                    <!-- Modal xác nhận trước khi nộp -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
                                 <div class="modal-body">
-                                    <h4 class="fw-bold text-danger">Vui lòng chọn một tệp trước khi lưu!</h4>
-                                    <button type="button" id="warning-ok-btn" class="btn btn-danger px-4 py-2"
-                                            data-bs-dismiss="modal" aria-label="Close">
-                                        OK
+                                    <h4 class="fw-bold">Bạn có chắc chắn muốn nộp báo cáo?</h4>
+                                    <button type="button" id="confirm-ok-btn" class="btn style-button px-4 py-2">
+                                        <i class="bi bi-check-lg me-2"></i> OK
+                                    </button>
+                                    <button type="button" class="btn m-3 style-button px-4 py-2" data-bs-dismiss="modal">
+                                        Hủy
                                     </button>
                                 </div>
                             </div>
@@ -81,22 +79,41 @@
             event.preventDefault(); // Ngăn chặn submit form mặc định
 
             let fileInput = document.getElementById('fileInput');
+            let errorContainer = fileInput.parentNode.querySelector(".error-message");
+
+            // Xóa lỗi cũ trước khi kiểm tra lại
+            if (errorContainer) {
+                errorContainer.remove();
+            }
 
             // Kiểm tra nếu người dùng chưa chọn file
             if (!fileInput.files.length) {
-                let warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
-                warningModal.show();
+                // Hiển thị lỗi dưới ô chọn file
+                let errorElement = document.createElement("div");
+                errorElement.classList.add("error-message", "text-danger", "mt-1");
+                errorElement.innerHTML = "Vui lòng chọn một tệp trước khi nộp!";
+                fileInput.parentNode.appendChild(errorElement);
+
                 return;
             }
 
-            // Hiển thị modal thông báo thành công
-            let successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
+            // Hiển thị modal xác nhận trước khi nộp báo cáo
+            let confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            confirmModal.show();
 
-            // Chuyển hướng sau 5 giây
-            setTimeout(function () {
-                window.location.href = "{{ route('baocaocuoiky.index') }}";
-            }, 5000);
+            // Khi người dùng nhấn "OK" trong modal xác nhận
+            document.getElementById('confirm-ok-btn').onclick = function () {
+                confirmModal.hide();
+
+                // Hiển thị modal thông báo thành công
+                let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+
+                // Chuyển hướng sau 5 giây
+                setTimeout(function () {
+                    window.location.href = "{{ route('baocaocuoiky.index') }}";
+                }, 5000);
+            };
         });
 
         // Xử lý khi nhấn nút Hủy
@@ -104,6 +121,5 @@
             window.location.href = "{{ route('baocaocuoiky.index') }}";
         });
     });
-
-
 </script>
+

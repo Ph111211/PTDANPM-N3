@@ -26,7 +26,7 @@
                 <h4 class="fw-bold text-center">Đánh giá doanh nghiệp</h4>
 
                 <div class="form-group mb-3">
-                    <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách giảng viên khả dụng</label>
+                    <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách sinh viên thực tập khả dụng</label>
                     <select class="form-control" name="ket_qua_thuc_tap" id="ket_qua_thuc_tap">
                         <option value="">Danh sách sinh viên thực tập</option>
                         @foreach($ketquas as $gv)
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" id ="cancel-btn  "class="btn btn-danger px-4 d-flex align-items-center">
+                    <button type="submit" id="cancel-btn  " class="btn btn-danger px-4 d-flex align-items-center">
                         <i class="fas fa-times me-2"></i> Hủy
                     </button>
 
@@ -61,7 +61,8 @@
                             <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
                                 <div class="modal-body">
                                     <h4 class="fw-bold">Tải thành công</h4>
-                                    <button type="button" id="success-ok-btn" class="btn btn-success d-flex align-items-center justify-content-center mx-auto px-4 py-2"
+                                    <button type="button" id="success-ok-btn"
+                                            class="btn btn-success d-flex align-items-center justify-content-center mx-auto px-4 py-2"
                                             data-bs-dismiss="modal" aria-label="Close" style="border-radius: 8px;">
                                         <i class="bi bi-check-lg me-2"></i> OK
                                     </button>
@@ -69,15 +70,19 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal cảnh báo khi dữ liệu rỗng -->
-                    <div class="modal fade" id="warningModal" tabindex="-1" aria-hidden="true">
+
+                    <!-- Modal xác nhận trước khi tải -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
                                 <div class="modal-body">
-                                    <h4 class="fw-bold text-danger" id="warningMessage">Lỗi</h4>
-                                    <button type="button" id="warning-ok-btn" class="btn btn-danger px-4 py-2"
-                                            data-bs-dismiss="modal" aria-label="Close">
-                                        OK
+                                    <h4 class="fw-bold">Bạn có chắc chắn muốn tải về?</h4>
+                                    <button type="button" id="confirm-ok-btn" class="btn style-button px-4 py-2">
+                                         Có
+                                    </button>
+                                    <button type="button" class="btn m-3 style-button px-4 py-2"
+                                            data-bs-dismiss="modal">
+                                        Không
                                     </button>
                                 </div>
                             </div>
@@ -96,31 +101,54 @@
 
         document.getElementById('ket_qua_thuc_tap').addEventListener('change', function () {
             selectedOption = this.options[this.selectedIndex];
-            let doanhNghiep = selectedOption.getAttribute('data-ten');
-            let nhanXet = selectedOption.getAttribute('data-nx');
+            let doanhNghiep = selectedOption.getAttribute('data-ten') || "";
+            let nhanXet = selectedOption.getAttribute('data-nx') || "";
+
             document.getElementById('ten_dn').value = doanhNghiep;
             document.getElementById('nhan_xet').value = nhanXet;
+
+            clearError('ten_dn');
+            clearError('nhan_xet');
         });
 
         document.getElementById('save-btn').addEventListener('click', function (event) {
             event.preventDefault(); // Ngăn chặn submit form mặc định
 
             let tenDN = document.getElementById('ten_dn').value.trim();
+            let tenSv = document.getElementById('ma_sv').value.trim();
             let nhanXet = document.getElementById('nhan_xet').value.trim();
+            let isValid = true;
+
+            // Xóa lỗi cũ trước khi kiểm tra lại
+            clearError('ten_dn');
+            clearError('nhan_xet');
 
             if (!tenDN) {
-                showWarningModal("Vui lòng chọn kết quả thực tập để lấy tên doanh nghiệp!");
-                return;
+                showError('ten_dn', "Vui lòng chọn sinh viên thực tập để lấy đánh giá từ doanh nghiệp!");
+                isValid = false;
             }
 
             if (!nhanXet) {
-                showWarningModal("Vui lòng nhập nhận xét chi tiết trước khi lưu!");
-                return;
+                showError('nhan_xet', "Vui lòng chọn sinh viên thực tập để lấy đánh giá từ doanh nghiệp!");
+                isValid = false;
             }
 
+            if (!isValid) return;
+
+            // Hiển thị modal xác nhận trước khi tải
+            let confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            confirmModal.show();
+
+            document.getElementById('confirm-ok-btn').onclick = function () {
+                confirmModal.hide();
+                downloadFile(tenDN, nhanXet);
+            };
+        });
+
+        function downloadFile(tenDN, nhanXet) {
             let noiDung = `Tên doanh nghiệp: ${tenDN}\nNhận xét chi tiết: ${nhanXet}`;
 
-            let blob = new Blob([noiDung], { type: "text/plain" });
+            let blob = new Blob([noiDung], {type: "text/plain"});
             let link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = "DanhGiaDoanhNghiep.txt";
@@ -128,7 +156,7 @@
 
             let successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
-        });
+        }
 
         document.getElementById('success-ok-btn').addEventListener('click', function () {
             window.location.href = "{{ route('danhgiatudoanhnghiep.index') }}";
@@ -138,10 +166,20 @@
             window.location.href = "{{ route('danhgiatudoanhnghiep.index') }}";
         });
 
-        function showWarningModal(message) {
-            document.getElementById('warningMessage').textContent = message;
-            let warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
-            warningModal.show();
+        function showError(id, message) {
+            let inputField = document.getElementById(id);
+            let errorElement = document.createElement("div");
+            errorElement.classList.add("text-danger", "mt-1", "error-message");
+            errorElement.innerHTML = message;
+            inputField.parentNode.appendChild(errorElement);
+        }
+
+        function clearError(id) {
+            let inputField = document.getElementById(id);
+            let errorElement = inputField.parentNode.querySelector(".error-message");
+            if (errorElement) {
+                errorElement.remove();
+            }
         }
     });
 </script>

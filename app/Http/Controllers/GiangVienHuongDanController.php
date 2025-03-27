@@ -2,39 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DoAn;
 use App\Models\GiangVien;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class GiangVienHuongDanController extends Controller
 {
     public function index()
     {
         $giangviens = GiangVien::all(); // Lấy danh sách giảng viên
-
         return view('sinhvienrole/giangvienhd.index', compact('giangviens'));
     }
 
-
-    public function updateSoLuong(Request $request, $user_id)
+    public function updateSoLuong(Request $request)
     {
+        // Lấy user_id của giảng viên từ form
+        $selectedUserId = $request->giang_vien;
 
-        // Tìm giảng viên theo ID
-        $giangVien = GiangVien::where('user_id', $user_id)->first();
-
+        // Tìm giảng viên
+        $giangVien = GiangVien::where('user_id', $selectedUserId)->first();
         if (!$giangVien) {
-            return response()->json(['success' => false, 'message' => 'Giảng viên không tồn tại!'], 404);
+            return back()->withErrors(['giang_vien' => 'Vui lòng chọn giảng viên']);
         }
 
-        // Kiểm tra số lượng sinh viên hợp lệ
-        $request->validate([
-            'so_luong' => 'required|integer|min:0|max:10'
-        ]);
+        // Kiểm tra số lượng sinh viên hiện tại
+        if ($giangVien->so_luong_sinh_vien_huong_dan >= 10) {
+            return back()->withErrors(['giang_vien' => 'Giảng viên đã đủ số lượng sinh viên!']);
+        }
 
-        // Cập nhật số lượng sinh viên hướng dẫn
-        $giangVien->so_luong_sinh_vien_huong_dan = $request->so_luong;
+        // Tăng số lượng sinh viên hướng dẫn lên 1
+        $giangVien->so_luong_sinh_vien_huong_dan += 1;
         $giangVien->save();
-        return redirect()->route('giangvienhd.index')->with('success', 'Cập nhật thành công!');
+
+        return redirect()->route('giangvienhd.index')->with('success', 'Chọn giảng viên thành công!');
     }
 }
