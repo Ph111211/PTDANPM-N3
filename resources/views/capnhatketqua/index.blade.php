@@ -43,7 +43,7 @@
                 @foreach ($ketquadoan as $it)
                     <tr>
                         <td>{{ $it->ma_sv }}</td>
-                        <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
+                        <td>{{ $it->SinhVien->ho_ten }}</td>
                         <td>{{ $it->tieu_de}}</td>
                         <td>
                             <div type="button" class="btn btn-sm edit-btn" style="background: #003C75" data-id="{{ $it->ma_do_an }}" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $it->ma_do_an }}">
@@ -64,7 +64,7 @@
                                                 <div class="form-group">
                                                     <label class="fw-bold mt-3 text-start d-block" for="ho_ten">Họ và tên</label>
                                                     <p class="text-start" style="border: 1px solid #ccc; padding: 5px; width: 100%;">
-                                                        {{ $it->sinhvien->ho_ten }}
+                                                        {{ $it->SinhVien->ho_ten }}
                                                     </p>
                                                 </div>
 
