@@ -12,7 +12,8 @@ class CapNhatKetQuaController extends Controller
      */
     public function index()
     {
-        $ketquadoan = DoAn::whereNull('diem_so')
+        $ketquadoan = DoAn::with('SinhVien')
+            ->whereNull('diem_so')
             ->orWhere('trang_thai', '<>', 'Hoàn thành')
             ->orWhereNull('nhan_xet')
             ->paginate(10);
