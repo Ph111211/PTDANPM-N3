@@ -17,12 +17,12 @@ class DoAn extends Model
         'ma_sv', 'ma_gv', 'nhan_xet', 'ngay_gio', 'dia_diem', 'file_noi_dung', 'trang_thai', 'diem_so'
     ];
 
-    public function sinhvien()
+    public function SinhVien()
     {
         return $this->belongsTo(SinhVien::class, 'ma_sv', 'user_id');
     }
 
-    public function giangvien()
+    public function GiangVien()
     {
         return $this->belongsTo(GiangVien::class, 'ma_gv', 'user_id');
     }

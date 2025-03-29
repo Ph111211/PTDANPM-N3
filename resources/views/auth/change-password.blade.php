@@ -13,4 +13,5 @@
   </input>
   <input type="password" name = "password" style="width: 468px; height: 68px; left: 113px; top: 240px; position: absolute; background: #F0F0F0; overflow: hidden; border-radius: 10px; color: black; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word;" placeholder="Mật khẩu mới">
   </input>
+  </form>
 </div>

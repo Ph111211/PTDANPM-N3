@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -45,5 +46,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    /**
+     * Get the lecturer associated with the user.
+     */
+    public function GiangVien()
+    {
+        return $this->hasOne(GiangVien::class);
+    }
+
+    /**
+     * Get the students associated with the user.
+     */
+    public function SinhVien()
+    {
+        return $this->hasOne(SinhVien::class);
     }
 }

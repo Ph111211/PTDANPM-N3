@@ -24,11 +24,27 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
+        try {
+            $request->authenticate();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors(['error' => 'Sai tên đăng nhập hoặc mật khẩu.']);
+        }
+        $request->session()->put('user_id', Auth::id());
+        $request->session()->put('user_login', Auth::user()->username);
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('dashboard.admin');
+        } 
+        if (Auth::user()->role === 'sinh_vien') {
+            return redirect()->route('dashboard.sinhvien');
+        }
+        if (Auth::user()->role === 'giang_vien') {
+            return redirect()->route('dashboard.giangvien');
+        }
+
+        
     }
 
     /**
@@ -36,12 +52,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        // Log out the user
+        Auth::logout();
 
+        // Invalidate the session
         $request->session()->invalidate();
 
+        // Regenerate the session token to prevent CSRF attacks
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Redirect to the login page or home
+
+        return redirect()->route('trangchu');
     }
 }

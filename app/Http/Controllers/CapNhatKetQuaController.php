@@ -12,7 +12,11 @@ class CapNhatKetQuaController extends Controller
      */
     public function index()
     {
-        $ketquadoan = DoAn::paginate(10);
+        $ketquadoan = DoAn::with('SinhVien')
+            ->whereNull('diem_so')
+            ->orWhere('trang_thai', '<>', 'Hoàn thành')
+            ->orWhereNull('nhan_xet')
+            ->paginate(10);
         return view('capnhatketqua.index', compact('ketquadoan'));
     }
 
@@ -31,5 +35,4 @@ class CapNhatKetQuaController extends Controller
         ]);
         return redirect()->route('capnhatketqua.index')->with('success', 'Cập nhật thành công!');
     }
-
 }
