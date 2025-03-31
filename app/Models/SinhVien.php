@@ -18,7 +18,7 @@ class SinhVien extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function doAn(){
-        return $this->hasOne(Doan::class, 'user_id','ma_sv');
+    public function DoAn(){
+        return $this->hasOne(Doan::class,'ma_sv');
     }
 }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     </head>
     <style>
         body{
@@ -73,17 +73,18 @@
             height: 83%;
             background-color: #F5F6FA;
         }
+        
     </style>
     <body>
         <div class="menu">
             <div class="mx-4">
-            <img src="storage/images/logo.png" alt="No image." class="logo">
+                <img src="{{ $logo }}" alt="No image." class="logo">
                 <a href="/">
                     <h2>Trang chủ</h2>
                 </a>
             </div>
-            <ul>
-                <li>
+            <ul id="sub-menu">
+            <li>
                     <a href="{{ route('giangvien/quanlysinhvien.index') }}">Quản lý sinh viên</a>
                 </li>
                 <li>
@@ -101,8 +102,9 @@
                 <li>
                     <a href="#">Quy định</a>
                 </li>
+                <hr>
             </ul>
-            <button type="button" class="m-5 bg-white" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout
+            <button type="button" class="m-5 bg-white"><button type="button" class="m-5 bg-white" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout
                 <svg class="logout" width="25" height="25" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M30.5 53.375V48.2917H48.2917V12.7083H30.5V7.625H48.2917C49.6896 7.625 50.8867 8.12317
                 51.883 9.1195C52.8794 10.1158 53.3767 11.3121 53.375 12.7083V48.2917C53.375 49.6896 52.8777 50.8867 51.883
@@ -217,7 +219,7 @@
                     </div>
                     <div class="dropdown">
                             <button class="border-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                <img src="images/More.png"/>
+                                <img src="{{ asset('images/More.png') }}" />
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="#">Cài đặt</a></li>
@@ -230,7 +232,6 @@
                                 </li>
                             </ul>
                         </div>
-                    
                 </div>
             </div>
         </div>
@@ -239,6 +240,5 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     </body>
 </html>
