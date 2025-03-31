@@ -130,7 +130,7 @@ Route::middleware('auth')->group(function () {
         // Cập nhập kết quả đồ án
         Route::get('/capnhatketqua', [CapNhatKetQuaController::class, 'index'])->name('capnhatketqua.index');
         Route::put('/capnhatketqua/{ma_do_an}', [CapNhatKetQuaController::class, 'update'])->name('capnhatketqua');
-        
+        Route::post('/giangvienhd', [GiangVienHuongDanController::class, 'updateSoLuong'])->name('giangvienhd.updateSoLuong');
         // Add other giangvien-specific routes here
    
 
