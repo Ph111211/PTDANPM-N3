@@ -10,9 +10,23 @@ class GV_QLySinhVienController extends Controller
 {
     public function index()
     {   
-        $logo = asset('storage/images/logo.png');
+        
         $sinhviens = SinhVien::with('doAn')->paginate(5);
-        return view('giangvien/quanlysinhvien.index', compact('sinhviens','logo'));
+        if ($sinhviens->isEmpty()) {
+            $sinhviens = collect([
+                (object)[
+                    'id' => 0,
+                    'user_id' => 0,
+                    'ho_ten' => 'Không có dữ liệu',
+                    'doAn' => [
+                        'tieu_de' => 'N/A',
+                    ],
+                    
+                ]
+            ]);
+            session()->flash('warning', 'Hiện tại không có dữ liệu sinh viên.');
+        }
+        return view('giangvien/quanlysinhvien.index', compact('sinhviens'));
     }
     public function capNhatTrangThai(Request $request)
 {
