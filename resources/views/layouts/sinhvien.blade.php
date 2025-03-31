@@ -78,7 +78,7 @@
         <div class="menu">
             <div class="mx-4">
             <img src="storage/images/logo.png" alt="No image." class="logo">
-                
+
                 <a href="/">
                     <h2>Trang chủ</h2>
                 </a>
@@ -94,14 +94,13 @@
                     <a href="{{ route('giangvienhd.index') }}">Giảng viên hướng dẫn </a>
                 </li>
                 <li>
-                    <a href="#">Tiến độ thực tập</a>
+                    <a href="{{ route('tiendothuctap.index') }}">Tiến độ thực tập</a>
                 </li>
                 <li>
                     <a href="{{route('baocaocuoiky.index')}}">Báo cáo đồ án</a>
                 </li>
                 <li>
                     <a href="{{route('danhgiatudoanhnghiep.index')}}">Đánh giá doanh nghiệp </a>
-
                 </li>
                 <li>
                     <a href="{{ route('ketquathuctapsv.index') }}">Kết quả thực tập</a>

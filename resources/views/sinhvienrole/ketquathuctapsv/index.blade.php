@@ -31,7 +31,7 @@
                         @foreach($ketquas as $gv)
                             <option value="{{ $gv->ma_ket_qua }}" data-nx_gv="{{ $gv->nhan_xet_cua_giang_vien }}"
                                     data-nx="{{ $gv->nhan_xet_cua_doanh_nghiep}} "
-                                    data-ds="{{ $gv->diem_so}}">{{ $gv->ma_ket_qua }}</option>
+                                    data-ds="{{ $gv->diem_so}}">{{ $gv->ten_dn }}</option>
                         @endforeach
                     </select>
                 </div>

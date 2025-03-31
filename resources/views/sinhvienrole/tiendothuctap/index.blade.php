@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{ $it->ma_sv }}</td>
                             <td>{{ $it->sinhvien ? $it->sinhvien->ho_ten : 'Không có dữ liệu' }}</td>
-                            <td>{{ $it->vi_tri }}</td>
+                            <td>{{ $it->nhiem_vu }}</td>
                             <td class="w-50" >{{ $it->thoi_gian_bat_dau }} - {{ $it->thoi_gian_ket_thuc }}</td>
                             <td>
                                 @if(isset($it->diem_so) && is_numeric($it->diem_so))
@@ -83,7 +83,7 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <h5 class="modal-title text-center fw-bold" id="editUserModalLabel">
-                                  Cập nhật tiến độ</h5>
+                                    Cập nhật tiến độ</h5>
                                 <form action="{{ route('tiendothuctap', $it->ma_do_an) }}" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -132,7 +132,7 @@
             <div class="modal-body">
                 <h4 class="fw-bold">Bạn có chắc chắn muốn cập nhật tiến độ?</h4>
                 <button type="button" id="confirm-update-btn" class="btn style-button px-4 py-2">
-                     Có
+                    Có
                 </button>
                 <button type="button" class="btn m-3 style-button py-2" data-bs-dismiss="modal">
                     Không
@@ -144,7 +144,7 @@
 <script>
     var successMessage = "{{ session('success') }}";
 
-        document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".update-btn").forEach(button => {
             button.addEventListener("click", function (event) {
                 event.preventDefault(); // Ngăn chặn gửi form ngay lập tức
@@ -198,5 +198,6 @@
         });
     });
 </script>
+
 <script src="{{ asset('js/scriptsAdmin.js') }}"></script>
 </html>

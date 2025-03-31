@@ -21,9 +21,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <title>Đăng ký đề tài</title>
 </head>
-<body>
-
-</body>
 
 @extends('layouts.sinhvien')
 
@@ -75,7 +72,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
                             <div class="modal-body">
-                                <h4 class="fw-bold">Bạn có chắc chắn muốn nộp báo cáo?</h4>
+                                <h4 class="fw-bold">Bạn có chắc chắn muốn đăng ký đề tài ?</h4>
                                 <button type="button" id="confirm-ok-btn" class="btn style-button px-4 py-2">
                                     <i class="bi bi-check-lg me-2"></i> OK
                                 </button>
@@ -157,11 +154,10 @@
                 document.getElementById('confirm-ok-btn').onclick = function () {
                     confirmModal.hide();
 
-                    // Hiển thị modal thông báo thành công
-                    let successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                    successModal.show();
-
+                    // Submit form
+                    document.querySelector("form").submit();
                 };
+
             }
         });
     });

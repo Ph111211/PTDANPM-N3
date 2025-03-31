@@ -26,8 +26,8 @@
                 <h4 class="fw-bold text-center">Đánh giá doanh nghiệp</h4>
 
                 <div class="form-group mb-3">
-                    <label for="ket_qua_thuc_tap" class="fw-bold"> Danh sách sinh viên thực tập khả dụng</label>
-                    <select class="form-control" name="ket_qua_thuc_tap" id="ket_qua_thuc_tap">
+                    <label for="danh_sach_sinh_vien" class="fw-bold"> Danh sách sinh viên thực tập khả dụng</label>
+                    <select class="form-control" name="danh_sach_sinh_vien" id="danh_sach_sinh_vien">
                         <option value="">Danh sách sinh viên thực tập</option>
                         @foreach($ketquas as $gv)
                             <option value="{{ $gv->ma_sv }}" data-ten="{{ $gv->ten_dn }}"
@@ -48,11 +48,11 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" id="cancel-btn  " class="btn btn-danger px-4 d-flex align-items-center">
+                    <button type="submit" id="cancel-btn" class="btn btn-danger px-4 d-flex align-items-center">
                         <i class="fas fa-times me-2"></i> Hủy
                     </button>
 
-                    <button type="submit" id="save-btn" class="btn btn-success px-4 d-flex align-items-center">
+                    <button type="button" id="save-btn" class="btn btn-success px-4 d-flex align-items-center">
                         <i class="fas fa-save me-2"></i> Lưu
                     </button>
                     <!-- Modal thông báo tải thành công -->
@@ -78,7 +78,7 @@
                                 <div class="modal-body">
                                     <h4 class="fw-bold">Bạn có chắc chắn muốn tải về?</h4>
                                     <button type="button" id="confirm-ok-btn" class="btn style-button px-4 py-2">
-                                         Có
+                                        Có
                                     </button>
                                     <button type="button" class="btn m-3 style-button px-4 py-2"
                                             data-bs-dismiss="modal">
@@ -99,7 +99,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         let selectedOption;
 
-        document.getElementById('ket_qua_thuc_tap').addEventListener('change', function () {
+        document.getElementById('danh_sach_sinh_vien').addEventListener('change', function () {
             selectedOption = this.options[this.selectedIndex];
             let doanhNghiep = selectedOption.getAttribute('data-ten') || "";
             let nhanXet = selectedOption.getAttribute('data-nx') || "";
@@ -115,7 +115,7 @@
             event.preventDefault(); // Ngăn chặn submit form mặc định
 
             let tenDN = document.getElementById('ten_dn').value.trim();
-            let tenSv = document.getElementById('ma_sv').value.trim();
+            let tenSv = document.getElementById('danh_sach_sinh_vien').value.trim();
             let nhanXet = document.getElementById('nhan_xet').value.trim();
             let isValid = true;
 
