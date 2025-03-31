@@ -18,32 +18,26 @@ class GiangVienHuongDanController extends Controller
         return view('sinhvienrole/giangvienhd.index', compact('giangvienhd', 'giangviens'));
     }
 
-    public function capnhatGiangVien(Request $request, $ma_do_an)
+    public function updateSoLuong(Request $request)
     {
-        $doAn = DoAn::where('ma_do_an', $ma_do_an)->first();
-        if (!$doAn) {
-            return response()->json(['message' => 'Đồ án không tồn tại'], 404);
-        }
+        // Lấy user_id của giảng viên từ form
+        $selectedUserId = $request->giang_vien;
 
-        $giangVien = GiangVien::where('user_id', $request->input('giang_vien'))->first();
+        // Tìm giảng viên
+        $giangVien = GiangVien::where('user_id', $selectedUserId)->first();
         if (!$giangVien) {
-            return response()->json(['message' => 'Giảng viên không tồn tại'], 404);
+            return back()->withErrors(['giang_vien' => 'Vui lòng chọn giảng viên']);
         }
 
-        try {
-            DB::beginTransaction();
-            // Cập nhật số lượng sinh viên hướng dẫn
-            $giangVien->so_luong_sinh_vien_huong_dan = $request->input('so_luong')+1;
-            $giangVien->save();
-            // Cập nhật thông tin đồ án
-            $doAn->ma_gv = $request->input('giang_vien');
-//            $doAn->tieu_chi_giang_vien = $request->tieu_chi;
-            $doAn->save();
-            DB::commit();
-            return redirect()->route('dashboard.sinhvien')->with('success', 'Chọn giảng viên thành công!');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => 'Lỗi khi cập nhật: ' . $e->getMessage()], 500);
+        // Kiểm tra số lượng sinh viên hiện tại
+        if ($giangVien->so_luong_sinh_vien_huong_dan >= 10) {
+            return back()->withErrors(['giang_vien' => 'Giảng viên đã đủ số lượng sinh viên!']);
         }
+
+        // Tăng số lượng sinh viên hướng dẫn lên 1
+        $giangVien->so_luong_sinh_vien_huong_dan += 1;
+        $giangVien->save();
+
+        return redirect()->route('giangvienhd.index')->with('success', 'Chọn giảng viên thành công!');
     }
 }

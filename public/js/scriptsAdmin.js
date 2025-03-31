@@ -32,19 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.submitEditDoAnForm = function submitEditDoAnForm(id) {
         document.getElementById('editForm' + id).submit();
     }
-    window.submitEditPhanCong = function submitEditPhanCOng(maDoAn) {
-        // Tìm form có id là editForm{maDoAn}
-        var form = document.getElementById('editForm' + maDoAn);
-
-        // Kiểm tra xem form có tồn tại không
-        if (form) {
-            // Gửi form
-            form.submit();
-        } else {
-            console.error('Không tìm thấy form editForm' + maDoAn);
-        }
+    window.submitEditPhanCong =function submitEditPhanCong(maDoAn) {
+        document.getElementById('editForm' + maDoAn).submit();
     }
-
     // Xác nhận gửi form tạo user
     $("#confirmSubmit").click(function () {
         var modal = bootstrap.Modal.getInstance(document.getElementById("addConfirmModal"));
