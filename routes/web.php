@@ -64,8 +64,7 @@ Route::get('/ketquathuctapsv', [KetQuaThucTapSinhVienController::class, 'index']
 
 Route::get('/baocaocuoiky', [BaoCaoCuoiKYController::class, 'index'])->name('baocaocuoiky.index');
 
-Route::put('/capnhatgiangvien/{user_id}', [GiangVienHuongDanController::class, 'updateSoLuong']);
-
+Route::post('/giangvienhd', [GiangVienHuongDanController::class, 'updateSoLuong'])->name('giangvienhd.updateSoLuong');
 
 route::get('/dangkydetai', [DangKyDeTaiNghiepController::class, 'index'])->name('dangkydetai.index');
 Route::post('/do-an/store', [DangKyDeTaiNghiepController::class, 'store'])->name('doan.store');
