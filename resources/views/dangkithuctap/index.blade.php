@@ -59,7 +59,7 @@
         </div>
 
         <div class="d-flex justify-content-around">
-            <button type="cancel" class="btn btn-primary btn-danger">
+            <button type="reset" class="btn btn-primary btn-danger">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
                      viewBox="0 0 16 16">
                     <path
@@ -77,6 +77,16 @@
                 Lưu
             </button>
         </div>
+        <!-- Modal thông báo thành công -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center">
+                    <div class="modal-body alert text-center m-0 p-6 fw-bold" style="color: #2ca02c">
+                        Bạn đã đăng ký thành công!
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </form>
 
@@ -88,7 +98,7 @@
         const submitBtn = document.getElementById("submit-btn"); // dùng id ở đây
 
         submitBtn.addEventListener("click", function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Ngừng submit mặc định
 
             let isValid = true;
 
@@ -115,12 +125,24 @@
                 }
             }
 
+            // Kiểm tra từng trường
             checkError(hoTen, "Vui lòng nhập tên sinh viên.");
             checkError(tenDn, "Vui lòng nhập tên doanh nghiệp.");
             checkError(viTri, "Vui lòng nhập vị trí mong muốn.");
 
             if (isValid) {
-                form.submit();
+                // Hiển thị modal thành công
+                const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+                successModal.show();
+
+                // Sau khi modal đóng, reset form và giữ lại trang hiện tại
+                document.getElementById("successModal").addEventListener("hidden.bs.modal", function () {
+                    // Reset form sau khi modal đóng
+                    form.reset();
+                    // Xóa bỏ class is-invalid (nếu có)
+                    form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+                });
             }
         });
-    });</script>
+    });
+</script>

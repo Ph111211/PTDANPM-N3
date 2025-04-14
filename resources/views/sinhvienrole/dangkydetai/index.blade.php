@@ -28,7 +28,8 @@
 
 @section('content')
     <form class="m-lg-auto" style="width: 100%" action="{{ route('doan.store') }}" method="POST">
-        @csrf <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
+        @csrf
+        <div class="d-grid justify-content-center align-items-center" style="height: 80vh; background: #f8f9fa;">
             <div class="card shadow p-4" style="width: 600px; border-radius: 10px;">
                 <h4 class="fw-bold text-center">Đăng ký đề tài</h4>
 
@@ -62,104 +63,74 @@
                         <i class="fas fa-times me-2"></i> Hủy
                     </button>
 
-                    <button type="submit" class="btn btn-success px-4 d-flex align-items-center" onclick="submitCreateForm1()">
+                    <button type="submit" id="submitBtn" class="btn btn-success px-4 d-flex align-items-center">
                         <i class="fas fa-save me-2"></i> Xác nhận đăng ký
                     </button>
                 </div>
-
-                <!-- Modal xác nhận trước khi nộp -->
-                <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+                <!-- Modal thông báo thành công -->
+                <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
-                            <div class="modal-body">
-                                <h4 class="fw-bold">Bạn có chắc chắn muốn đăng ký đề tài ?</h4>
-                                <button type="button" id="confirm-ok-btn" class="btn style-button px-4 py-2">
-                                    <i class="bi bi-check-lg me-2"></i> OK
-                                </button>
-                                <button type="button" class="btn m-3 style-button px-4 py-2" data-bs-dismiss="modal">
-                                    Hủy
-                                </button>
+                        <div class="modal-content text-center">
+                            <div class="modal-body alert text-center m-0 p-6 fw-bold" style="color: #2ca02c">
+                                Bạn đã đăng ký đề tài thành công!
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal thông báo đã nộp báo cáo -->
-                <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content text-center shadow-lg" style="border-radius: 10px;">
-                            <div class="modal-body">
-                                <h4 class="fw-bold text-success">Đăng ký đề tài thành công!</h4>
-                                <button type="button" id="success-ok-btn" class="btn btn-success d-flex align-items-center justify-content-center mx-auto px-4 py-2"
-                                        data-bs-dismiss="modal" aria-label="Close" style="border-radius: 8px;">
-                                    <i class="bi bi-check-lg me-2"></i> OK
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
     </form>
-
 @endsection
-<script>
-    function submitCreateForm1() {
-        document.querySelector('form').submit(); // Submit form
-    }
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("button[type='submit']").addEventListener("click", function (event) {
-            event.preventDefault(); // Ngăn chặn submit ngay lập tức
+ <script>
+     document.addEventListener("DOMContentLoaded", function () {
+         const form = document.querySelector("form");
+         const submitBtn = document.getElementById("submitBtn");
 
-            let isValid = true;
+         submitBtn.addEventListener("click", function (event) {
+             event.preventDefault(); // Ngăn submit mặc định
 
-            // Lấy giá trị các trường
-            let tieuDe = document.getElementById("tieu_de");
-            let giangVien = document.getElementById("giang_vien");
-            let thoiGian = document.getElementById("thoi_gian_thuc_tap");
+             let isValid = true;
 
-            // Xóa thông báo lỗi cũ
-            document.querySelectorAll(".error-message").forEach(e => e.remove());
+             const tieuDe = document.getElementById("tieu_de");
+             const giangVien = document.getElementById("giang_vien");
+             const thoiGian = document.getElementById("thoi_gian_thuc_tap");
 
-            // Hàm kiểm tra và hiển thị lỗi
-            function checkField(input, message) {
-                if (input.value.trim() === "") {
-                    isValid = false;
-                    input.classList.add("is-invalid");
+             // Xóa lỗi cũ
+             document.querySelectorAll(".error-message").forEach(el => el.remove());
 
-                    let errorElement = document.createElement("div");
-                    errorElement.classList.add("error-message", "text-danger", "mt-1");
-                    errorElement.innerHTML = message;
+             function checkError(input, message) {
+                 if (input.value.trim() === "") {
+                     isValid = false;
+                     input.classList.add("is-invalid");
 
-                    input.parentNode.appendChild(errorElement);
-                } else {
-                    input.classList.remove("is-invalid");
-                }
-            }
+                     const error = document.createElement("div");
+                     error.classList.add("error-message", "text-danger", "mt-1");
+                     error.textContent = message;
 
-            // Kiểm tra các trường nhập
-            checkField(tieuDe, "Vui lòng chọn đề tài.");
-            checkField(giangVien, "Vui lòng chọn giảng viên.");
-            checkField(thoiGian, "Vui lòng nhập thời gian thực tập.");
+                     input.parentNode.appendChild(error);
+                 } else {
+                     input.classList.remove("is-invalid");
+                 }
+             }
 
-            // Nếu hợp lệ, hiển thị modal xác nhận
-            if (isValid) {
-                // Hiển thị modal xác nhận trước khi nộp báo cáo
-                let confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
-                confirmModal.show();
+             // Kiểm tra từng trường
+             checkError(tieuDe, "Vui lòng chọn đề tài.");
+             checkError(giangVien, "Vui lòng chọn giảng viên.");
+             checkError(thoiGian, "Vui lòng nhập thời gian thực tập.");
 
-                document.getElementById('confirm-ok-btn').onclick = function () {
-                    confirmModal.hide();
+             if (isValid) {
+                 // Hiển thị modal thành công
+                 const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+                 successModal.show();
 
-                    // Submit form
-                    document.querySelector("form").submit();
-                };
+                 // Sau khi modal đóng, không gửi form mà chỉ để lại trang hiện tại
+                 document.getElementById("successModal").addEventListener("hidden.bs.modal", function () {
+                     // Form vẫn không được submit, bạn có thể giữ lại trạng thái này.
+                 });
+             }
 
-            }
-        });
-    });
-
-</script>
+         });
+     });
+ </script>
