@@ -26,7 +26,7 @@
             overflow: hidden;
         }
         .custom-card {
-            width: 650px;
+            width: 720px;
             height: 731px;
             left: 400px;
             top: 80px;
@@ -41,14 +41,14 @@
         .custom-logo {
             width: 164px;
             height: 135px;
-            left: 265px;
+            left: 275px;
             top: 20px;
             position: absolute;
         }
         .custom-title {
             width: 953px;
             height: 60px;
-            left: 112px;
+            left: 122px;
             top: 177px;
             position: absolute;
             color: #003C75;
@@ -60,7 +60,7 @@
         .custom-subtitle {
             width: 454px;
             height: 26px;
-            left: 186px;
+            left: 206px;
             top: 219px;
             position: absolute;
             color: black;
@@ -118,24 +118,23 @@
         .custom-forgot-password {
             width: 208px;
             height: 38px;
-            left: 255px;
-            top: 603px;
+            left: 285px;
+            top: 613px;
             position: absolute;
             color: black;
             font-size: 25px;
             font-family: Inter;
             font-weight: 400;
             word-wrap: break-word;
+            text-decoration: none;
         }
         .custom-alert {
-            background-color: #ff4d4d; /* Màu nền đỏ đậm */
-            color: white; /* Màu chữ trắng */
-            border: 1px solid #cc0000; /* Viền đỏ đậm */
-            border-radius: 5px; /* Bo góc */
-            padding: 10px; /* Khoảng cách bên trong */
-            font-size: 18px; /* Kích thước chữ */
-            text-align: center; /* Căn giữa nội dung */
-            margin-top: 20px; /* Khoảng cách phía trên */
+            color: red;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 260px;
         }
     </style>
 </head>

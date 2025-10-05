@@ -89,14 +89,7 @@
                                             <label for="ngay_gio"><strong>Ngày và giờ</strong></label>
                                             <input type="datetime-local" class="form-control" id="ngay_gio" name="ngay_gio" required>
                                         </div>
-                                        <!-- <div class="form-group text-left">
-                                            <label for="ngay_gio"><strong>Ngày</strong></label>
-                                            <input type="date" class="form-control" id="ngay_gio" name="ngay_gio" required>
-                                        </div>
-                                        <div class="form-group text-left">    
-                                            <label for="ngay_gio"><strong>Thời gian</strong></label>
-                                            <input type="time" class="form-control" id="ngay_gio" name="ngay_gio" required>
-                                        </div> -->
+                                        
                                         <div class="form-group text-left">
                                             <label for="dia_diem"><strong>Địa điểm</strong></label>
                                             <input type="text" class="form-control" id="dia_diem" name="dia_diem" required>

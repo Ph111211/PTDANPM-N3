@@ -25,7 +25,7 @@
 
 @extends('layouts.giangvien')
 
-@section('title', 'Quản Lí Đồ án')
+@section('title', 'Quản Lý Đồ án')
 
 @section('content')
 <div class="d-flex mb-3 pt-3 justify-content-between">
