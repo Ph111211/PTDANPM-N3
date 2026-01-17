@@ -78,7 +78,7 @@
     <body>
         <div class="menu">
             <div class="mx-4">
-                <img src="{{ asset('images/logo.png') }}" alt="No image." class="logo">
+                <img src="{{ $logo }}" alt="No image." class="logo">
                 <a href="/">
                     <h2>Trang chủ</h2>
                 </a>
